@@ -7,4 +7,9 @@
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="create_account">Create an Account</string>
+    <string name="already_have_account">alteady have account</string>
+    <string name="mychatapp_logo">MyChatApp Logo</string>
+    <string name="account_settings">Account Settings</string>
+    <string name="all_users">All Users</string>
+    <string name="logout">Logout</string>
 </resources>
