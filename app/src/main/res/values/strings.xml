@@ -1,15 +1,42 @@
 <resources>
     <string name="app_name">MyChatApp</string>
-    <string name="welcome_to_mychatapp">Welcome to MyChatApp</string>
+
+    <!--Home Activity-->
     <string name="need_a_new_account">need a new account</string>
+    <string name="already_have_account">already have account</string>
+    <string name="welcome_to_mychatapp">Welcome to MyChatApp</string>
+
+    <!--Register Activity-->
+    <string name="create_account">Create Account</string>
+    <string name="registering_user">Registering User</string>
+    <string name="registering_user_message">Please wait while we create your account !</string>
+    <string name="default_status">Hi there I\'m using MyChatApp.</string>
+    <string name="default_image">default</string>
+    <string name="default_thumb_image">default</string>
+    <string name="registration_error_toast">Cannot Sign in. Please check the form and try again.</string>
     <string name="create_a_new_account">Create a new account</string>
+
+    <!--Login Activity-->
+    <string name="login">Login</string>
+    <string name="logging_in">Logging In</string>
+    <string name="logging_in_message">Please wait while we check your credentials.</string>
+    <string name="login_to_your_account">login to your account</string>
+
+    <!--EditText Hints-->
     <string name="hint_display_name">Display Name</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-    <string name="create_account">Create an Account</string>
-    <string name="already_have_account">alteady have account</string>
-    <string name="mychatapp_logo">MyChatApp Logo</string>
+
+    <!--Menu Fields-->
     <string name="account_settings">Account Settings</string>
     <string name="all_users">All Users</string>
     <string name="logout">Logout</string>
+
+    <!--Content Description-->
+    <string name="mychatapp_logo">MyChatApp Logo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

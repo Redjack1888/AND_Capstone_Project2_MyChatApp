@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.login_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setTitle(R.string.login);
 
         mLoginProgress = new ProgressDialog(this);
 
@@ -66,8 +66,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(!TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)){
 
-                    mLoginProgress.setTitle("Logging In");
-                    mLoginProgress.setMessage("Please wait while we check your credentials.");
+                    mLoginProgress.setTitle(getString(R.string.logging_in));
+                    mLoginProgress.setMessage(getString(R.string.logging_in_message));
                     mLoginProgress.setCanceledOnTouchOutside(false);
                     mLoginProgress.show();
 

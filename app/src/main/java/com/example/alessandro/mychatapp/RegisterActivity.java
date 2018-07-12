@@ -47,9 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         //Toolbar Set
-        mToolbar = (Toolbar) findViewById(R.id.register_toolbar);
+        mToolbar = findViewById(R.id.register_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Create Account");
+        getSupportActionBar().setTitle(R.string.create_account);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mRegProgress = new ProgressDialog(this);
@@ -73,8 +73,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(!TextUtils.isEmpty(display_name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)){
 
-                    mRegProgress.setTitle("Registering User");
-                    mRegProgress.setMessage("Please wait while we create your account !");
+                    mRegProgress.setTitle(getString(R.string.registering_user));
+                    mRegProgress.setMessage(getString(R.string.registering_user_message));
                     mRegProgress.setCanceledOnTouchOutside(false);
                     mRegProgress.show();
 
@@ -104,9 +104,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                     HashMap<String, String> userMap = new HashMap<>();
                     userMap.put("name", display_name);
-                    userMap.put("status", "Hi there I'm using Lapit Chat App.");
-                    userMap.put("image", "default");
-                    userMap.put("thumb_image", "default");
+                    userMap.put("status", getString(R.string.default_status));
+                    userMap.put("image", getString(R.string.default_image));
+                    userMap.put("thumb_image", getString(R.string.default_thumb_image));
                     userMap.put("device_token", device_token);
 
                     mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -130,7 +130,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
 
                     mRegProgress.hide();
-                    Toast.makeText(RegisterActivity.this, "Cannot Sign in. Please check the form and try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, R.string.registration_error_toast, Toast.LENGTH_LONG).show();
 
                 }
 

@@ -31,7 +31,7 @@
         android:backgroundTint="@color/colorAccent"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="login to your account"
+        android:text="@string/login_to_your_account"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
