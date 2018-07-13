@@ -37,6 +37,10 @@
     <string name="your_status_text">Your Status</string>
     <string name="save_changes_btn">SAVE CHANGES</string>
 
+    <!--Users Activity-->
+    <string name="activity_users_app_title">All Users</string>
+    <string name="user_default_status">User default Status</string>
+
     <!--EditText Hints-->
     <string name="hint_display_name">Display Name</string>
     <string name="hint_email">Email</string>
@@ -49,6 +53,7 @@
 
     <!--Content Description-->
     <string name="mychatapp_logo">MyChatApp Logo</string>
+    <string name="online_status">Online Status</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -65,6 +70,7 @@
     <!--Firebase Storage Fields-->
     <string name="FB_storage_profile_images_field">profile_images</string>
     <string name="FB_storage_thumbs_field">thumbs</string>
+
 
 
 </resources>
