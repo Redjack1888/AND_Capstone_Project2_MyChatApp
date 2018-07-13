@@ -98,16 +98,16 @@ public class RegisterActivity extends AppCompatActivity {
                     FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
                     String uid = current_user.getUid();
 
-                    mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+                    mDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_users_field)).child(uid);
 
                     String device_token = FirebaseInstanceId.getInstance().getToken();
 
                     HashMap<String, String> userMap = new HashMap<>();
-                    userMap.put("name", display_name);
-                    userMap.put("status", getString(R.string.default_status));
-                    userMap.put("image", getString(R.string.default_image));
-                    userMap.put("thumb_image", getString(R.string.default_thumb_image));
-                    userMap.put("device_token", device_token);
+                    userMap.put(getString(R.string.FB_name_field), display_name);
+                    userMap.put(getString(R.string.FB_status_field), getString(R.string.default_status));
+                    userMap.put(getString(R.string.FB_image_field), getString(R.string.default_image));
+                    userMap.put(getString(R.string.FB_thumb_image_field), getString(R.string.default_thumb_image));
+                    userMap.put(getString(R.string.FB_device_token_field), device_token);
 
                     mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

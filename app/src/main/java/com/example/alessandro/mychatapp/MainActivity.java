@@ -91,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.main_settings_btn) {
 
+            Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(settingsIntent);
+
+
+
         }
 
         if (item.getItemId() == R.id.main_all_btn) {

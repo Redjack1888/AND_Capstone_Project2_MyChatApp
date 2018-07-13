@@ -10,7 +10,6 @@
     <string name="create_account">Create Account</string>
     <string name="registering_user">Registering User</string>
     <string name="registering_user_message">Please wait while we create your account !</string>
-    <string name="default_status">Hi there I\'m using MyChatApp.</string>
     <string name="default_image">default</string>
     <string name="default_thumb_image">default</string>
     <string name="registration_error_toast">Cannot Sign in. Please check the form and try again.</string>
@@ -21,6 +20,12 @@
     <string name="logging_in">Logging In</string>
     <string name="logging_in_message">Please wait while we check your credentials.</string>
     <string name="login_to_your_account">login to your account</string>
+
+    <!--Settings Activity-->
+    <string name="change_image_btn">CHANGE IMAGE</string>
+    <string name="change_status_btn">CHANGE STATUS</string>
+    <string name="settings_display_name_txt">Display Name</string>
+    <string name="default_status">Hi there I\'m using MyChatApp.</string>
 
     <!--EditText Hints-->
     <string name="hint_display_name">Display Name</string>
@@ -37,6 +42,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Firebase Tables Fields-->
+    <!--Users-->
+    <string name="FB_users_field">Users</string>
+    <string name="FB_name_field">name</string>
+    <string name="FB_status_field">status</string>
+    <string name="FB_image_field">image</string>
+    <string name="FB_thumb_image_field">thumb_image</string>
+    <string name="FB_device_token_field">device_token</string>
 
 
 </resources>

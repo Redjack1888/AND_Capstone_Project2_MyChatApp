@@ -36,6 +36,7 @@ dependencies {
 
     // Other Libraries
     implementation 'com.firebaseui:firebase-ui-database:4.0.1'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 
 }
 apply plugin: 'com.google.gms.google-services'
