@@ -74,6 +74,7 @@ public class UsersActivity extends AppCompatActivity {
 
                 holder.setDisplayName(model.getName());
                 holder.setUserStatus(model.getStatus());
+                holder.setUserImage(model.getThumb_image());
 
                 final String user_id = getRef(position).getKey();
 
@@ -81,9 +82,9 @@ public class UsersActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-//                        Intent profileIntent = new Intent(UsersActivity.this, ProfileActivity.class);
-//                        profileIntent.putExtra("user_id", user_id);
-//                        startActivity(profileIntent);
+                        Intent profileIntent = new Intent(UsersActivity.this, ProfileActivity.class);
+                        profileIntent.putExtra("user_id", user_id);
+                        startActivity(profileIntent);
 
                     }
                 });
@@ -116,15 +117,22 @@ public class UsersActivity extends AppCompatActivity {
 
         public void setDisplayName(String name){
 
-            TextView userNameView = (TextView) mView.findViewById(R.id.user_single_name);
+            TextView userNameView = mView.findViewById(R.id.user_single_name);
             userNameView.setText(name);
 
         }
 
         public void setUserStatus(String status){
 
-            TextView userStatusView = (TextView) mView.findViewById(R.id.user_single_status);
+            TextView userStatusView = mView.findViewById(R.id.user_single_status);
             userStatusView.setText(status);
+
+        }
+
+        public void setUserImage(String thumb_image){
+
+            CircleImageView userImageView = mView.findViewById(R.id.user_single_image);
+            Picasso.get().load(thumb_image).placeholder(R.drawable.default_avatar).into(userImageView);
 
         }
 

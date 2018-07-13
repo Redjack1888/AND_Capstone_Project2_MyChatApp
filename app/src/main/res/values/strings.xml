@@ -54,9 +54,7 @@
     <!--Content Description-->
     <string name="mychatapp_logo">MyChatApp Logo</string>
     <string name="online_status">Online Status</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_image_profile">User Image Profile</string>
 
     <!--Firebase Tables Fields-->
     <!--Users-->
@@ -70,5 +68,8 @@
     <!--Firebase Storage Fields-->
     <string name="FB_storage_profile_images_field">profile_images</string>
     <string name="FB_storage_thumbs_field">thumbs</string>
+    <string name="total_friends">Total Friends</string>
+    <string name="send_friend_request">SEND FRIEND REQUEST</string>
+    <string name="decline_friend_request">DECLINE FRIEND REQUEST</string>
 
 </resources>
