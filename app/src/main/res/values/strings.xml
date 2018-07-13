@@ -27,6 +27,15 @@
     <string name="settings_display_name_txt">Display Name</string>
     <string name="default_status">Hi there I\'m using MyChatApp.</string>
 
+    <!--Status Activity-->
+    <string name="account_status">Account Status</string>
+    <string name="status_value">status_value</string>
+    <string name="saving_changes">Saving Changes</string>
+    <string name="saving_changes_message">Please wait while we save the changes</string>
+    <string name="Saving_changes_error_toast">There was some error in saving Changes.</string>
+    <string name="your_status_text">Your Status</string>
+    <string name="save_changes_btn">SAVE CHANGES</string>
+
     <!--EditText Hints-->
     <string name="hint_display_name">Display Name</string>
     <string name="hint_email">Email</string>
@@ -51,6 +60,7 @@
     <string name="FB_image_field">image</string>
     <string name="FB_thumb_image_field">thumb_image</string>
     <string name="FB_device_token_field">device_token</string>
+
 
 
 </resources>

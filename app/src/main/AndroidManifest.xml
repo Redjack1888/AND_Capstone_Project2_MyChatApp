@@ -23,7 +23,9 @@
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".HomeActivity" />
-        <activity android:name=".SettingsActivity"></activity>
-    </application>
+        <activity android:name=".SettingsActivity" />
+        <activity
+            android:name=".StatusActivity"
+            android:parentActivityName=".SettingsActivity" />    </application>
 
 </manifest>

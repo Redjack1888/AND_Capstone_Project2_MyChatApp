@@ -23,8 +23,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent reg_intent = new Intent(HomeActivity.this, RegisterActivity.class);
-                startActivity(reg_intent);
+                Intent registerIntent = new Intent(HomeActivity.this, RegisterActivity.class);
+                startActivity(registerIntent);
 
             }
         });
@@ -33,8 +33,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent login_intent = new Intent(HomeActivity.this, LoginActivity.class);
-                startActivity(login_intent);
+                Intent loginIntent = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(loginIntent);
 
             }
         });
