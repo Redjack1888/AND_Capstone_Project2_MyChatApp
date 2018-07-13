@@ -26,6 +26,7 @@
     <string name="change_status_btn">CHANGE STATUS</string>
     <string name="settings_display_name_txt">Display Name</string>
     <string name="default_status">Hi there I\'m using MyChatApp.</string>
+    <string name="settings_select_image">SELECT IMAGE</string>
 
     <!--Status Activity-->
     <string name="account_status">Account Status</string>
@@ -61,6 +62,9 @@
     <string name="FB_thumb_image_field">thumb_image</string>
     <string name="FB_device_token_field">device_token</string>
 
+    <!--Firebase Storage Fields-->
+    <string name="FB_storage_profile_images_field">profile_images</string>
+    <string name="FB_storage_thumbs_field">thumbs</string>
 
 
 </resources>
