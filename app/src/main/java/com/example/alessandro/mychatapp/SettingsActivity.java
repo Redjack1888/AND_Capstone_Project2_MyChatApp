@@ -33,11 +33,13 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import id.zelory.compressor.Compressor;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -59,6 +61,8 @@ public class SettingsActivity extends AppCompatActivity {
     private Button mStatusBtn;
     private Button mImageBtn;
 
+    Bitmap thumb_bitmap = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +71,8 @@ public class SettingsActivity extends AppCompatActivity {
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         String current_uid = mCurrentUser.getUid();
 
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_users_field)).child(current_uid);
+        mUserDatabase = FirebaseDatabase.getInstance().getReference()
+                .child(getString(R.string.FB_users_field)).child(current_uid);
         mImageStorage = FirebaseStorage.getInstance().getReference();
 
         mDisplayImage = findViewById(R.id.settings_image);
@@ -89,8 +94,11 @@ public class SettingsActivity extends AppCompatActivity {
                 mName.setText(name);
                 mStatus.setText(status);
 
-                Picasso.get().load(image).placeholder(R.drawable.default_avatar).into(mDisplayImage);
+                if (!image.equals(getString(R.string.default_image))) {
 
+                    Picasso.get().load(image).placeholder(R.drawable.default_avatar).into(mDisplayImage);
+
+                }
 
             }
 
@@ -131,7 +139,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == GALLERY_PICK && resultCode == RESULT_OK){
+        if (requestCode == GALLERY_PICK && resultCode == RESULT_OK) {
 
             Uri imageUri = data.getData();
 
@@ -158,10 +166,30 @@ public class SettingsActivity extends AppCompatActivity {
 
                 Uri resultUri = result.getUri();
 
+                File thumb_filePathUri = new File(resultUri.getPath());
+
                 String current_user_id = mCurrentUser.getUid();
+
+                // Compress Profile Image
+                try {
+                    thumb_bitmap = new Compressor(this)
+                            .setMaxWidth(200)
+                            .setMaxHeight(200)
+                            .setQuality(75)
+                            .compressToBitmap(thumb_filePathUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                thumb_bitmap.compress(Bitmap.CompressFormat.JPEG, 75, baos);
+                final byte[] thumb_byte = baos.toByteArray();
+
 
                 final StorageReference filepath = mImageStorage.child(getString(R.string.FB_storage_profile_images_field)).child(current_user_id + ".jpg");
 
+                // Profile Image
                 filepath.putFile(resultUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
@@ -181,10 +209,10 @@ public class SettingsActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
 
-                                    if(task.isSuccessful()){
+                                    if (task.isSuccessful()) {
 
                                         mProgressDialog.dismiss();
-                                        Toast.makeText(SettingsActivity.this, "Success in uploading.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SettingsActivity.this, "Profile Image successfully uploaded.", Toast.LENGTH_LONG).show();
 
                                     }
 
@@ -193,13 +221,54 @@ public class SettingsActivity extends AppCompatActivity {
 
                         } else {
 
-                            Toast.makeText(SettingsActivity.this, "Error in uploading.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SettingsActivity.this, "Error in uploading Profile Image.", Toast.LENGTH_LONG).show();
                             mProgressDialog.dismiss();
 
                         }
 
                     }
                 });
+                // Thumb image
+                final StorageReference thumb_filepath = mImageStorage.child(getString(R.string.FB_storage_profile_images_field)).child("thumbs").child(current_user_id + ".jpg");
+                thumb_filepath.putBytes(thumb_byte).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> thumb_task) throws Exception {
+                        if (!thumb_task.isSuccessful()) {
+                            throw Objects.requireNonNull(thumb_task.getException());
+                        }
+                        return thumb_filepath.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> thumb_task) {
+                        if (thumb_task.isSuccessful()) {
+                            final Uri thumb_downloadUri = thumb_task.getResult();
+                            String thumb_downloadUrl = thumb_downloadUri.toString();
+
+                            mUserDatabase.child(getString(R.string.FB_thumb_image_field)).setValue(thumb_downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if (task.isSuccessful()) {
+
+                                        mProgressDialog.dismiss();
+                                        Toast.makeText(SettingsActivity.this, "Thumbnail successfully uploaded.", Toast.LENGTH_LONG).show();
+
+                                    }
+
+                                }
+                            });
+
+                        } else {
+
+                            Toast.makeText(SettingsActivity.this, "Error in uploading thumbnail.", Toast.LENGTH_LONG).show();
+                            mProgressDialog.dismiss();
+
+                        }
+
+                    }
+                });
+
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
 
