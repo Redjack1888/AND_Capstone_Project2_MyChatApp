@@ -73,6 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         mUserDatabase = FirebaseDatabase.getInstance().getReference()
                 .child(getString(R.string.FB_users_field)).child(current_uid);
+        mUserDatabase.keepSynced(true);
         mImageStorage = FirebaseStorage.getInstance().getReference();
 
         mDisplayImage = findViewById(R.id.settings_image);
@@ -96,7 +97,18 @@ public class SettingsActivity extends AppCompatActivity {
 
                 if (!image.equals(getString(R.string.default_image))) {
 
-                    Picasso.get().load(image).placeholder(R.drawable.default_avatar).into(mDisplayImage);
+                    Picasso.get().load(image).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.default_avatar).into(mDisplayImage, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            Picasso.get().load(image).placeholder(R.drawable.default_avatar).into(mDisplayImage);
+
+                        }
+                    });
 
                 }
 
@@ -261,7 +273,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                         } else {
 
-                            Toast.makeText(SettingsActivity.this, "Error in uploading thumbnail.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SettingsActivity.this, "Error in uploading thumbnail .", Toast.LENGTH_LONG).show();
                             mProgressDialog.dismiss();
 
                         }
