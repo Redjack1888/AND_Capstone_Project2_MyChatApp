@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private TabLayout mTabLayout;
+    private DatabaseReference mUserRef;
 
 
     @Override
@@ -35,7 +36,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(R.string.app_name);
 
+        if (mAuth.getCurrentUser() != null) {
 
+
+            mUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+
+        }
 
         //Tabs
         mViewPager = findViewById(R.id.main_tabPager);
@@ -53,9 +59,27 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if (currentUser == null) {
+        if(currentUser == null){
 
             sendToStart();
+
+        } else {
+
+            mUserRef.child("online").setValue("true");
+
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if(currentUser != null) {
+
+            mUserRef.child("online").setValue(ServerValue.TIMESTAMP);
 
         }
 

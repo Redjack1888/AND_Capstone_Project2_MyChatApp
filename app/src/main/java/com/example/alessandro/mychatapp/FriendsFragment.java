@@ -17,6 +17,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -215,7 +216,7 @@ public class FriendsFragment extends Fragment {
 
         public void setUserOnline(String userOnline) {
 
-            CircleImageView imageView = mView.findViewById(R.id.user_single_online_icon);
+            ImageView imageView = mView.findViewById(R.id.user_single_online_icon);
             if (userOnline.equals("true"))
             {
                 imageView.setVisibility(View.VISIBLE);

@@ -22,7 +22,11 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static java.security.AccessController.getContext;
 
 public class UsersActivity extends AppCompatActivity {
 
@@ -95,6 +99,7 @@ public class UsersActivity extends AppCompatActivity {
         };
 
         mUsersList.setAdapter(firebaseRecyclerAdapter);
+        mUsersList.addItemDecoration(new SimpleDividerItemDecoration(this));
         firebaseRecyclerAdapter.startListening();
 
     }
