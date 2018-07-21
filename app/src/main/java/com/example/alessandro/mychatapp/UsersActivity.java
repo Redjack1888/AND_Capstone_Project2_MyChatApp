@@ -139,7 +139,11 @@ public class UsersActivity extends AppCompatActivity {
         public void setUserImage(final String thumb_image){
 
             final CircleImageView userImageView = mView.findViewById(R.id.user_single_image);
-            Picasso.get().load(thumb_image).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.default_avatar).into(userImageView, new Callback() {
+            Picasso.get()
+                    .load(thumb_image)
+                    .networkPolicy(NetworkPolicy.OFFLINE)
+                    .placeholder(R.drawable.default_avatar)
+                    .into(userImageView, new Callback() {
                 @Override
                 public void onSuccess() {
 
@@ -147,7 +151,10 @@ public class UsersActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(Exception e) {
-                    Picasso.get().load(thumb_image).placeholder(R.drawable.default_avatar).into(userImageView);
+                    Picasso.get()
+                            .load(thumb_image)
+                            .placeholder(R.drawable.default_avatar)
+                            .into(userImageView);
 
                 }
             });

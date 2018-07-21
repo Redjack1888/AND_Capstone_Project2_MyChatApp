@@ -55,6 +55,8 @@
     <string name="mychatapp_logo">MyChatApp Logo</string>
     <string name="online_status">Online Status</string>
     <string name="user_image_profile">User Image Profile</string>
+    <string name="add_an_image_button_option">Add an Image button option</string>
+    <string name="send_the_message_button_option">Send the message button option</string>
 
     <!--Firebase Tables Fields-->
     <!--Users-->
@@ -68,14 +70,20 @@
     <!--Firebase Storage Fields-->
     <string name="FB_storage_profile_images_field">profile_images</string>
     <string name="FB_storage_thumbs_field">thumbs</string>
+
+    <!--Profile Activity-->
     <string name="total_friends">Total Friends</string>
     <string name="send_friend_request">SEND FRIEND REQUEST</string>
     <string name="decline_friend_request">DECLINE FRIEND REQUEST</string>
 
-
     <!--Notification Channel-->
     <string name="channel_name">MyChatApp_channel</string>
     <string name="channel_description">MyChatApp_channel_description</string>
+
+    <!--Chat Activity-->
+    <string name="enter_message">Enter Message…</string>
+    <string name="user_online_status">User online Status</string>
+    <string name="message_time">message time</string>
 
 
 </resources>
