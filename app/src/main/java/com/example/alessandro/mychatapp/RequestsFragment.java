@@ -76,8 +76,8 @@ public class RequestsFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions friendsOptions = new FirebaseRecyclerOptions.Builder<Requests>().setQuery(friendsQuery, Requests.class).build();
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Requests,FriendReqViewHolder>(friendsOptions) {
+        FirebaseRecyclerOptions requestsOptions = new FirebaseRecyclerOptions.Builder<Requests>().setQuery(friendsQuery, Requests.class).build();
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Requests,FriendReqViewHolder>(requestsOptions) {
             @NonNull
             @Override
             public FriendReqViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -96,18 +96,18 @@ public class RequestsFragment extends Fragment {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         final String userName = dataSnapshot.child("name").getValue().toString();
                         String userThumb = dataSnapshot.child("thumb_image").getValue().toString();
-//                        if (dataSnapshot.hasChild("online"))
-//                        {
-//                            String userOnline = dataSnapshot.child("online").getValue().toString();
-//                            holder.setUserOnline(userOnline);
-//                        }
+                        if (dataSnapshot.hasChild("online"))
+                        {
+                            String userOnline = dataSnapshot.child("online").getValue().toString();
+                            holder.setUserOnline(userOnline);
+                        }
                         if (userName.length()<27) {
                             holder.setName(userName);
                         }
                         else {
                             holder.setName(userName.substring(0,24)+"...");
                         }
-                        holder.setImage(userThumb);
+                        holder.setImage(userThumb, getContext());
 
                         holder.mView.setOnClickListener(new View.OnClickListener() {
                             @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -162,7 +162,7 @@ public class RequestsFragment extends Fragment {
             userNameView.setText(name);
         }
 
-        public void setImage(String thumb_image) {
+        public void setImage(String thumb_image, Context ctx) {
             CircleImageView userImageView =  mView.findViewById(R.id.user_single_image);
 
             Picasso.get().load(thumb_image).placeholder(R.drawable.default_avatar).into(userImageView);
@@ -174,17 +174,17 @@ public class RequestsFragment extends Fragment {
             userStatusView.setText(req_type);
         }
 
-//        public void setUserOnline(String userOnline) {
-//
-//            ImageView imageView = mView.findViewById(R.id.user_single_online_image);
-//            if (userOnline.equals("true"))
-//            {
-//                imageView.setVisibility(View.VISIBLE);
-//            }
-//            else {
-//                imageView.setVisibility(View.INVISIBLE);
-//            }
-//        }
+        public void setUserOnline(String userOnline) {
+
+            ImageView imageView = mView.findViewById(R.id.user_single_online_icon);
+            if (userOnline.equals("true"))
+            {
+                imageView.setVisibility(View.VISIBLE);
+            }
+            else {
+                imageView.setVisibility(View.INVISIBLE);
+            }
+        }
 
     }
 }
