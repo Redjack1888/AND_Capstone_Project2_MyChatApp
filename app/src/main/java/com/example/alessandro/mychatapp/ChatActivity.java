@@ -120,6 +120,7 @@ public class ChatActivity extends AppCompatActivity {
         mMessageList = findViewById(R.id.message_list_recycler_view);
         mMessageLinearLayout = findViewById(R.id.chat_message_linear_layout);
         mLinearLayout = new LinearLayoutManager(this);
+
         mMessageList.setHasFixedSize(true);
         mMessageList.setLayoutManager(mLinearLayout);
         mMessageList.setAdapter(mAdapter);
@@ -127,6 +128,7 @@ public class ChatActivity extends AppCompatActivity {
         mRootRef = FirebaseDatabase.getInstance().getReference();
         mUsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         mRootRef.keepSynced(true);
+
         mUsersRef.keepSynced(true);
         loadMessages();
         mRootRef.child("Friends").child(current_user_id).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -201,7 +203,7 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
-        
+
     }
 
     @Override
