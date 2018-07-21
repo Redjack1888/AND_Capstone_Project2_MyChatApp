@@ -201,47 +201,8 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
-
-        /*chatMessageSendBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendMessage();
-            }
-        }); */
-
-
-       /* chatMessageAddBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent galleryIntent = new Intent();
-                galleryIntent.setType("image/*");
-                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(galleryIntent,"Select Image"),GALLERY_PICK);
-            }
-        }); */
-
+        
     }
-
-//    private boolean isConnectedToInternet(Context context) {
-//        ConnectivityManager cm =
-//                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-//        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-//        return netInfo != null && netInfo.isConnectedOrConnecting();
-//    }
-
-//    public void showSnackBar(String message, RelativeLayout relativeLayout)
-//    {
-//        snackbar = Snackbar
-//                .make(relativeLayout, message, Snackbar.LENGTH_INDEFINITE).
-//                        setAction("Ok", new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//
-//                                snackbar.dismiss();
-//                            }
-//                        });
-//        snackbar.show();
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
