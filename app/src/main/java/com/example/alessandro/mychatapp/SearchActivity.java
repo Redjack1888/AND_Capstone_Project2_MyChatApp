@@ -76,7 +76,7 @@ public class SearchActivity extends AppCompatActivity {
     private void firebaseUserSearch(String searchText) {
         Toast.makeText(SearchActivity.this, "Started Search", Toast.LENGTH_LONG).show();
 
-        Query firebaseSearchQuery = mUsersDatabase.orderByChild("name").startAt(searchText).endAt(searchText + "\uf8ff");
+        Query firebaseSearchQuery = mUsersDatabase.orderByChild("name").startAt(searchText.toUpperCase()).endAt(searchText.toLowerCase() + "\uf8ff");
         FirebaseRecyclerOptions searchOptions = new FirebaseRecyclerOptions.Builder<Users>().setQuery(firebaseSearchQuery, Users.class).build();
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, SearchViewHolder>(searchOptions) {
             @NonNull
