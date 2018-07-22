@@ -5,8 +5,8 @@
     android:padding="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:src="@drawable/default_avatar"
         android:id="@+id/message_single_profile_image"/>
 

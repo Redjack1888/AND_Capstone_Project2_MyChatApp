@@ -127,6 +127,13 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        if (item.getItemId() == R.id.action_search) {
+
+            Intent searchIntent = new Intent(MainActivity.this, SearchActivity.class);
+            startActivity(searchIntent);
+
+        }
+
         return true;
     }
 }
