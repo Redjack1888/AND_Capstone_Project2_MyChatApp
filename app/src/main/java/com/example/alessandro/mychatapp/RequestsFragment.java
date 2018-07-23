@@ -38,6 +38,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RequestsFragment extends Fragment {
 
     private RecyclerView mFriendRequestList;
+    private ImageView emptyView;
     private DatabaseReference mFriendReqDatabase, mUsersDatabase;
     private View mMainView;
     private String mCurrent_user_id;
@@ -69,6 +70,9 @@ public class RequestsFragment extends Fragment {
         friendsQuery = mFriendReqDatabase.orderByKey();
         mFriendRequestList.setHasFixedSize(true);
         mFriendRequestList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        emptyView = mMainView.findViewById(R.id.request_empty_view);
+
         return mMainView;
     }
 
@@ -78,6 +82,10 @@ public class RequestsFragment extends Fragment {
 
         FirebaseRecyclerOptions requestsOptions = new FirebaseRecyclerOptions.Builder<Requests>().setQuery(friendsQuery, Requests.class).build();
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Requests,FriendReqViewHolder>(requestsOptions) {
+            @Override
+            public void onDataChanged() {
+                emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);            }
+
             @NonNull
             @Override
             public FriendReqViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -140,6 +148,15 @@ public class RequestsFragment extends Fragment {
         //To prevent getting null context Objects.requireNonNull is added
         mFriendRequestList.addItemDecoration(new SimpleDividerItemDecoration(Objects.requireNonNull(getContext())));
         firebaseRecyclerAdapter.startListening();
+
+//        if (firebaseRecyclerAdapter.getItemCount() <=0) {
+//            mFriendRequestList.setVisibility(View.GONE);
+//            emptyView.setVisibility(View.VISIBLE);
+//        }
+//        else {
+//            mFriendRequestList.setVisibility(View.VISIBLE);
+//            emptyView.setVisibility(View.GONE);
+//        }
     }
 
     @Override

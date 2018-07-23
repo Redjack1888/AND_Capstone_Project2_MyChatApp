@@ -6,10 +6,19 @@
     tools:context=".RequestsFragment">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/friendRequestList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/friendRequestList">
+        android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/request_empty_view"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:src="@drawable/nofriendsreq"
+        android:visibility="gone"
+        android:contentDescription="TODO" />
 
 </FrameLayout>

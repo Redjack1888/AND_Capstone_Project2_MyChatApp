@@ -42,6 +42,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class FriendsFragment extends Fragment {
 
     private RecyclerView mFriendsList;
+
+    private ImageView emptyView;
+
     private DatabaseReference mFriendsDatabase, mUsersDatabase,mRootRef;
     private View mMainView;
     private String mCurrent_user_id;
@@ -80,8 +83,12 @@ public class FriendsFragment extends Fragment {
         mFriendsList.setHasFixedSize(true);
         mFriendsList.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        emptyView = mMainView.findViewById(R.id.friends_empty_view);
+
         return mMainView;
     }
+
+
 
     @Override
     public void onStart() {
@@ -89,6 +96,11 @@ public class FriendsFragment extends Fragment {
 
         FirebaseRecyclerOptions friendsOptions = new FirebaseRecyclerOptions.Builder<Friends>().setQuery(friendsQuery, Friends.class).build();
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Friends,FriendsViewHolder>(friendsOptions) {
+
+            @Override
+            public void onDataChanged() {
+                emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);            }
+
             @NonNull
             @Override
             public FriendsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -170,6 +182,7 @@ public class FriendsFragment extends Fragment {
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
+
                     }
                 });
             }
@@ -179,6 +192,16 @@ public class FriendsFragment extends Fragment {
         //To prevent getting null context Objects.requireNonNull is added
         mFriendsList.addItemDecoration(new SimpleDividerItemDecoration(Objects.requireNonNull(getContext())));
         firebaseRecyclerAdapter.startListening();
+
+//        if (firebaseRecyclerAdapter.getItemCount() <= 0 ) {
+//            mFriendsList.setVisibility(View.GONE);
+//            emptyView.setVisibility(View.VISIBLE);
+//
+//        }
+//        else {
+//            mFriendsList.setVisibility(View.VISIBLE);
+//            emptyView.setVisibility(View.GONE);
+//        }
     }
 
     @Override

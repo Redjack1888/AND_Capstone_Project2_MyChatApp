@@ -37,6 +37,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
     public class ChatsFragment extends Fragment {
 
         private RecyclerView mChatList;
+        private ImageView emptyView;
         private DatabaseReference mMessagesDatabase, mUsersDatabase,mRootRef;
         private View mMainView;
         private String mCurrent_user_id;
@@ -72,7 +73,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
             layoutManager.setReverseLayout(true);
             layoutManager.setStackFromEnd(true);
             mChatList.setLayoutManager(layoutManager);
-            // mChatList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+            emptyView = mMainView.findViewById(R.id.chats_empty_view);
+
             return mMainView;
         }
 
@@ -82,6 +85,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
             FirebaseRecyclerOptions chatsOptions = new FirebaseRecyclerOptions.Builder<Chat>().setQuery(chatsQuery, Chat.class).build();
             firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Chat, ChatsFragment.ChatsViewHolder>(chatsOptions) {
+                @Override
+                public void onDataChanged() {
+                    emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);            }
+
                 @NonNull
                 @Override
                 public ChatsFragment.ChatsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
