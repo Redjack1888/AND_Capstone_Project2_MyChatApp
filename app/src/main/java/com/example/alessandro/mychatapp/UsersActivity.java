@@ -144,20 +144,20 @@ public class UsersActivity extends AppCompatActivity {
                     .networkPolicy(NetworkPolicy.OFFLINE)
                     .placeholder(R.drawable.default_avatar)
                     .into(userImageView, new Callback() {
-                @Override
-                public void onSuccess() {
+                        @Override
+                        public void onSuccess() {
 
-                }
+                        }
 
-                @Override
-                public void onError(Exception e) {
-                    Picasso.get()
-                            .load(thumb_image)
-                            .placeholder(R.drawable.default_avatar)
-                            .into(userImageView);
+                        @Override
+                        public void onError(Exception e) {
+                            Picasso.get()
+                                    .load(thumb_image)
+                                    .placeholder(R.drawable.default_avatar)
+                                    .into(userImageView);
 
-                }
-            });
+                        }
+                    });
 
         }
 

@@ -41,6 +41,21 @@
     <string name="activity_users_app_title">All Users</string>
     <string name="user_default_status">User default Status</string>
 
+    <!--Chat Activity-->
+    <string name="enter_message">Enter Message…</string>
+    <string name="user_online_status">User online Status</string>
+    <string name="message_time">message time</string>
+
+    <!--Search Activity-->
+    <string name="search_user">Search User</string>
+    <string name="hint_search_here">Search here</string>
+    <string name="content_search_button">Search Button</string>
+
+    <!--Profile Activity-->
+    <string name="total_friends">Total Friends</string>
+    <string name="send_friend_request">SEND FRIEND REQUEST</string>
+    <string name="decline_friend_request">DECLINE FRIEND REQUEST</string>
+
     <!--EditText Hints-->
     <string name="hint_display_name">Display Name</string>
     <string name="hint_email">Email</string>
@@ -65,30 +80,88 @@
     <string name="FB_status_field">status</string>
     <string name="FB_image_field">image</string>
     <string name="FB_thumb_image_field">thumb_image</string>
+    <string name="FB_users_online_field">online</string>
     <string name="FB_device_token_field">device_token</string>
+    <!--Messages-->
+    <string name="FB_messages_field">Messages</string>
+    <string name="FB_message_field">message</string>
+    <string name="FB_message_seen_field">seen</string>
+    <string name="FB_message_type_field">type</string>
+    <string name="FB_message_time_field">time</string>
+    <string name="FB_message_from_field">from</string>
+    <string name="FB_message_type_text_field">text</string>
+    <string name="FB_message_type_image_field">image</string>
+    <!--Friends-->
+    <!--<string name="FB_friends_field">Friends</string> -->
+    <string name="FB_Friends_field">Friends</string>
+
+    <!--LastMessages-->
+    <string name="FB_lastMessage_field">LastMessage</string>
+    <string name="FB_message_lastMessageKey_field">lastMessageKey</string>
+    <!--Notifications-->
+    <string name="FB_notifications_field">Notifications</string>
+    <string name="FB_notifications_from_field">from</string>
+    <string name="FB_notifications_type_field">type</string>
+    <string name="FB_notifications_type_request_value">request</string>
+    <string name="FB_notifications_type_sent_value">sent</string>
+    <string name="FB_notifications_type_received_value">received</string>
+
+    <!--Friend Request-->
+    <string name="FB_Friend_req_field">Friend_req</string>
+    <string name="Friendship_status_notFriends">not_friends</string>
+    <string name="Friendship_status_friends">friends</string>
 
     <!--Firebase Storage Fields-->
     <string name="FB_storage_profile_images_field">profile_images</string>
     <string name="FB_storage_thumbs_field">thumbs</string>
-
-    <!--Profile Activity-->
-    <string name="total_friends">Total Friends</string>
-    <string name="send_friend_request">SEND FRIEND REQUEST</string>
-    <string name="decline_friend_request">DECLINE FRIEND REQUEST</string>
+    <string name="FB_storage_message_images_field">message_images</string>
 
     <!--Notification Channel-->
     <string name="channel_name">MyChatApp_channel</string>
     <string name="channel_description">MyChatApp_channel_description</string>
 
-    <!--Chat Activity-->
-    <string name="enter_message">Enter Message…</string>
-    <string name="user_online_status">User online Status</string>
-    <string name="message_time">message time</string>
+    <!--Intent/Extras-->
+    <string name="intent_stringExtra_user_id">user_id</string>
+    <string name="intent_stringExtra_chatUserName">chatUserName</string>
+    <string name="gallery_intent_title">Select Image</string>
 
-    <!--Search Activity-->
-    <string name="search_user">Search User</string>
-    <string name="hint_search_here">Search here</string>
-    <string name="content_search_button">Search Button</string>
+    <!--Media Type-->
+    <string name="jpg_extension">.jpg</string>
+
+    <!--Toast Messages-->
+    <string name="Toast_thumbnail_success_upload">Thumbnail successfully uploaded.</string>
+    <string name="Toast_error_thumbnail_upload">Error in uploading thumbnail .</string>
+    <string name="Toast_error">Error :</string>
+    <string name="Toast_error_request_sending">There was some error in sending request</string>
+
+    <!--Boolean Strings-->
+    <string name="boolean_true_string">true</string>
+
+    <string name="status_online_text">Online</string>
+    <string name="open_profile_option">Open Profile</string>
+    <string name="send_message_option">Send Message</string>
+    <string name="select_option_title">Select an Option</string>
+    <string name="progress_dialog_user_data_title">Loading User Data</string>
+    <string name="progress_dialog_user_data_message">Please wait while we load the user data.</string>
+    <string name="FB_friendship_request_type_field">request_type</string>
+    <string name="accept_friend_request_text">Accept Friend Request</string>
+    <string name="send_friend_request_text">Send Friend Request</string>
+    <string name="Unfriend_this_person_text">Unfriend this Person</string>
+    <string name="cancel_friend_request_text">Cancel Friend Request</string>
+    <string name="Friendship_request_status_req_received">req_received</string>
+    <string name="Friendship_request_status_req_sent">req_sent</string>
+    <string name="request_sent">sent</string>
+    <string name="request_received">received</string>
+    <string name="FB_Friends_date_field">date</string>
+    <string name="three_dots">...</string>
+    <string name="imageTransition">imageTransition</string>
+    <string name="nameTransition">nameTransition</string>
+    <string name="search_appBar_title">Search...</string>
+    <string name="Toast_search">Started Search</string>
+    <string name="progress_uploading_image">Uploading Image...</string>
+    <string name="progress_uploading_image_message">Please wait while we upload and process the image.</string>
+    <string name="Toast_profile_image_update_success">Profile Image successfully uploaded.</string>
+    <string name="Toast_profile_image_update_error">Error in uploading Profile Image.</string>
 
 
 </resources>
