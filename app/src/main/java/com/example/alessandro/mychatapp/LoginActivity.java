@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mLoginEmail.getEditText().getText().toString();
                 String password = mLoginPassword.getEditText().getText().toString();
 
-                if(!TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)){
+                if (!TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
 
                     mLoginProgress.setTitle(getString(R.string.logging_in));
                     mLoginProgress.setMessage(getString(R.string.logging_in_message));
@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
 
                     mLoginProgress.dismiss();
 

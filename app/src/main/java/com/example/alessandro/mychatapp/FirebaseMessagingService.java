@@ -32,7 +32,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         Intent intent = new Intent(notification_click_action);
-        intent.putExtra("user_id",from_user_id);
+        intent.putExtra("user_id", from_user_id);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 this,

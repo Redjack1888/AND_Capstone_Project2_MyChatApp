@@ -70,7 +70,7 @@ public class StatusActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
 
                             mProgress.dismiss();
 

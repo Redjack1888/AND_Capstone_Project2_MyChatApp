@@ -84,6 +84,8 @@
     <string name="enter_message">Enter Message…</string>
     <string name="user_online_status">User online Status</string>
     <string name="message_time">message time</string>
+
+    <!--Search Activity-->
     <string name="search_user">Search User</string>
     <string name="hint_search_here">Search here</string>
     <string name="content_search_button">Search Button</string>

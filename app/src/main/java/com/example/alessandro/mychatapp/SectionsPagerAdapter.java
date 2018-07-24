@@ -14,7 +14,7 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        switch(position) {
+        switch (position) {
             case 0:
                 return new RequestsFragment();
 
@@ -25,7 +25,7 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return new FriendsFragment();
 
             default:
-                return  null;
+                return null;
         }
 
     }
@@ -35,7 +35,7 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
         return 3;
     }
 
-    public CharSequence getPageTitle(int position){
+    public CharSequence getPageTitle(int position) {
 
         switch (position) {
             case 0:

@@ -45,7 +45,7 @@ public class FriendsFragment extends Fragment {
 
     private ImageView emptyView;
 
-    private DatabaseReference mFriendsDatabase, mUsersDatabase,mRootRef;
+    private DatabaseReference mFriendsDatabase, mUsersDatabase, mRootRef;
     private View mMainView;
     private String mCurrent_user_id;
     private FirebaseAuth mAuth;
@@ -71,7 +71,7 @@ public class FriendsFragment extends Fragment {
         mFriendsDatabase = FirebaseDatabase.getInstance().getReference().child("Friends").child(mCurrent_user_id);
         mFriendsDatabase.keepSynced(true);
 
-        mUsersDatabase =FirebaseDatabase.getInstance().getReference().child("Users");
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         mUsersDatabase.keepSynced(true);
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
@@ -89,17 +89,17 @@ public class FriendsFragment extends Fragment {
     }
 
 
-
     @Override
     public void onStart() {
         super.onStart();
 
         FirebaseRecyclerOptions friendsOptions = new FirebaseRecyclerOptions.Builder<Friends>().setQuery(friendsQuery, Friends.class).build();
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Friends,FriendsViewHolder>(friendsOptions) {
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Friends, FriendsViewHolder>(friendsOptions) {
 
             @Override
             public void onDataChanged() {
-                emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);            }
+                emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
+            }
 
             @NonNull
             @Override
@@ -119,16 +119,14 @@ public class FriendsFragment extends Fragment {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         final String userName = dataSnapshot.child("name").getValue().toString();
                         String userThumb = dataSnapshot.child("thumb_image").getValue().toString();
-                        if (dataSnapshot.hasChild("online"))
-                        {
+                        if (dataSnapshot.hasChild("online")) {
                             String userOnline = dataSnapshot.child("online").getValue().toString();
                             holder.setUserOnline(userOnline);
                         }
-                        if (userName.length()<27) {
+                        if (userName.length() < 27) {
                             holder.setName(userName);
-                        }
-                        else {
-                            holder.setName(userName.substring(0,24)+"...");
+                        } else {
+                            holder.setName(userName.substring(0, 24) + "...");
                         }
                         holder.setImage(userThumb, getContext());
 
@@ -136,41 +134,39 @@ public class FriendsFragment extends Fragment {
                             @Override
                             public void onClick(View v) {
 
-                                CharSequence options[] = new CharSequence[] {"Open Profile","Send Message"};
+                                CharSequence options[] = new CharSequence[]{"Open Profile", "Send Message"};
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                                 builder.setTitle("Select an Option");
                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                                     @Override
                                     public void onClick(DialogInterface dialog, int i) {
-                                        if (i == 0)
-                                        {
+                                        if (i == 0) {
                                             //For shared transition animation to Profile Activity
-                                            Intent profileSharedIntent = new Intent(getContext(),ProfileActivity.class);
+                                            Intent profileSharedIntent = new Intent(getContext(), ProfileActivity.class);
 
                                             Pair[] pairs = new Pair[2];
-                                            pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image),"imageTransition");
-                                            pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name),"nameTransition");
+                                            pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), "imageTransition");
+                                            pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), "nameTransition");
 
                                             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
 
                                             profileSharedIntent.putExtra("user_id", list_user_id);
-                                            startActivity(profileSharedIntent,options.toBundle());
+                                            startActivity(profileSharedIntent, options.toBundle());
                                         }
-                                        if (i==1)
-                                        {
+                                        if (i == 1) {
                                             //For shared transition animation to Chat Activity
-                                            Intent chatSharedIntent = new Intent(getContext(),ChatActivity.class);
+                                            Intent chatSharedIntent = new Intent(getContext(), ChatActivity.class);
 
                                             Pair[] pairs = new Pair[2];
-                                            pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image),"imageTransition");
-                                            pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name),"nameTransition");
+                                            pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), "imageTransition");
+                                            pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), "nameTransition");
 
                                             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
 
                                             chatSharedIntent.putExtra("user_id", list_user_id);
-                                            chatSharedIntent.putExtra("chatUserName",userName);
-                                            startActivity(chatSharedIntent,options.toBundle());
+                                            chatSharedIntent.putExtra("chatUserName", userName);
+                                            startActivity(chatSharedIntent, options.toBundle());
                                         }
                                     }
                                 });
@@ -221,12 +217,12 @@ public class FriendsFragment extends Fragment {
         }
 
         public void setName(String name) {
-            TextView userNameView =  mView.findViewById(R.id.user_single_name);
+            TextView userNameView = mView.findViewById(R.id.user_single_name);
             userNameView.setText(name);
         }
 
         public void setImage(String thumb_image, Context ctx) {
-            CircleImageView userImageView =  mView.findViewById(R.id.user_single_image);
+            CircleImageView userImageView = mView.findViewById(R.id.user_single_image);
 
             Picasso.get().load(thumb_image).placeholder(R.drawable.default_avatar).into(userImageView);
 
@@ -240,11 +236,9 @@ public class FriendsFragment extends Fragment {
         public void setUserOnline(String userOnline) {
 
             ImageView imageView = mView.findViewById(R.id.user_single_online_icon);
-            if (userOnline.equals("true"))
-            {
+            if (userOnline.equals("true")) {
                 imageView.setVisibility(View.VISIBLE);
-            }
-            else {
+            } else {
                 imageView.setVisibility(View.INVISIBLE);
             }
         }

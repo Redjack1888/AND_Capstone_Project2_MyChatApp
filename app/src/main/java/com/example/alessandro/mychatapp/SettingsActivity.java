@@ -102,20 +102,20 @@ public class SettingsActivity extends AppCompatActivity {
                             .networkPolicy(NetworkPolicy.OFFLINE)
                             .placeholder(R.drawable.default_avatar)
                             .into(mDisplayImage, new Callback() {
-                        @Override
-                        public void onSuccess() {
+                                @Override
+                                public void onSuccess() {
 
-                        }
+                                }
 
-                        @Override
-                        public void onError(Exception e) {
-                            Picasso.get()
-                                    .load(image)
-                                    .placeholder(R.drawable.default_avatar)
-                                    .into(mDisplayImage);
+                                @Override
+                                public void onError(Exception e) {
+                                    Picasso.get()
+                                            .load(image)
+                                            .placeholder(R.drawable.default_avatar)
+                                            .into(mDisplayImage);
 
-                        }
-                    });
+                                }
+                            });
 
                 }
 

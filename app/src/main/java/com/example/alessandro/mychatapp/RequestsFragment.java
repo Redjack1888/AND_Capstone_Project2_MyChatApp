@@ -81,10 +81,11 @@ public class RequestsFragment extends Fragment {
         super.onStart();
 
         FirebaseRecyclerOptions requestsOptions = new FirebaseRecyclerOptions.Builder<Requests>().setQuery(friendsQuery, Requests.class).build();
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Requests,FriendReqViewHolder>(requestsOptions) {
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Requests, FriendReqViewHolder>(requestsOptions) {
             @Override
             public void onDataChanged() {
-                emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);            }
+                emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
+            }
 
             @NonNull
             @Override
@@ -104,16 +105,14 @@ public class RequestsFragment extends Fragment {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         final String userName = dataSnapshot.child("name").getValue().toString();
                         String userThumb = dataSnapshot.child("thumb_image").getValue().toString();
-                        if (dataSnapshot.hasChild("online"))
-                        {
+                        if (dataSnapshot.hasChild("online")) {
                             String userOnline = dataSnapshot.child("online").getValue().toString();
                             holder.setUserOnline(userOnline);
                         }
-                        if (userName.length()<27) {
+                        if (userName.length() < 27) {
                             holder.setName(userName);
-                        }
-                        else {
-                            holder.setName(userName.substring(0,24)+"...");
+                        } else {
+                            holder.setName(userName.substring(0, 24) + "...");
                         }
                         holder.setImage(userThumb, getContext());
 
@@ -122,16 +121,16 @@ public class RequestsFragment extends Fragment {
                             @Override
                             public void onClick(View v) {
                                 //For shared transition animation
-                                Intent profileSharedIntent = new Intent(getContext(),ProfileActivity.class);
+                                Intent profileSharedIntent = new Intent(getContext(), ProfileActivity.class);
 
                                 Pair[] pairs = new Pair[2];
-                                pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image),"imageTransition");
-                                pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name),"nameTransition");
+                                pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), "imageTransition");
+                                pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), "nameTransition");
 
                                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
 
                                 profileSharedIntent.putExtra("user_id", list_user_id);
-                                startActivity(profileSharedIntent,options.toBundle());
+                                startActivity(profileSharedIntent, options.toBundle());
                             }
                         });
                     }
@@ -175,12 +174,12 @@ public class RequestsFragment extends Fragment {
         }
 
         public void setName(String name) {
-            TextView userNameView =  mView.findViewById(R.id.user_single_name);
+            TextView userNameView = mView.findViewById(R.id.user_single_name);
             userNameView.setText(name);
         }
 
         public void setImage(String thumb_image, Context ctx) {
-            CircleImageView userImageView =  mView.findViewById(R.id.user_single_image);
+            CircleImageView userImageView = mView.findViewById(R.id.user_single_image);
 
             Picasso.get().load(thumb_image).placeholder(R.drawable.default_avatar).into(userImageView);
 
@@ -194,11 +193,9 @@ public class RequestsFragment extends Fragment {
         public void setUserOnline(String userOnline) {
 
             ImageView imageView = mView.findViewById(R.id.user_single_online_icon);
-            if (userOnline.equals("true"))
-            {
+            if (userOnline.equals("true")) {
                 imageView.setVisibility(View.VISIBLE);
-            }
-            else {
+            } else {
                 imageView.setVisibility(View.INVISIBLE);
             }
         }

@@ -31,22 +31,22 @@ public class GetMessageTime extends Application {
         final long diff = now - time;
         if (diff < MINUTE_MILLIS) {
             return "JUST NOW";
-        }  else if (diff < 90 * MINUTE_MILLIS) {
+        } else if (diff < 90 * MINUTE_MILLIS) {
             SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
             String messageTime = sfd.format(new Date(time)).toString();
-            messageTime = messageTime.substring(11,messageTime.length());
+            messageTime = messageTime.substring(11, messageTime.length());
             return messageTime;
         } else if (diff < 24 * HOUR_MILLIS) {
             SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
             String messageTime = sfd.format(new Date(time)).toString();
-            messageTime = messageTime.substring(11,messageTime.length());
+            messageTime = messageTime.substring(11, messageTime.length());
             return messageTime;
         } else if (diff < 48 * HOUR_MILLIS) {
             return "YESTERDAY";
         } else {
             SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
             String messageTime = sfd.format(new Date(time)).toString();
-            messageTime = messageTime.substring(0,10);
+            messageTime = messageTime.substring(0, 10);
             return messageTime;
         }
     }

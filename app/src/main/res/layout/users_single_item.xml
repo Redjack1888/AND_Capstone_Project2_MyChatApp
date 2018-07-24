@@ -41,8 +41,8 @@
         android:layout_alignTop="@+id/user_single_name"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/user_single_name"
+        android:contentDescription="@string/online_status"
         android:visibility="invisible"
-        app:srcCompat="@drawable/online_icon"
-        android:contentDescription="@string/online_status" />
+        app:srcCompat="@drawable/online_icon" />
 
 </RelativeLayout>

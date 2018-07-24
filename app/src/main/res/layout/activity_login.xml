@@ -67,9 +67,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:hint="@string/hint_email"
-            android:inputType="textEmailAddress"
-            android:layout_margin="4dp"/>
+            android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -86,9 +86,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:hint="@string/hint_password"
-            android:inputType="textPassword"
-            android:layout_margin="4dp"/>
+            android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
 </android.support.constraint.ConstraintLayout>

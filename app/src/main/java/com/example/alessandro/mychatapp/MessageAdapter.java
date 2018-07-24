@@ -37,13 +37,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @NonNull
     @Override
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_single_image_layout,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_single_image_layout, parent, false);
         return new MessageViewHolder(v);
     }
 
-    public class MessageViewHolder extends RecyclerView.ViewHolder
-    {
-        public TextView mMessageTextView,mUserTextView,mTimeTextView;
+    public class MessageViewHolder extends RecyclerView.ViewHolder {
+        public TextView mMessageTextView, mUserTextView, mTimeTextView;
         public CircleImageView mMessageCircleImageView;
         public RelativeLayout messageLayout;
         public ImageView messageImage;
@@ -70,13 +69,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         String messageType = c.getType();
         long timeOfMessage = c.getTime();
 
-        if (messageType.equals("text"))
-        {
+        if (messageType.equals("text")) {
             holder.mMessageTextView.setVisibility(View.VISIBLE);
             holder.messageImage.setVisibility(View.INVISIBLE);
-        }
-        else
-        {
+        } else {
             holder.mMessageTextView.setVisibility(View.INVISIBLE);
             Picasso.get().load(c.getMessage())
                     .placeholder(R.drawable.default_avatar).into(holder.messageImage);
@@ -101,16 +97,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             }
         });
 
-        if (current_user_id.equals(from))
-        {
+        if (current_user_id.equals(from)) {
             holder.messageLayout.setBackgroundResource(R.drawable.bkg_message_view_from);
             holder.mMessageTextView.setTextColor(Color.BLACK);
             holder.mUserTextView.setTextColor(Color.BLACK);
             holder.mTimeTextView.setTextColor(Color.BLACK);
-             holder.mMessageCircleImageView.setVisibility(View.INVISIBLE);
-        }
-        else
-        {
+            holder.mMessageCircleImageView.setVisibility(View.INVISIBLE);
+        } else {
             holder.messageLayout.setBackgroundResource(R.drawable.bkg_message_view);
             holder.mMessageTextView.setTextColor(Color.WHITE);
             holder.mTimeTextView.setTextColor(Color.WHITE);

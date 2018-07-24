@@ -7,13 +7,15 @@
     android:background="#ffffff"
     tools:context=".SearchActivity">
 
-    <include layout="@layout/app_bar_layout" android:id="@+id/users_appBar" />
+    <include
+        android:id="@+id/users_appBar"
+        layout="@layout/app_bar_layout" />
 
     <TextView
         android:id="@+id/heading_label"
-        android:layout_below="@+id/users_appBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/users_appBar"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:text="@string/search_user"
@@ -47,16 +49,16 @@
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/search_field"
         android:layout_marginEnd="30dp"
-        android:scaleType="fitCenter"
         android:background="@android:color/background_light"
-        app:srcCompat="@mipmap/ic_search_btn"
-        android:contentDescription="@string/content_search_button" />
+        android:contentDescription="@string/content_search_button"
+        android:scaleType="fitCenter"
+        app:srcCompat="@mipmap/ic_search_btn" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/result_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/search_field"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp" />
 
 </RelativeLayout>

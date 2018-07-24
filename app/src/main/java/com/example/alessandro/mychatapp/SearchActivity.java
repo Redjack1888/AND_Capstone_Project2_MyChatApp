@@ -72,7 +72,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
-
     private void firebaseUserSearch(String searchText) {
         Toast.makeText(SearchActivity.this, "Started Search", Toast.LENGTH_LONG).show();
 
@@ -128,21 +127,21 @@ public class SearchActivity extends AppCompatActivity {
             mView = itemView;
         }
 
-        public void setDisplayName(String name){
+        public void setDisplayName(String name) {
 
             TextView userNameView = mView.findViewById(R.id.user_single_name);
             userNameView.setText(name);
 
         }
 
-        public void setUserStatus(String status){
+        public void setUserStatus(String status) {
 
             TextView userStatusView = mView.findViewById(R.id.user_single_status);
             userStatusView.setText(status);
 
         }
 
-        public void setUserImage(final String thumb_image){
+        public void setUserImage(final String thumb_image) {
 
             final CircleImageView userImageView = mView.findViewById(R.id.user_single_image);
             Picasso.get()

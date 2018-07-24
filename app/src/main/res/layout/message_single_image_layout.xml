@@ -9,44 +9,44 @@
         android:id="@+id/message_single_profile_image"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@drawable/default_avatar"/>
+        android:src="@drawable/default_avatar" />
 
     <RelativeLayout
         android:id="@+id/message_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:padding="10dp">
 
         <TextView
             android:id="@+id/chat_userName_single_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="16sp"
             android:layout_marginStart="20dp"
-            android:text="@string/hint_display_name" />
+            android:text="@string/hint_display_name"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/time_single_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/message_time"
-            android:textSize="12sp"
             android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/chat_userName_single_text_view"/>
+            android:layout_toEndOf="@+id/chat_userName_single_text_view"
+            android:text="@string/message_time"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/message_single_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/chat_userName_single_text_view"
             android:layout_marginStart="20dp"
-            android:textSize="14sp"
             android:textAlignment="viewStart"
-            android:layout_below="@+id/chat_userName_single_text_view" />
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/message_image"

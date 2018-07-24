@@ -4,12 +4,11 @@ public class Friends {
 
     String date;
 
-    public Friends()
-    {
+    public Friends() {
 
     }
 
-    public Friends( String date) {
+    public Friends(String date) {
         this.date = date;
     }
 

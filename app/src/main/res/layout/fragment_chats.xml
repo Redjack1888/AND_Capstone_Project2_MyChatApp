@@ -5,18 +5,17 @@
     tools:context=".ChatsFragment">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/chatList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/chatList">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"/>
 
     <ImageView
         android:id="@+id/chats_empty_view"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center_vertical|center_horizontal"
+        android:contentDescription="TODO"
         android:src="@drawable/nochats"
-        android:visibility="gone"
-        android:contentDescription="TODO" />
+        android:visibility="gone" />
 
 </FrameLayout>

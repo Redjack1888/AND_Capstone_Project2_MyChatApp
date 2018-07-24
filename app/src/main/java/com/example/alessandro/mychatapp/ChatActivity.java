@@ -71,9 +71,9 @@ public class ChatActivity extends AppCompatActivity {
     private LinearLayoutManager mLinearLayout;
     private MessageAdapter mAdapter;
     private LinearLayout mMessageLinearLayout;
-//    private boolean exist ;
+    //    private boolean exist ;
     private static final int TOTAL_ITEMS_TO_LOAD = 10;
-    private static final int GALLERY_PICK =1;
+    private static final int GALLERY_PICK = 1;
     private StorageReference mImageStorage;
     private RelativeLayout relativeLayout;
 
@@ -95,24 +95,21 @@ public class ChatActivity extends AppCompatActivity {
         relativeLayout = findViewById(R.id.relativeChatLayout);
 
         mAuth = FirebaseAuth.getInstance();
-        if (mAuth!=null)
-        {
+        if (mAuth != null) {
             current_user_id = mAuth.getCurrentUser().getUid();
         }
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View custom_view = inflater.inflate(R.layout.chat_custom_bar,null);
+        View custom_view = inflater.inflate(R.layout.chat_custom_bar, null);
         actionBar.setCustomView(custom_view);
 
         chatUserName = findViewById(R.id.custom_bar_display_name);
         chatUserLastSeen = findViewById(R.id.custom_bar_last_seen);
         chatUserImage = findViewById(R.id.custom_bar_image);
-        if (chat_user_name.length()<20) {
+        if (chat_user_name.length() < 20) {
             chatUserName.setText(chat_user_name);
-        }
-        else
-        {
-            chat_user_name = chat_user_name.substring(0,17)+"...";
+        } else {
+            chat_user_name = chat_user_name.substring(0, 17) + "...";
             chatUserName.setText(chat_user_name);
         }
 
@@ -146,7 +143,7 @@ public class ChatActivity extends AppCompatActivity {
                 C = getLayoutInflater().inflate(optionId, parent, false);
                 parent.addView(C, index);
 
-                if (optionId==R.layout.send_message) {
+                if (optionId == R.layout.send_message) {
                     chatMessageEditText = C.findViewById(R.id.chat_message_edit_text);
                     chatMessageAddBtn = C.findViewById(R.id.chat_message_add_btn);
                     chatMessageSendBtn = C.findViewById(R.id.chat_message_send_btn);
@@ -185,15 +182,12 @@ public class ChatActivity extends AppCompatActivity {
                 Picasso.get().load(thumbImage).placeholder(R.drawable.square_image_placeholder).into(chatUserImage);
                 String online = dataSnapshot.child("online").getValue().toString();
 
-                if (online.equals("true"))
-                {
+                if (online.equals("true")) {
                     chatUserLastSeen.setText("Online");
-                }
-                else
-                {
+                } else {
                     GetTime getTimeAgo = new GetTime();
                     long last_seen = Long.parseLong(online);
-                    String last_seen_time = getTimeAgo.getTimeAgo(last_seen,getApplicationContext());
+                    String last_seen_time = getTimeAgo.getTimeAgo(last_seen, getApplicationContext());
                     chatUserLastSeen.setText(last_seen_time);
                 }
             }
@@ -222,7 +216,7 @@ public class ChatActivity extends AppCompatActivity {
             DatabaseReference messageUserRef = mRootRef.child("messages").child(current_user_id).child(chat_user_id).push();
             final String pushId = messageUserRef.getKey();
 
-            final StorageReference filePath = mImageStorage.child("message_images").child(pushId+".jpg");
+            final StorageReference filePath = mImageStorage.child("message_images").child(pushId + ".jpg");
 
             filePath.putFile(imageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
@@ -251,11 +245,11 @@ public class ChatActivity extends AppCompatActivity {
                         messageUserMap.put(chatUserRef + "/" + pushId, messageMap);
 
                         Map lastMessageMap = new HashMap();
-                        lastMessageMap.put("lastMessageKey",pushId);
+                        lastMessageMap.put("lastMessageKey", pushId);
 
                         Map lastMessageUserMap = new HashMap();
-                        lastMessageUserMap.put(currentUserMessageRef ,lastMessageMap);
-                        lastMessageUserMap.put(chatUserMessageRef ,lastMessageMap);
+                        lastMessageUserMap.put(currentUserMessageRef, lastMessageMap);
+                        lastMessageUserMap.put(chatUserMessageRef, lastMessageMap);
 
                         chatMessageEditText.setText("");
 
@@ -273,8 +267,7 @@ public class ChatActivity extends AppCompatActivity {
                         mRootRef.updateChildren(lastMessageUserMap, new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                if (databaseError != null)
-                                {
+                                if (databaseError != null) {
                                     Toast.makeText(ChatActivity.this, databaseError.getMessage().toString(), Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -340,29 +333,27 @@ public class ChatActivity extends AppCompatActivity {
             messageMap.put("seen", false);
             messageMap.put("type", "text");
             messageMap.put("time", ServerValue.TIMESTAMP);
-            messageMap.put("from",current_user_id);
+            messageMap.put("from", current_user_id);
 
             Map messageUserMap = new HashMap();
-            messageUserMap.put(currentUserRef + "/" + pushId,messageMap);
-            messageUserMap.put(chatUserRef + "/" + pushId,messageMap);
+            messageUserMap.put(currentUserRef + "/" + pushId, messageMap);
+            messageUserMap.put(chatUserRef + "/" + pushId, messageMap);
 
             Map lastMessageMap = new HashMap();
-            lastMessageMap.put("lastMessageKey",pushId);
+            lastMessageMap.put("lastMessageKey", pushId);
 
             Map lastMessageUserMap = new HashMap();
-            lastMessageUserMap.put(currentUserMessageRef ,lastMessageMap);
-            lastMessageUserMap.put(chatUserMessageRef ,lastMessageMap);
+            lastMessageUserMap.put(currentUserMessageRef, lastMessageMap);
+            lastMessageUserMap.put(chatUserMessageRef, lastMessageMap);
 
             chatMessageEditText.setText("");
 
             mRootRef.updateChildren(messageUserMap, new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                    if (databaseError != null)
-                    {
-                        Toast.makeText(ChatActivity.this, databaseError.getMessage().toString() , Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    if (databaseError != null) {
+                        Toast.makeText(ChatActivity.this, databaseError.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                    } else {
                         loadMessages();
                     }
                 }
@@ -371,8 +362,7 @@ public class ChatActivity extends AppCompatActivity {
             mRootRef.updateChildren(lastMessageUserMap, new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                    if (databaseError != null)
-                    {
+                    if (databaseError != null) {
                         Toast.makeText(ChatActivity.this, databaseError.getMessage().toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -389,8 +379,7 @@ public class ChatActivity extends AppCompatActivity {
 
         if (currentUser == null) {
             sendToStart();
-        }
-        else {
+        } else {
             mUsersRef.child(currentUser.getUid()).child("online").setValue("true");
         }
     }
@@ -407,7 +396,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void sendToStart() {
 
-        Intent startIntent = new Intent(ChatActivity.this,HomeActivity.class);
+        Intent startIntent = new Intent(ChatActivity.this, HomeActivity.class);
         startActivity(startIntent);
         finish();
     }

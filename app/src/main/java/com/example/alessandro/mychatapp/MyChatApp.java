@@ -12,7 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
-public class MyChatApp extends Application{
+public class MyChatApp extends Application {
 
     private DatabaseReference mUserDatabase;
     private FirebaseAuth mAuth;
@@ -40,7 +40,7 @@ public class MyChatApp extends Application{
 
         mAuth = FirebaseAuth.getInstance();
 
-        if(mAuth.getCurrentUser() != null) {
+        if (mAuth.getCurrentUser() != null) {
 
             mUserDatabase = FirebaseDatabase.getInstance()
                     .getReference().child("Users").child(mAuth.getCurrentUser().getUid());

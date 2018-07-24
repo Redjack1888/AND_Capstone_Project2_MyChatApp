@@ -25,15 +25,17 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/your_status_text" />
+            android:hint="@string/your_status_text"
+            android:inputType="text" />
+
     </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/status_save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/status_input"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/colorAccent"
         android:text="@string/save_changes_btn"

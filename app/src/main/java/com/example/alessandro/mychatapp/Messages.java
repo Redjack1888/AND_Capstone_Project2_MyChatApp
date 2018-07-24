@@ -8,8 +8,7 @@ public class Messages {
     long time;
     String from;
 
-    public Messages()
-    {
+    public Messages() {
 
     }
 

@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if(currentUser == null){
+        if (currentUser == null) {
 
             sendToStart();
 
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if(currentUser != null) {
+        if (currentUser != null) {
 
             mUserRef.child("online").setValue(ServerValue.TIMESTAMP);
 

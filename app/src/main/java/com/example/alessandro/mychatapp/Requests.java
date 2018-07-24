@@ -3,12 +3,11 @@ package com.example.alessandro.mychatapp;
 public class Requests {
     String request_type;
 
-    public Requests()
-    {
+    public Requests() {
 
     }
 
-    public Requests( String request_type) {
+    public Requests(String request_type) {
         this.request_type = request_type;
     }
 

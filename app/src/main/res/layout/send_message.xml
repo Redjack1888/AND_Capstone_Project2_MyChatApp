@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:layout_alignParentBottom="true">
+    android:layout_alignParentBottom="true"
+    android:orientation="horizontal">
 
     <ImageButton
-        android:layout_marginStart="10dp"
+        android:id="@+id/chat_message_add_btn"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:layout_marginEnd="1dp"
-        android:src="@drawable/ic_action_add"
-        android:id="@+id/chat_message_add_btn"
+        android:layout_marginStart="10dp"
+        android:layout_weight="1"
         android:background="@android:color/white"
-        android:contentDescription="add" />
+        android:contentDescription="add"
+        android:src="@drawable/ic_action_add" />
 
     <EditText
+        android:id="@+id/chat_message_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="8"
-        android:id="@+id/chat_message_edit_text"
-        android:paddingStart="20dp"
         android:background="@android:color/white"
-        android:hint="Enter message here"/>
+        android:hint="Enter message here"
+        android:inputType="text"
+        android:paddingStart="20dp" />
 
     <ImageButton
-        android:background="@android:color/white"
-        android:layout_marginEnd="10dp"
+        android:id="@+id/chat_message_send_btn"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
         android:layout_marginStart="1dp"
-        android:id="@+id/chat_message_send_btn"
-        android:src="@drawable/ic_action_send"
+        android:layout_weight="1"
+        android:background="@android:color/white"
         android:contentDescription="send"
-        android:layout_weight="1" />
+        android:src="@drawable/ic_action_send" />
 
 
 </LinearLayout>

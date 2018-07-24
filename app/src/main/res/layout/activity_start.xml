@@ -10,10 +10,10 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/mychatapp"
         android:layout_marginTop="35dp"
+        android:contentDescription="@string/mychatapp_logo"
         android:scaleType="fitCenter"
-        android:contentDescription="@string/mychatapp_logo"/>
+        android:src="@drawable/mychatapp" />
 
     <TextView
         android:id="@+id/textView"
@@ -39,8 +39,8 @@
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
         android:text="@string/need_a_new_account"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/start_login_btn"
@@ -53,6 +53,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="@string/already_have_account"
-        android:textStyle="bold"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
 </RelativeLayout>
