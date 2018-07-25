@@ -5,7 +5,7 @@
     android:id="@+id/relativeChatLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChatActivity">
+    tools:context=".activities.ChatActivity">
 
     <include
         android:id="@+id/chat_bar_layout"

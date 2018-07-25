@@ -1,10 +1,14 @@
-package com.example.alessandro.mychatapp;
+package com.example.alessandro.mychatapp.utils.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-class SectionsPagerAdapter extends FragmentPagerAdapter {
+import com.example.alessandro.mychatapp.fragments.ChatsFragment;
+import com.example.alessandro.mychatapp.fragments.FriendsFragment;
+import com.example.alessandro.mychatapp.fragments.RequestsFragment;
+
+public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 
     public SectionsPagerAdapter(FragmentManager fm) {

@@ -1,4 +1,4 @@
-package com.example.alessandro.mychatapp;
+package com.example.alessandro.mychatapp.utils.adapters;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.alessandro.mychatapp.R;
+import com.example.alessandro.mychatapp.models.Messages;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

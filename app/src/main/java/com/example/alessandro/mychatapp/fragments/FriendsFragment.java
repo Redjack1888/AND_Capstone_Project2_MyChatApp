@@ -1,4 +1,4 @@
-package com.example.alessandro.mychatapp;
+package com.example.alessandro.mychatapp.fragments;
 
 
 import android.app.ActivityOptions;
@@ -20,6 +20,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.alessandro.mychatapp.R;
+import com.example.alessandro.mychatapp.activities.ChatActivity;
+import com.example.alessandro.mychatapp.activities.ProfileActivity;
+import com.example.alessandro.mychatapp.models.Friends;
+import com.example.alessandro.mychatapp.utils.SimpleDividerItemDecoration;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;

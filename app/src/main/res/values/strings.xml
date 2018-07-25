@@ -45,6 +45,7 @@
     <string name="enter_message">Enter Message…</string>
     <string name="user_online_status">User online Status</string>
     <string name="message_time">message time</string>
+    <string name="search_appBar_title">Search…</string>
 
     <!--Search Activity-->
     <string name="search_user">Search User</string>
@@ -75,7 +76,7 @@
 
     <!--Firebase Tables Fields-->
     <!--Users-->
-    <string name="FB_users_field">Users</string>
+    <string name="FB_Users_field">Users</string>
     <string name="FB_name_field">name</string>
     <string name="FB_status_field">status</string>
     <string name="FB_image_field">image</string>
@@ -83,7 +84,7 @@
     <string name="FB_users_online_field">online</string>
     <string name="FB_device_token_field">device_token</string>
     <!--Messages-->
-    <string name="FB_messages_field">Messages</string>
+    <string name="FB_Messages_field">Messages</string>
     <string name="FB_message_field">message</string>
     <string name="FB_message_seen_field">seen</string>
     <string name="FB_message_type_field">type</string>
@@ -92,12 +93,11 @@
     <string name="FB_message_type_text_field">text</string>
     <string name="FB_message_type_image_field">image</string>
     <!--Friends-->
-    <!--<string name="FB_friends_field">Friends</string> -->
+    <string name="FB_Friends_date_field">date</string>
     <string name="FB_Friends_field">Friends</string>
-
     <!--LastMessages-->
     <string name="FB_lastMessage_field">LastMessage</string>
-    <string name="FB_message_lastMessageKey_field">lastMessageKey</string>
+    <string name="FB_lastMessageKey_field">lastMessageKey</string>
     <!--Notifications-->
     <string name="FB_notifications_field">Notifications</string>
     <string name="FB_notifications_from_field">from</string>
@@ -105,17 +105,17 @@
     <string name="FB_notifications_type_request_value">request</string>
     <string name="FB_notifications_type_sent_value">sent</string>
     <string name="FB_notifications_type_received_value">received</string>
-
     <!--Friend Request-->
     <string name="FB_Friend_req_field">Friend_req</string>
     <string name="Friendship_status_notFriends">not_friends</string>
     <string name="Friendship_status_friends">friends</string>
-
+    <string name="Friendship_request_status_req_received">req_received</string>
+    <string name="Friendship_request_status_req_sent">req_sent</string>
+    <string name="FB_friendship_request_type_field">request_type</string>
     <!--Firebase Storage Fields-->
     <string name="FB_storage_profile_images_field">profile_images</string>
     <string name="FB_storage_thumbs_field">thumbs</string>
     <string name="FB_storage_message_images_field">message_images</string>
-
     <!--Notification Channel-->
     <string name="channel_name">MyChatApp_channel</string>
     <string name="channel_description">MyChatApp_channel_description</string>
@@ -133,35 +133,39 @@
     <string name="Toast_error_thumbnail_upload">Error in uploading thumbnail .</string>
     <string name="Toast_error">Error :</string>
     <string name="Toast_error_request_sending">There was some error in sending request</string>
+    <string name="Toast_search">Started Search</string>
+    <string name="Toast_profile_image_update_success">Profile Image successfully uploaded.</string>
+    <string name="Toast_profile_image_update_error">Error in uploading Profile Image.</string>
 
     <!--Boolean Strings-->
     <string name="boolean_true_string">true</string>
 
+    <!--Profile Buttons Strings-->
+    <string name="accept_friend_request_text">Accept Friend Request</string>
+    <string name="send_friend_request_text">Send Friend Request</string>
+    <string name="Unfriend_this_person_text">Unfriend this Person</string>
+    <string name="cancel_friend_request_text">Cancel Friend Request</string>
+
+    <!--Status Strings-->
     <string name="status_online_text">Online</string>
+    <string name="request_sent">sent</string>
+    <string name="request_received">received</string>
+
+    <!--Other Strings-->
     <string name="open_profile_option">Open Profile</string>
     <string name="send_message_option">Send Message</string>
     <string name="select_option_title">Select an Option</string>
     <string name="progress_dialog_user_data_title">Loading User Data</string>
     <string name="progress_dialog_user_data_message">Please wait while we load the user data.</string>
-    <string name="FB_friendship_request_type_field">request_type</string>
-    <string name="accept_friend_request_text">Accept Friend Request</string>
-    <string name="send_friend_request_text">Send Friend Request</string>
-    <string name="Unfriend_this_person_text">Unfriend this Person</string>
-    <string name="cancel_friend_request_text">Cancel Friend Request</string>
-    <string name="Friendship_request_status_req_received">req_received</string>
-    <string name="Friendship_request_status_req_sent">req_sent</string>
-    <string name="request_sent">sent</string>
-    <string name="request_received">received</string>
-    <string name="FB_Friends_date_field">date</string>
-    <string name="three_dots">...</string>
+    <string name="progress_uploading_image">Uploading Image…</string>
+    <string name="progress_uploading_image_message">Please wait while we upload and process the image.</string>
+    <string name="three_dots">…</string>
     <string name="imageTransition">imageTransition</string>
     <string name="nameTransition">nameTransition</string>
-    <string name="search_appBar_title">Search...</string>
-    <string name="Toast_search">Started Search</string>
-    <string name="progress_uploading_image">Uploading Image...</string>
-    <string name="progress_uploading_image_message">Please wait while we upload and process the image.</string>
-    <string name="Toast_profile_image_update_success">Profile Image successfully uploaded.</string>
-    <string name="Toast_profile_image_update_error">Error in uploading Profile Image.</string>
 
+    <!--Widget-->
+
+    <string name="appwidget_text">Prova</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>
