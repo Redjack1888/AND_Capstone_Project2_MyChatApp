@@ -84,7 +84,7 @@
     <string name="FB_users_online_field">online</string>
     <string name="FB_device_token_field">device_token</string>
     <!--Messages-->
-    <string name="FB_Messages_field">Messages</string>
+    <string name="FB_Messages_field">messages</string>
     <string name="FB_message_field">message</string>
     <string name="FB_message_seen_field">seen</string>
     <string name="FB_message_type_field">type</string>
@@ -96,7 +96,7 @@
     <string name="FB_Friends_date_field">date</string>
     <string name="FB_Friends_field">Friends</string>
     <!--LastMessages-->
-    <string name="FB_lastMessage_field">LastMessage</string>
+    <string name="FB_lastMessage_field">lastMessage</string>
     <string name="FB_lastMessageKey_field">lastMessageKey</string>
     <!--Notifications-->
     <string name="FB_notifications_field">Notifications</string>
@@ -164,8 +164,6 @@
     <string name="nameTransition">nameTransition</string>
 
     <string name="appwidget_text">EXAMPLE</string>
-    <string name="appwidget_text_two">EXAMPLE</string>
-    <string name="appwidget_text_three">EXAMPLE</string>
 
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
@@ -178,6 +176,7 @@
     <!--<string name="appwidget_message_time">message time</string>-->
     <!--<string name="appwidget_user_image">User Image</string>-->
     <string name="user_single_chat_item_online_status">Online status</string>
+    <string name="gallery_intent_setType">image/*</string>
     <!--<string name="configure">Configure</string>-->
 
 </resources>

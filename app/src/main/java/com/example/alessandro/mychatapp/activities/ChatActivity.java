@@ -81,8 +81,8 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        chat_user_id = getIntent().getStringExtra("user_id");
-        chat_user_name = getIntent().getStringExtra("chatUserName");
+        chat_user_id = getIntent().getStringExtra(getString(R.string.intent_stringExtra_user_id));
+        chat_user_name = getIntent().getStringExtra(getString(R.string.intent_stringExtra_chatUserName));
         mChatToolbar = findViewById(R.id.chat_bar_layout);
         mImageStorage = FirebaseStorage.getInstance().getReference();
 
@@ -122,12 +122,12 @@ public class ChatActivity extends AppCompatActivity {
         mMessageList.setAdapter(mAdapter);
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
-        mUsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        mUsersRef = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Users_field));
         mRootRef.keepSynced(true);
 
         mUsersRef.keepSynced(true);
         loadMessages();
-        mRootRef.child("Friends").child(current_user_id).addListenerForSingleValueEvent(new ValueEventListener() {
+        mRootRef.child(getString(R.string.FB_Friends_field)).child(current_user_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //  if (dataSnapshot.child(chat_user_id).exists())
@@ -159,9 +159,9 @@ public class ChatActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             Intent galleryIntent = new Intent();
-                            galleryIntent.setType("image/*");
+                            galleryIntent.setType(getString(R.string.gallery_intent_setType));
                             galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-                            startActivityForResult(Intent.createChooser(galleryIntent, "Select Image"), GALLERY_PICK);
+                            startActivityForResult(Intent.createChooser(galleryIntent, getString(R.string.gallery_intent_title)), GALLERY_PICK);
                         }
                     });
                 }
@@ -177,12 +177,12 @@ public class ChatActivity extends AppCompatActivity {
         mUsersRef.child(chat_user_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String thumbImage = dataSnapshot.child("thumb_image").getValue().toString();
+                String thumbImage = dataSnapshot.child(getString(R.string.FB_thumb_image_field)).getValue().toString();
                 Picasso.get().load(thumbImage).placeholder(R.drawable.square_image_placeholder).into(chatUserImage);
-                String online = dataSnapshot.child("online").getValue().toString();
+                String online = dataSnapshot.child(getString(R.string.FB_users_online_field)).getValue().toString();
 
-                if (online.equals("true")) {
-                    chatUserLastSeen.setText("Online");
+                if (online.equals(getString(R.string.boolean_true_string))) {
+                    chatUserLastSeen.setText(getString(R.string.status_online_text));
                 } else {
                     GetTime getTimeAgo = new GetTime();
                     long last_seen = Long.parseLong(online);
@@ -206,16 +206,16 @@ public class ChatActivity extends AppCompatActivity {
         if (requestCode == GALLERY_PICK && resultCode == RESULT_OK) {
             Uri imageUri = data.getData();
 
-            final String currentUserRef = "messages/" + current_user_id + "/" + chat_user_id;
-            final String chatUserRef = "messages/" + chat_user_id + "/" + current_user_id;
+            final String currentUserRef = getString(R.string.FB_Messages_field) + "/" + current_user_id + "/" + chat_user_id;
+            final String chatUserRef = getString(R.string.FB_Messages_field) + "/" + chat_user_id + "/" + current_user_id;
 
-            final String currentUserMessageRef = "lastMessage/" + current_user_id + "/" + chat_user_id;
-            final String chatUserMessageRef = "lastMessage/" + chat_user_id + "/" + current_user_id;
+            final String currentUserMessageRef = getString(R.string.FB_lastMessage_field) + "/" + current_user_id + "/" + chat_user_id;
+            final String chatUserMessageRef = getString(R.string.FB_lastMessage_field) + "/" + chat_user_id + "/" + current_user_id;
 
-            DatabaseReference messageUserRef = mRootRef.child("messages").child(current_user_id).child(chat_user_id).push();
+            DatabaseReference messageUserRef = mRootRef.child(getString(R.string.FB_Messages_field)).child(current_user_id).child(chat_user_id).push();
             final String pushId = messageUserRef.getKey();
 
-            final StorageReference filePath = mImageStorage.child("message_images").child(pushId + ".jpg");
+            final StorageReference filePath = mImageStorage.child(getString(R.string.FB_storage_message_images_field)).child(pushId + getString(R.string.jpg_extension));
 
             filePath.putFile(imageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
@@ -233,18 +233,18 @@ public class ChatActivity extends AppCompatActivity {
                         String downloadUrl = downloadUri.toString();
 
                         Map messageMap = new HashMap();
-                        messageMap.put("message", downloadUrl);
-                        messageMap.put("seen", false);
-                        messageMap.put("type", "image");
-                        messageMap.put("time", ServerValue.TIMESTAMP);
-                        messageMap.put("from", current_user_id);
+                        messageMap.put(getString(R.string.FB_message_field), downloadUrl);
+                        messageMap.put(getString(R.string.FB_message_seen_field), false);
+                        messageMap.put(getString(R.string.FB_message_type_field), getString(R.string.FB_message_type_image_field));
+                        messageMap.put(getString(R.string.FB_message_time_field), ServerValue.TIMESTAMP);
+                        messageMap.put(getString(R.string.FB_message_from_field), current_user_id);
 
                         Map messageUserMap = new HashMap();
                         messageUserMap.put(currentUserRef + "/" + pushId, messageMap);
                         messageUserMap.put(chatUserRef + "/" + pushId, messageMap);
 
                         Map lastMessageMap = new HashMap();
-                        lastMessageMap.put("lastMessageKey", pushId);
+                        lastMessageMap.put(getString(R.string.FB_lastMessageKey_field), pushId);
 
                         Map lastMessageUserMap = new HashMap();
                         lastMessageUserMap.put(currentUserMessageRef, lastMessageMap);
@@ -279,7 +279,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void loadMessages() {
         //
-        DatabaseReference messagesRef = mRootRef.child("messages").child(current_user_id).child(chat_user_id);
+        DatabaseReference messagesRef = mRootRef.child(getString(R.string.FB_Messages_field)).child(current_user_id).child(chat_user_id);
         messagesRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -318,28 +318,28 @@ public class ChatActivity extends AppCompatActivity {
     private void sendMessage() {
         String message = chatMessageEditText.getText().toString();
         if (!TextUtils.isEmpty(message)) {
-            String currentUserRef = "messages/" + current_user_id + "/" + chat_user_id;
-            String chatUserRef = "messages/" + chat_user_id + "/" + current_user_id;
+            String currentUserRef = getString(R.string.FB_Messages_field) + "/" + current_user_id + "/" + chat_user_id;
+            String chatUserRef = getString(R.string.FB_Messages_field) + "/" + chat_user_id + "/" + current_user_id;
 
-            String currentUserMessageRef = "lastMessage/" + current_user_id + "/" + chat_user_id;
-            String chatUserMessageRef = "lastMessage/" + chat_user_id + "/" + current_user_id;
+            String currentUserMessageRef = getString(R.string.FB_lastMessage_field) + "/" + current_user_id + "/" + chat_user_id;
+            String chatUserMessageRef = getString(R.string.FB_lastMessage_field) + "/" + chat_user_id + "/" + current_user_id;
 
-            DatabaseReference messageUserRef = mRootRef.child("messages").child(current_user_id).child(chat_user_id).push();
+            DatabaseReference messageUserRef = mRootRef.child(getString(R.string.FB_Messages_field)).child(current_user_id).child(chat_user_id).push();
             String pushId = messageUserRef.getKey();
 
             Map messageMap = new HashMap();
-            messageMap.put("message", message);
-            messageMap.put("seen", false);
-            messageMap.put("type", "text");
-            messageMap.put("time", ServerValue.TIMESTAMP);
-            messageMap.put("from", current_user_id);
+            messageMap.put(getString(R.string.FB_message_field), message);
+            messageMap.put(getString(R.string.FB_message_seen_field), false);
+            messageMap.put(getString(R.string.FB_message_type_field), getString(R.string.FB_message_type_text_field));
+            messageMap.put(getString(R.string.FB_message_time_field), ServerValue.TIMESTAMP);
+            messageMap.put(getString(R.string.FB_message_from_field), current_user_id);
 
             Map messageUserMap = new HashMap();
             messageUserMap.put(currentUserRef + "/" + pushId, messageMap);
             messageUserMap.put(chatUserRef + "/" + pushId, messageMap);
 
             Map lastMessageMap = new HashMap();
-            lastMessageMap.put("lastMessageKey", pushId);
+            lastMessageMap.put(getString(R.string.FB_lastMessageKey_field), pushId);
 
             Map lastMessageUserMap = new HashMap();
             lastMessageUserMap.put(currentUserMessageRef, lastMessageMap);
@@ -379,7 +379,7 @@ public class ChatActivity extends AppCompatActivity {
         if (currentUser == null) {
             sendToStart();
         } else {
-            mUsersRef.child(currentUser.getUid()).child("online").setValue("true");
+            mUsersRef.child(currentUser.getUid()).child(getString(R.string.FB_users_online_field)).setValue(getString(R.string.boolean_true_string));
         }
     }
 
@@ -389,7 +389,7 @@ public class ChatActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if (currentUser != null) {
-            mUsersRef.child(currentUser.getUid()).child("online").setValue(ServerValue.TIMESTAMP);
+            mUsersRef.child(currentUser.getUid()).child(getString(R.string.FB_users_online_field)).setValue(ServerValue.TIMESTAMP);
         }
     }
 
