@@ -143,7 +143,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent galleryIntent = new Intent();
-                galleryIntent.setType("image/*");
+                galleryIntent.setType(getString(R.string.gallery_intent_setType));
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
 
                 startActivityForResult(Intent.createChooser(galleryIntent, getString(R.string.settings_select_image)), GALLERY_PICK);
@@ -176,8 +176,8 @@ public class SettingsActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
 
                 mProgressDialog = new ProgressDialog(SettingsActivity.this);
-                mProgressDialog.setTitle("Uploading Image...");
-                mProgressDialog.setMessage("Please wait while we upload and process the image.");
+                mProgressDialog.setTitle(getString(R.string.progress_uploading_image));
+                mProgressDialog.setMessage(getString(R.string.progress_uploading_image_message));
                 mProgressDialog.setCanceledOnTouchOutside(false);
                 mProgressDialog.show();
 
@@ -285,7 +285,6 @@ public class SettingsActivity extends AppCompatActivity {
 
                     }
                 });
-
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
 
