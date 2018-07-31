@@ -108,7 +108,7 @@ public class ChatActivity extends AppCompatActivity {
         if (chat_user_name.length() < 20) {
             chatUserName.setText(chat_user_name);
         } else {
-            chat_user_name = chat_user_name.substring(0, 17) + "...";
+            chat_user_name = chat_user_name.substring(0, 17) + getString(R.string.ellipsis);
             chatUserName.setText(chat_user_name);
         }
 

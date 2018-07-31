@@ -73,10 +73,10 @@ public class FriendsFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mCurrent_user_id = mAuth.getCurrentUser().getUid();
 
-        mFriendsDatabase = FirebaseDatabase.getInstance().getReference().child("Friends").child(mCurrent_user_id);
+        mFriendsDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Friends_field)).child(mCurrent_user_id);
         mFriendsDatabase.keepSynced(true);
 
-        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Users_field));
         mUsersDatabase.keepSynced(true);
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
@@ -122,26 +122,26 @@ public class FriendsFragment extends Fragment {
                 mUsersDatabase.child(list_user_id).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        final String userName = dataSnapshot.child("name").getValue().toString();
-                        String userThumb = dataSnapshot.child("thumb_image").getValue().toString();
-                        if (dataSnapshot.hasChild("online")) {
-                            String userOnline = dataSnapshot.child("online").getValue().toString();
+                        final String userName = dataSnapshot.child(getString(R.string.FB_name_field)).getValue().toString();
+                        String userThumb = dataSnapshot.child(getString(R.string.FB_thumb_image_field)).getValue().toString();
+                        if (dataSnapshot.hasChild(getString(R.string.FB_users_online_field))) {
+                            String userOnline = dataSnapshot.child(getString(R.string.FB_users_online_field)).getValue().toString();
                             holder.setUserOnline(userOnline);
                         }
                         if (userName.length() < 27) {
                             holder.setName(userName);
                         } else {
-                            holder.setName(userName.substring(0, 24) + "...");
+                            holder.setName(userName.substring(0, 24) + getString(R.string.ellipsis));
                         }
-                        holder.setImage(userThumb, getContext());
+                        holder.setImage(userThumb);
 
                         holder.mView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
 
-                                CharSequence options[] = new CharSequence[]{"Open Profile", "Send Message"};
+                                CharSequence options[] = new CharSequence[]{getString(R.string.open_profile_option), getString(R.string.send_message_option)};
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                builder.setTitle("Select an Option");
+                                builder.setTitle(R.string.select_option_title);
                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                                     @Override
@@ -151,12 +151,12 @@ public class FriendsFragment extends Fragment {
                                             Intent profileSharedIntent = new Intent(getContext(), ProfileActivity.class);
 
                                             Pair[] pairs = new Pair[2];
-                                            pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), "imageTransition");
-                                            pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), "nameTransition");
+                                            pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), getString(R.string.imageTransition));
+                                            pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), getString(R.string.nameTransition));
 
                                             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
 
-                                            profileSharedIntent.putExtra("user_id", list_user_id);
+                                            profileSharedIntent.putExtra(getString(R.string.intent_stringExtra_user_id), list_user_id);
                                             startActivity(profileSharedIntent, options.toBundle());
                                         }
                                         if (i == 1) {
@@ -164,13 +164,13 @@ public class FriendsFragment extends Fragment {
                                             Intent chatSharedIntent = new Intent(getContext(), ChatActivity.class);
 
                                             Pair[] pairs = new Pair[2];
-                                            pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), "imageTransition");
-                                            pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), "nameTransition");
+                                            pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), getString(R.string.imageTransition));
+                                            pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), getString(R.string.nameTransition));
 
                                             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
 
-                                            chatSharedIntent.putExtra("user_id", list_user_id);
-                                            chatSharedIntent.putExtra("chatUserName", userName);
+                                            chatSharedIntent.putExtra(getString(R.string.intent_stringExtra_user_id), list_user_id);
+                                            chatSharedIntent.putExtra(getString(R.string.intent_stringExtra_chatUserName), userName);
                                             startActivity(chatSharedIntent, options.toBundle());
                                         }
                                     }
@@ -226,7 +226,7 @@ public class FriendsFragment extends Fragment {
             userNameView.setText(name);
         }
 
-        public void setImage(String thumb_image, Context ctx) {
+        public void setImage(String thumb_image) {
             CircleImageView userImageView = mView.findViewById(R.id.user_single_image);
 
             Picasso.get().load(thumb_image).placeholder(R.drawable.default_avatar).into(userImageView);

@@ -164,7 +164,7 @@
     <string name="progress_dialog_user_data_message">Please wait while we load the user data.</string>
     <string name="progress_uploading_image">Uploading Image…</string>
     <string name="progress_uploading_image_message">Please wait while we upload and process the image.</string>
-    <string name="three_dots">…</string>
+    <string name="ellipsis">…</string>
     <string name="imageTransition">imageTransition</string>
     <string name="nameTransition">nameTransition</string>
 

@@ -51,7 +51,6 @@ public class RequestsFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,10 +61,10 @@ public class RequestsFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mCurrent_user_id = mAuth.getCurrentUser().getUid();
 
-        mFriendReqDatabase = FirebaseDatabase.getInstance().getReference().child("Friend_req").child(mCurrent_user_id);
+        mFriendReqDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Friend_req_field)).child(mCurrent_user_id);
         mFriendReqDatabase.keepSynced(true);
 
-        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Users_field));
         mUsersDatabase.keepSynced(true);
 
         friendsQuery = mFriendReqDatabase.orderByKey();
@@ -104,18 +103,18 @@ public class RequestsFragment extends Fragment {
                 mUsersDatabase.child(list_user_id).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        final String userName = dataSnapshot.child("name").getValue().toString();
-                        String userThumb = dataSnapshot.child("thumb_image").getValue().toString();
-                        if (dataSnapshot.hasChild("online")) {
-                            String userOnline = dataSnapshot.child("online").getValue().toString();
+                        final String userName = dataSnapshot.child(getString(R.string.FB_name_field)).getValue().toString();
+                        String userThumb = dataSnapshot.child(getString(R.string.FB_thumb_image_field)).getValue().toString();
+                        if (dataSnapshot.hasChild(getString(R.string.FB_users_online_field))) {
+                            String userOnline = dataSnapshot.child(getString(R.string.FB_users_online_field)).getValue().toString();
                             holder.setUserOnline(userOnline);
                         }
                         if (userName.length() < 27) {
                             holder.setName(userName);
                         } else {
-                            holder.setName(userName.substring(0, 24) + "...");
+                            holder.setName(userName.substring(0, 24) + getString(R.string.ellipsis));
                         }
-                        holder.setImage(userThumb, getContext());
+                        holder.setImage(userThumb);
 
                         holder.mView.setOnClickListener(new View.OnClickListener() {
                             @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -125,12 +124,12 @@ public class RequestsFragment extends Fragment {
                                 Intent profileSharedIntent = new Intent(getContext(), ProfileActivity.class);
 
                                 Pair[] pairs = new Pair[2];
-                                pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), "imageTransition");
-                                pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), "nameTransition");
+                                pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), getString(R.string.imageTransition));
+                                pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), getString(R.string.nameTransition));
 
                                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
 
-                                profileSharedIntent.putExtra("user_id", list_user_id);
+                                profileSharedIntent.putExtra(getString(R.string.intent_stringExtra_user_id), list_user_id);
                                 startActivity(profileSharedIntent, options.toBundle());
                             }
                         });
@@ -179,7 +178,7 @@ public class RequestsFragment extends Fragment {
             userNameView.setText(name);
         }
 
-        public void setImage(String thumb_image, Context ctx) {
+        public void setImage(String thumb_image) {
             CircleImageView userImageView = mView.findViewById(R.id.user_single_image);
 
             Picasso.get().load(thumb_image).placeholder(R.drawable.default_avatar).into(userImageView);

@@ -71,12 +71,12 @@ public class ChatsFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mCurrent_user_id = mAuth.getCurrentUser().getUid();
         mRootRef = FirebaseDatabase.getInstance().getReference();
-        mMessagesDatabase = FirebaseDatabase.getInstance().getReference().child("messages").child(mCurrent_user_id);
-        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        mMessagesDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Messages_field)).child(mCurrent_user_id);
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Users_field));
         mRootRef.keepSynced(true);
         mMessagesDatabase.keepSynced(true);
         mUsersDatabase.keepSynced(true);
-        chatsQuery = mRootRef.child("lastMessage").child(mCurrent_user_id).orderByChild("lastMessageKey");
+        chatsQuery = mRootRef.child(getString(R.string.FB_lastMessage_field)).child(mCurrent_user_id).orderByChild(getString(R.string.FB_lastMessageKey_field));
         mChatList.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setReverseLayout(true);
@@ -114,16 +114,16 @@ public class ChatsFragment extends Fragment {
                 mUsersDatabase.child(list_user_id).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        final String userName = dataSnapshot.child("name").getValue().toString();
-                        String userThumb = dataSnapshot.child("thumb_image").getValue().toString();
-                        if (dataSnapshot.hasChild("online")) {
-                            String userOnline = dataSnapshot.child("online").getValue().toString();
+                        final String userName = dataSnapshot.child(getString(R.string.FB_name_field)).getValue().toString();
+                        String userThumb = dataSnapshot.child(getString(R.string.FB_thumb_image_field)).getValue().toString();
+                        if (dataSnapshot.hasChild(getString(R.string.FB_users_online_field))) {
+                            String userOnline = dataSnapshot.child(getString(R.string.FB_users_online_field)).getValue().toString();
                             holder.setUserOnline(userOnline);
                         }
                         if (userName.length() < 20) {
                             holder.setName(userName);
                         } else {
-                            holder.setName(userName.substring(0, 17) + "...");
+                            holder.setName(userName.substring(0, 17) + getString(R.string.ellipsis));
                         }
                         holder.setImage(userThumb, getContext());
 
@@ -137,13 +137,13 @@ public class ChatsFragment extends Fragment {
                                 Intent chatSharedIntent = new Intent(getContext(), ChatActivity.class);
 
                                 Pair[] pairs = new Pair[2];
-                                pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), "imageTransition");
-                                pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), "nameTransition");
+                                pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), getString(R.string.imageTransition));
+                                pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), getString(R.string.nameTransition));
 
                                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
 
-                                chatSharedIntent.putExtra("user_id", list_user_id);
-                                chatSharedIntent.putExtra("chatUserName", userName);
+                                chatSharedIntent.putExtra(getString(R.string.intent_stringExtra_user_id), list_user_id);
+                                chatSharedIntent.putExtra(getString(R.string.intent_stringExtra_chatUserName), userName);
                                 startActivity(chatSharedIntent, options.toBundle());
                             }
                         });
@@ -157,22 +157,22 @@ public class ChatsFragment extends Fragment {
                 mMessagesDatabase.child(list_user_id).child(model.getLastMessageKey()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        String message = dataSnapshot.child("message").getValue().toString();
-                        String type = dataSnapshot.child("type").getValue().toString();
-                        Long time = (Long) dataSnapshot.child("time").getValue();
+                        String message = dataSnapshot.child(getString(R.string.FB_message_field)).getValue().toString();
+                        String type = dataSnapshot.child(getString(R.string.FB_message_type_field)).getValue().toString();
+                        Long time = (Long) dataSnapshot.child(getString(R.string.FB_message_time_field)).getValue();
                         GetMessageTime gmt = new GetMessageTime();
                         String date = gmt.getMessageTime(time, getContext());
                         holder.setDate(date);
 
                         String filteredMessage = filterMessage(message);
 
-                        if (type.equals("text")) {
+                        if (type.equals(getString(R.string.FB_message_type_text_field))) {
                             if (filteredMessage.length() < 35) {
                                 holder.setLastMessageKey(filteredMessage, type);
                             } else {
-                                holder.setLastMessageKey(filteredMessage.substring(0, 32).trim() + "...", type);
+                                holder.setLastMessageKey(filteredMessage.substring(0, 32).trim() + getString(R.string.ellipsis), type);
                             }
-                        } else if (type.equals("image")) {
+                        } else if (type.equals(getString(R.string.FB_message_type_image_field))) {
                             holder.setLastMessageKey(IMAGE_MESSAGE, type);
                         }
                     }
