@@ -1,28 +1,25 @@
-package com.example.alessandro.mychatapp.fragments;
+package com.example.alessandro.mychatapp.widget;
 
 import android.annotation.TargetApi;
-import android.app.ActivityOptions;
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Pair;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.alessandro.mychatapp.R;
-import com.example.alessandro.mychatapp.activities.ChatActivity;
-import com.example.alessandro.mychatapp.activities.MainActivity;
-import com.example.alessandro.mychatapp.activities.UsersActivity;
 import com.example.alessandro.mychatapp.models.Chat;
 import com.example.alessandro.mychatapp.utils.GetMessageTime;
 import com.example.alessandro.mychatapp.utils.SimpleDividerItemDecoration;
@@ -41,33 +38,45 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ChatsFragment extends Fragment {
+/**
+ * The configuration screen for the {@link MyChatAppWidget MyChatAppWidget} AppWidget.
+ */
+public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
 
+    private static final String PREFS_NAME = "com.example.alessandro.mychatapp.widget.MyChatAppWidget";
+    private static final String PREFS_USER_ID = "com.example.alessandro.mychatapp.widget.MyChatAppWidget";
+    private static final String PREFS_USER_NAME = "com.example.alessandro.mychatapp.widget.MyChatAppWidget";
+
+    private static final String PREF_PREFIX_KEY = "appwidget_";
+    int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+
+    private Toolbar mToolbar;
     private RecyclerView mChatList;
+
     private ImageView emptyView;
     private DatabaseReference mMessagesDatabase;
     private DatabaseReference mUsersDatabase;
     private DatabaseReference mRootRef;
-    private View mMainView;
     private String mCurrent_user_id;
     private FirebaseAuth mAuth;
     private Query chatsQuery;
-    private String lastMessageKeyValue;
     private static final String IMAGE_MESSAGE = "  Image";
-    private FirebaseRecyclerAdapter<Chat, ChatsFragment.ChatsViewHolder> firebaseRecyclerAdapter;
-
-    public ChatsFragment() {
-        // Required empty public constructor
-    }
-
+    private FirebaseRecyclerAdapter<Chat, MyChatAppWidgetConfigureActivity.ChatsViewHolder> firebaseRecyclerAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        mMainView = inflater.inflate(R.layout.fragment_chats, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.my_chat_app_widget_configure);
 
-        mChatList = mMainView.findViewById(R.id.chatList);
+        mToolbar = findViewById(R.id.Widget_users_appBar2);
+        setSupportActionBar(mToolbar);
+
+        getSupportActionBar().setTitle("Choose a Chat");
+
+        mChatList = findViewById(R.id.widget_chatList);
+        mChatList.setHasFixedSize(true);
+        mChatList.setLayoutManager(new LinearLayoutManager(this));
+
         mAuth = FirebaseAuth.getInstance();
         mCurrent_user_id = mAuth.getCurrentUser().getUid();
         mRootRef = FirebaseDatabase.getInstance().getReference();
@@ -77,23 +86,35 @@ public class ChatsFragment extends Fragment {
         mMessagesDatabase.keepSynced(true);
         mUsersDatabase.keepSynced(true);
         chatsQuery = mRootRef.child("lastMessage").child(mCurrent_user_id).orderByChild("lastMessageKey");
-        mChatList.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(true);
-        mChatList.setLayoutManager(layoutManager);
 
-        emptyView = mMainView.findViewById(R.id.chats_empty_view);
+        emptyView = findViewById(R.id.widget_chats_empty_view);
 
-        return mMainView;
+        // Set the result to CANCELED.  This will cause the widget host to cancel
+        // out of the widget placement if the user presses the back button.
+        setResult(RESULT_CANCELED);
+
+        // Find the widget id from the intent.
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            mAppWidgetId = extras.getInt(
+                    AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+        }
+
+        // If this activity was started with an intent without an app widget ID, finish with an error.
+        if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
+            finish();
+            return;
+        }
+
     }
 
     @Override
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
 
         FirebaseRecyclerOptions chatsOptions = new FirebaseRecyclerOptions.Builder<Chat>().setQuery(chatsQuery, Chat.class).build();
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Chat, ChatsFragment.ChatsViewHolder>(chatsOptions) {
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Chat, MyChatAppWidgetConfigureActivity.ChatsViewHolder>(chatsOptions) {
             @Override
             public void onDataChanged() {
                 emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
@@ -101,21 +122,21 @@ public class ChatsFragment extends Fragment {
 
             @NonNull
             @Override
-            public ChatsFragment.ChatsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public MyChatAppWidgetConfigureActivity.ChatsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.user_single_chat_item_fragment, parent, false);
 
-                return new ChatsFragment.ChatsViewHolder(view);
+                return new MyChatAppWidgetConfigureActivity.ChatsViewHolder(view);
             }
 
             @Override
-            protected void onBindViewHolder(final ChatsFragment.ChatsViewHolder holder, final int position, Chat model) {
+            protected void onBindViewHolder(final MyChatAppWidgetConfigureActivity.ChatsViewHolder holder, final int position, Chat model) {
                 final String list_user_id = getRef(position).getKey();
                 mUsersDatabase.child(list_user_id).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         final String userName = dataSnapshot.child("name").getValue().toString();
-                        String userThumb = dataSnapshot.child("thumb_image").getValue().toString();
+                        final String userThumb = dataSnapshot.child("thumb_image").getValue().toString();
                         if (dataSnapshot.hasChild("online")) {
                             String userOnline = dataSnapshot.child("online").getValue().toString();
                             holder.setUserOnline(userOnline);
@@ -125,26 +146,29 @@ public class ChatsFragment extends Fragment {
                         } else {
                             holder.setName(userName.substring(0, 17) + "...");
                         }
-                        holder.setImage(userThumb, getContext());
+                        holder.setImage(userThumb);
 
-                        holder.mView.setOnClickListener(new View.OnClickListener() {
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                             @Override
                             public void onClick(View v) {
 
-                                //For shared transition animation to Chat Activity
-                                Intent chatSharedIntent = new Intent(getContext(), ChatActivity.class);
+                                final Context context = MyChatAppWidgetConfigureActivity.this;
 
-                                Pair[] pairs = new Pair[2];
-                                pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), "imageTransition");
-                                pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), "nameTransition");
+                                // When the button is clicked, store the string locally
+                                saveTitlePref(context, mAppWidgetId, userThumb);
 
-                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
+                                // It is the responsibility of the configuration activity to update the app widget
+                                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                                MyChatAppWidget.updateAppWidget(context, appWidgetManager, mAppWidgetId);
 
-                                chatSharedIntent.putExtra("user_id", list_user_id);
-                                chatSharedIntent.putExtra("chatUserName", userName);
-                                startActivity(chatSharedIntent, options.toBundle());
+                                // Make sure we pass back the original appWidgetId
+                                Intent resultValue = new Intent();
+                                resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
+                                setResult(RESULT_OK, resultValue);
+                                finish();
+
                             }
                         });
                     }
@@ -161,7 +185,7 @@ public class ChatsFragment extends Fragment {
                         String type = dataSnapshot.child("type").getValue().toString();
                         Long time = (Long) dataSnapshot.child("time").getValue();
                         GetMessageTime gmt = new GetMessageTime();
-                        String date = gmt.getMessageTime(time, getContext());
+                        String date = gmt.getMessageTime(time, getApplicationContext());
                         holder.setDate(date);
 
                         String filteredMessage = filterMessage(message);
@@ -187,7 +211,7 @@ public class ChatsFragment extends Fragment {
 
         mChatList.setAdapter(firebaseRecyclerAdapter);
         //To prevent getting null context Objects.requireNonNull is added
-        mChatList.addItemDecoration(new SimpleDividerItemDecoration(Objects.requireNonNull(getContext())));
+        mChatList.addItemDecoration(new SimpleDividerItemDecoration(Objects.requireNonNull(this)));
         firebaseRecyclerAdapter.startListening();
     }
 
@@ -207,7 +231,7 @@ public class ChatsFragment extends Fragment {
 
         View mView;
 
-        public ChatsViewHolder(View itemView) {
+        public ChatsViewHolder (View itemView) {
             super(itemView);
 
             mView = itemView;
@@ -218,7 +242,7 @@ public class ChatsFragment extends Fragment {
             userNameView.setText(name);
         }
 
-        public void setImage(String thumb_image, Context ctx) {
+        public void setImage(String thumb_image) {
             CircleImageView userImageView = mView.findViewById(R.id.user_single_image);
 
             Picasso.get().load(thumb_image).placeholder(R.drawable.default_avatar).into(userImageView);
@@ -248,4 +272,34 @@ public class ChatsFragment extends Fragment {
             userMessageView.setText(lastMessageKey);
         }
     }
+
+    public MyChatAppWidgetConfigureActivity() {
+        super();
+    }
+
+    // Write the prefix to the SharedPreferences object for this widget
+    static void saveTitlePref(Context context, int appWidgetId, String text) {
+        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
+        prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
+        prefs.apply();
+    }
+
+    // Read the prefix from the SharedPreferences object for this widget.
+    // If there is no preference saved, get the default from a resource
+    static String loadTitlePref(Context context, int appWidgetId) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
+        String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
+        if (titleValue != null) {
+            return titleValue;
+        } else {
+            return context.getString(R.string.appwidget_text);
+        }
+    }
+
+    static void deleteTitlePref(Context context, int appWidgetId) {
+        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
+        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
+        prefs.apply();
+    }
 }
+

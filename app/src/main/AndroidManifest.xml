@@ -59,19 +59,21 @@
             android:name=".activities.SearchActivity"
             android:parentActivityName=".activities.MainActivity" />
 
-        <receiver android:name=".widget.MyChatWidgetProvider">
+        <receiver android:name=".widget.MyChatAppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/new_app_widget_info" />
+                android:resource="@xml/my_chat_app_widget_info" />
         </receiver>
 
-        <service
-            android:name=".widget.MyChatWidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <activity android:name=".widget.MyChatAppWidgetConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

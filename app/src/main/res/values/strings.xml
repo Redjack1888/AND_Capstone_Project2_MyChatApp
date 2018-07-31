@@ -163,9 +163,21 @@
     <string name="imageTransition">imageTransition</string>
     <string name="nameTransition">nameTransition</string>
 
-    <!--Widget-->
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="appwidget_text_two">EXAMPLE</string>
+    <string name="appwidget_text_three">EXAMPLE</string>
 
-    <string name="appwidget_text">Prova</string>
+    <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
+
+    <!--Widget-->
+    <!--<string name="appwidget_text">Display Name</string>-->
+    <!--<string name="add_widget">Add widget</string>-->
+    <!--<string name="appwidget_text_status">Status</string>-->
+    <!--<string name="appwidget_online_status">Online Status</string>-->
+    <!--<string name="appwidget_message_time">message time</string>-->
+    <!--<string name="appwidget_user_image">User Image</string>-->
+    <string name="user_single_chat_item_online_status">Online status</string>
+    <!--<string name="configure">Configure</string>-->
 
 </resources>

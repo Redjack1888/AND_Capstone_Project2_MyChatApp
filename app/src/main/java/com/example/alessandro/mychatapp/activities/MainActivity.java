@@ -45,11 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        // Starting Tab is Chat Fragment
+        int fragmentId = 1;
+
         //Tabs
         mViewPager = findViewById(R.id.main_tabPager);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setCurrentItem(fragmentId);
 
         mTabLayout = findViewById(R.id.main_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
@@ -72,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
     @Override
     protected void onStop() {

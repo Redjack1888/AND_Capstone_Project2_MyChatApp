@@ -35,7 +35,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_toEndOf="@id/user_single_name"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/user_single_chat_item_online_status"
         android:src="@drawable/online_icon"
         android:visibility="invisible" />
 

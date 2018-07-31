@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".widget.MyChatAppWidgetConfigureActivity">
+
+    <include
+        android:id="@+id/Widget_users_appBar2"
+        layout="@layout/app_bar_layout" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/widget_chatList"
+        android:layout_below="@+id/Widget_users_appBar2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/widget_chats_empty_view"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:contentDescription="TODO"
+        android:src="@drawable/nochats"
+        android:visibility="gone" />
+
+</RelativeLayout>
+
