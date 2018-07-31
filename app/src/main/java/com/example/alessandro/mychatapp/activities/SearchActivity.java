@@ -49,7 +49,7 @@ public class SearchActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.users_appBar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Search...");
+        getSupportActionBar().setTitle(R.string.search_appBar_Title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mSearchField = findViewById(R.id.search_field);
@@ -74,9 +74,9 @@ public class SearchActivity extends AppCompatActivity {
 
 
     private void firebaseUserSearch(String searchText) {
-        Toast.makeText(SearchActivity.this, "Started Search", Toast.LENGTH_LONG).show();
+        Toast.makeText(SearchActivity.this, R.string.Toast_started_search, Toast.LENGTH_LONG).show();
 
-        Query firebaseSearchQuery = mUsersDatabase.orderByChild("name").startAt(searchText.toUpperCase()).endAt(searchText.toLowerCase() + "\uf8ff");
+        Query firebaseSearchQuery = mUsersDatabase.orderByChild(getString(R.string.FB_name_field)).startAt(searchText.toUpperCase()).endAt(searchText.toLowerCase() + "\uf8ff");
         FirebaseRecyclerOptions searchOptions = new FirebaseRecyclerOptions.Builder<Users>().setQuery(firebaseSearchQuery, Users.class).build();
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, SearchViewHolder>(searchOptions) {
             @NonNull
@@ -101,7 +101,7 @@ public class SearchActivity extends AppCompatActivity {
                     public void onClick(View view) {
 
                         Intent profileIntent = new Intent(SearchActivity.this, ProfileActivity.class);
-                        profileIntent.putExtra("user_id", user_id);
+                        profileIntent.putExtra(getString(R.string.intent_stringExtra_user_id), user_id);
                         startActivity(profileIntent);
 
                     }

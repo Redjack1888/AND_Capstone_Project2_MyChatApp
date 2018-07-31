@@ -78,7 +78,7 @@ public class ProfileActivity extends AppCompatActivity {
         mDeclineBtn.setEnabled(false);
 
         mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setTitle(getString(R.string.progress_dialog_user_data_title));
+        mProgressDialog.setTitle(R.string.progress_dialog_user_data_title);
         mProgressDialog.setMessage(getString(R.string.progress_dialog_user_data_message));
         mProgressDialog.setCanceledOnTouchOutside(false);
         mProgressDialog.show();
@@ -222,7 +222,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                             if (databaseError != null) {
 
-                                Toast.makeText(ProfileActivity.this, getString(R.string.Toast_error_request_sending), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this, R.string.Toast_error_request_sending, Toast.LENGTH_SHORT).show();
 
                             } else {
 

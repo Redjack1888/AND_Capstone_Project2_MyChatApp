@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (!TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
 
-                    mLoginProgress.setTitle(getString(R.string.logging_in));
+                    mLoginProgress.setTitle(R.string.logging_in);
                     mLoginProgress.setMessage(getString(R.string.logging_in_message));
                     mLoginProgress.setCanceledOnTouchOutside(false);
                     mLoginProgress.show();
@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     String task_result = task.getException().getMessage().toString();
 
-                    Toast.makeText(LoginActivity.this, getString(R.string.Toast_error) + task_result, Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, R.string.Toast_error + task_result, Toast.LENGTH_LONG).show();
 
                 }
 

@@ -46,11 +46,13 @@
     <string name="user_online_status">User online Status</string>
     <string name="message_time">message time</string>
     <string name="search_appBar_title">Search…</string>
+    <string name="user_single_chat_item_online_status">Online status</string>
 
     <!--Search Activity-->
     <string name="search_user">Search User</string>
     <string name="hint_search_here">Search here</string>
     <string name="content_search_button">Search Button</string>
+    <string name="search_appBar_Title">Search...</string>
 
     <!--Profile Activity-->
     <string name="total_friends">Total Friends</string>
@@ -125,6 +127,7 @@
     <string name="intent_stringExtra_user_id">user_id</string>
     <string name="intent_stringExtra_chatUserName">chatUserName</string>
     <string name="gallery_intent_title">Select Image</string>
+    <string name="gallery_intent_setType">image/*</string>
 
     <!--Media Type-->
     <string name="jpg_extension">.jpg</string>
@@ -137,6 +140,7 @@
     <string name="Toast_search">Started Search</string>
     <string name="Toast_profile_image_update_success">Profile Image successfully uploaded.</string>
     <string name="Toast_profile_image_update_error">Error in uploading Profile Image.</string>
+    <string name="Toast_started_search">Started Search</string>
 
     <!--Boolean Strings-->
     <string name="boolean_true_string">true</string>
@@ -164,8 +168,8 @@
     <string name="imageTransition">imageTransition</string>
     <string name="nameTransition">nameTransition</string>
 
+    <!--Widget-->
     <string name="appwidget_text">EXAMPLE</string>
-
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
 
@@ -176,8 +180,6 @@
     <!--<string name="appwidget_online_status">Online Status</string>-->
     <!--<string name="appwidget_message_time">message time</string>-->
     <!--<string name="appwidget_user_image">User Image</string>-->
-    <string name="user_single_chat_item_online_status">Online status</string>
-    <string name="gallery_intent_setType">image/*</string>
     <!--<string name="configure">Configure</string>-->
 
 </resources>
