@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
 
-            mUserRef.child("online").setValue("true");
+            mUserRef.child(getString(R.string.FB_users_online_field)).setValue(getString(R.string.boolean_true_string));
 
         }
 
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (currentUser != null) {
 
-            mUserRef.child("online").setValue(ServerValue.TIMESTAMP);
+            mUserRef.child(getString(R.string.FB_users_online_field)).setValue(ServerValue.TIMESTAMP);
 
         }
 

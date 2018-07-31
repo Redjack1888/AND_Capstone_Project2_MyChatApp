@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                     String current_user_id = mAuth.getCurrentUser().getUid();
                     String deviceToken = FirebaseInstanceId.getInstance().getToken();
 
-                    mUserDatabase.child(current_user_id).child("device_token").setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    mUserDatabase.child(current_user_id).child(getString(R.string.FB_device_token_field)).setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
 
@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     String task_result = task.getException().getMessage().toString();
 
-                    Toast.makeText(LoginActivity.this, "Error : " + task_result, Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.Toast_error) + task_result, Toast.LENGTH_LONG).show();
 
                 }
 
