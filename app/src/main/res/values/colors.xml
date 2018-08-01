@@ -5,4 +5,5 @@
     <color name="colorAccent">#ff9800</color>
     <color name="colorDark">#222222</color>
     <color name="divider_color">#DCDCDC</color>
+    <color name="search_field_textColor">#999999</color>
 </resources>

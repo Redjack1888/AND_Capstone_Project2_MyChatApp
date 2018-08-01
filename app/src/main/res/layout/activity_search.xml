@@ -16,11 +16,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/users_appBar"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="@dimen/search_heading_label_margin_start"
+        android:layout_marginTop="@dimen/search_heading_label_margin_top"
         android:text="@string/search_user"
         android:textColor="#555555"
-        android:textSize="24sp" />
+        android:textSize="@dimen/search_heading_label_textSize" />
 
     <EditText
         android:id="@+id/search_field"
@@ -28,18 +28,18 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/heading_label"
         android:layout_below="@+id/heading_label"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="@dimen/search_field_margin_end"
+        android:layout_marginTop="@dimen/search_field_margin_top"
         android:layout_toStartOf="@+id/search_btn"
         android:ems="10"
         android:hint="@string/hint_search_here"
         android:inputType="textPersonName"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:textColor="#999999"
-        android:textSize="16sp" />
+        android:paddingBottom="@dimen/search_field_padding_bottom"
+        android:paddingStart="@dimen/search_field_padding_left"
+        android:paddingEnd="@dimen/search_field_padding_right"
+        android:paddingTop="@dimen/search_field_padding_top"
+        android:textColor="@color/search_field_textColor"
+        android:textSize="@dimen/search_field_textSize" />
 
     <ImageButton
         android:id="@+id/search_btn"
@@ -48,7 +48,7 @@
         android:layout_alignBottom="@+id/search_field"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/search_field"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="@dimen/search_btn_margin_end"
         android:background="@android:color/background_light"
         android:contentDescription="@string/content_search_button"
         android:scaleType="fitCenter"
@@ -59,6 +59,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/search_field"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="@dimen/search_rec_list_margin_top" />
 
 </RelativeLayout>

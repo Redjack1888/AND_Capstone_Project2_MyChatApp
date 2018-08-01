@@ -10,11 +10,11 @@
     <include
         android:id="@+id/login_toolbar"
         layout="@layout/app_bar_layout"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/login_toolbar_width"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginEnd="@dimen/login_toolbar_margin_end"
+        android:layout_marginStart="@dimen/login_toolbar_margin_start"
+        android:layout_marginTop="@dimen/login_toolbar_margin_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,12 +25,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="@dimen/login_btn_margin_end"
+        android:layout_marginStart="@dimen/login_btn_margin_start"
+        android:layout_marginTop="@dimen/login_btn_margin_top"
         android:backgroundTint="@color/colorAccent"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingStart="@dimen/login_btn_padding_left"
+        android:paddingEnd="@dimen/login_btn_padding_right"
         android:text="@string/login_to_your_account"
         android:textColor="@android:color/white"
         android:textStyle="bold"
@@ -41,25 +41,25 @@
 
     <TextView
         android:id="@+id/login_label"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/login_label_width"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginStart="@dimen/login_label_margin_start"
+        android:layout_marginTop="@dimen/login_label_margin_top"
         android:text="@string/login_to_your_account_2"
         android:textAllCaps="true"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="@dimen/login_label_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_toolbar" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/login_email"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/login_email_width"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginEnd="@dimen/login_email_margin_end"
+        android:layout_marginStart="@dimen/login_email_margin_start"
+        android:layout_marginTop="@dimen/login_email_margin_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_label">
@@ -67,18 +67,18 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_margin="@dimen/login_email_edt_margin"
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/login_password"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/login_password_width"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginEnd="@dimen/login_password_margin_end"
+        android:layout_marginStart="@dimen/login_password_margin_start"
+        android:layout_marginTop="@dimen/login_password_margin_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_email">
@@ -86,7 +86,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_margin="@dimen/login_password_edt_margin"
             android:hint="@string/hint_password"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>

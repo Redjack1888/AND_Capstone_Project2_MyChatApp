@@ -12,7 +12,7 @@
         android:layout_height="@dimen/settings_image_size"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/settings_image_margin_top"
         android:src="@drawable/default_avatar" />
 
     <TextView
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/settings_image"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/settings_name_margin_top"
         android:text="@string/settings_display_name_txt"
         android:textColor="@android:color/white"
         android:textSize="24sp" />
