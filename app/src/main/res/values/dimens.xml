@@ -169,5 +169,4 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="user_single_message_time_margin_end">15dp</dimen>
     <dimen name="user_single_message_time_margin_top">15dp</dimen>
 
-
 </resources>
