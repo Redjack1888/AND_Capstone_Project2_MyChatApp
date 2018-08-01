@@ -43,7 +43,7 @@ public class MyChatApp extends Application {
         if (mAuth.getCurrentUser() != null) {
 
             mUserDatabase = FirebaseDatabase.getInstance()
-                    .getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+                    .getReference().child(getString(R.string.FB_Users_field)).child(mAuth.getCurrentUser().getUid());
 
             mUserDatabase.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -51,7 +51,7 @@ public class MyChatApp extends Application {
 
                     if (dataSnapshot != null) {
 
-                        mUserDatabase.child("online").onDisconnect().setValue(ServerValue.TIMESTAMP);
+                        mUserDatabase.child(getString(R.string.FB_users_online_field)).onDisconnect().setValue(ServerValue.TIMESTAMP);
 
                     }
 

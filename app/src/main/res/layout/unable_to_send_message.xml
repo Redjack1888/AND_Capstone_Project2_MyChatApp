@@ -21,7 +21,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:text="You may not be able to send messages to this user because you are not friends with him/her."
+        android:text="@string/unable_send_message_txt"
         android:textStyle="bold" />
 
 </LinearLayout>

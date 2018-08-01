@@ -71,7 +71,7 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.Widget_users_appBar2);
         setSupportActionBar(mToolbar);
 
-        getSupportActionBar().setTitle("Choose a Chat");
+        getSupportActionBar().setTitle(R.string.AppWidgetConfig_choose_chat);
 
         mChatList = findViewById(R.id.widget_chatList);
         mChatList.setHasFixedSize(true);

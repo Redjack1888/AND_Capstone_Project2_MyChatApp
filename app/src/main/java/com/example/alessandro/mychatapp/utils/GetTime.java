@@ -3,6 +3,8 @@ package com.example.alessandro.mychatapp.utils;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.alessandro.mychatapp.R;
+
 // “Time Since/Ago” Library for Android/Java based on the Google I/O 2012 App
 // source short ulr: http://bit.ly/2LxRm8F
 
@@ -27,19 +29,19 @@ public class GetTime extends Application {
         // TODO: localize
         final long diff = now - time;
         if (diff < MINUTE_MILLIS) {
-            return "just now";
+            return ctx.getString(R.string.time_just_now_2);
         } else if (diff < 2 * MINUTE_MILLIS) {
-            return "a minute ago";
+            return ctx.getString(R.string.time_a_minute_ago);
         } else if (diff < 50 * MINUTE_MILLIS) {
-            return diff / MINUTE_MILLIS + " minutes ago";
+            return diff / MINUTE_MILLIS + ctx.getString(R.string.time_minutes_ago);
         } else if (diff < 90 * MINUTE_MILLIS) {
-            return "an hour ago";
+            return ctx.getString(R.string.time_an_hour_ago);
         } else if (diff < 24 * HOUR_MILLIS) {
-            return diff / HOUR_MILLIS + " hours ago";
+            return diff / HOUR_MILLIS + ctx.getString(R.string.time_hours_ago);
         } else if (diff < 48 * HOUR_MILLIS) {
-            return "yesterday";
+            return ctx.getString(R.string.time_yesterday_2);
         } else {
-            return diff / DAY_MILLIS + " days ago";
+            return diff / DAY_MILLIS + ctx.getString(R.string.time_days_ago);
         }
     }
 

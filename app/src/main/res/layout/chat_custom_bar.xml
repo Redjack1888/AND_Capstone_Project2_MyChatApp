@@ -20,7 +20,7 @@
         android:id="@+id/custom_bar_display_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Display Name"
+        android:text="@string/hint_display_name"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:transitionName="nameTransition"
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/custom_bar_display_name"
-        android:text="Last Seen"
+        android:text="@string/last_seen"
         android:textColor="@android:color/white"
         android:textSize="13sp" />
 

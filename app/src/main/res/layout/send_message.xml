@@ -22,7 +22,7 @@
         android:layout_height="match_parent"
         android:layout_weight="8"
         android:background="@android:color/white"
-        android:hint="Enter message here"
+        android:hint="@string/enter_message_here"
         android:inputType="text"
         android:paddingStart="20dp" />
 

@@ -3,6 +3,8 @@ package com.example.alessandro.mychatapp.utils;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.alessandro.mychatapp.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -30,7 +32,7 @@ public class GetMessageTime extends Application {
         // TODO: localize
         final long diff = now - time;
         if (diff < MINUTE_MILLIS) {
-            return "JUST NOW";
+            return ctx.getString(R.string.time_just_now);
         } else if (diff < 90 * MINUTE_MILLIS) {
             SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
             String messageTime = sfd.format(new Date(time)).toString();
@@ -42,7 +44,7 @@ public class GetMessageTime extends Application {
             messageTime = messageTime.substring(11, messageTime.length());
             return messageTime;
         } else if (diff < 48 * HOUR_MILLIS) {
-            return "YESTERDAY";
+            return ctx.getString(R.string.time_yesterday);
         } else {
             SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
             String messageTime = sfd.format(new Date(time)).toString();
