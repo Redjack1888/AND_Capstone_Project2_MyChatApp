@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="@dimen/start_logo_margin_top"
         android:contentDescription="@string/mychatapp_logo"
         android:scaleType="fitCenter"
         android:src="@drawable/mychatapp" />
@@ -21,11 +21,11 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/start_login_btn"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="@dimen/start_welcome_txt_margin_bottom"
         android:text="@string/welcome_to_mychatapp"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="22sp"
+        android:textSize="@dimen/start_welcome_txt_textSize"
         android:textStyle="bold" />
 
     <Button
@@ -34,10 +34,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="@dimen/start_reg_btn_margin_bottom"
         android:backgroundTint="@android:color/white"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
+        android:paddingStart="@dimen/start_reg_btn_padding_left"
+        android:paddingEnd="@dimen/start_reg_btn_padding_right"
         android:text="@string/need_a_new_account"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
@@ -48,10 +48,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/start_reg_btn"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/start_login_btn_margin_bottom"
         android:backgroundTint="@color/colorAccent"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingStart="@dimen/start_login_btn_padding_left"
+        android:paddingEnd="@dimen/start_login_btn_padding_right"
         android:text="@string/already_have_account"
         android:textColor="@android:color/white"
         android:textStyle="bold" />

@@ -18,9 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/status_appBar"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="40dp">
+        android:layout_marginLeft="@dimen/status_input_margin_left"
+        android:layout_marginRight="@dimen/status_input_margin_right"
+        android:layout_marginTop="@dimen/status_input_margin_top">
 
         <EditText
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/status_input"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/status_save_btn_margin_top"
         android:backgroundTint="@color/colorAccent"
         android:text="@string/save_changes_btn"
         android:textColor="@android:color/white" />
