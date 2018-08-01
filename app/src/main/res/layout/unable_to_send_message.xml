@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="@dimen/unable_send_layout_height"
     android:layout_alignParentBottom="true"
     android:background="@android:color/darker_gray"
     android:orientation="horizontal">
@@ -9,18 +9,16 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/unable_send_circleImg_margin_start"
+        android:layout_marginTop="@dimen/unable_send_circleImg_margin_top"
         android:src="@drawable/ic_action_error" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginEnd="@dimen/unable_send_txt_margin_end"
+        android:layout_marginStart="@dimen/unable_send_txt_margin_start"
+        android:layout_marginTop="@dimen/unable_send_txt_margin_top"
         android:text="@string/unable_send_message_txt"
         android:textStyle="bold" />
 
