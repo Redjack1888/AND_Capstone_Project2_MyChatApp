@@ -99,17 +99,47 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="status_input_margin_right">20dp</dimen>
     <dimen name="status_input_margin_top">40dp</dimen>
     <dimen name="status_save_btn_margin_top">20dp</dimen>
+
     <dimen name="app_bar_elevation">4dp</dimen>
+
     <dimen name="custom_bar_image">36dp</dimen>
     <dimen name="custom_bar_image_margin_end">10dp</dimen>
     <dimen name="custom_bar_display_name_textSize">18sp</dimen>
     <dimen name="custom_bar_last_seen_textSize">13sp</dimen>
+
     <dimen name="chats_empty_view_width">200dp</dimen>
     <dimen name="chats_empty_view_height">200dp</dimen>
+
     <dimen name="friends_empty_view_width">200dp</dimen>
     <dimen name="friends_empty_view_height">200dp</dimen>
+
     <dimen name="request_empty_view_width">200dp</dimen>
     <dimen name="request_empty_view_height">200dp</dimen>
+
+    <dimen name="message_single_layout_padding">10dp</dimen>
+    <dimen name="message_single_profile_image">64dp</dimen>
+    <dimen name="message_layout_margin_bottom">10dp</dimen>
+    <dimen name="message_layout_margin_left">10dp</dimen>
+    <dimen name="message_layout_margin_right">10dp</dimen>
+    <dimen name="message_layout_margin_top">10dp</dimen>
+    <dimen name="message_layout_padding">10dp</dimen>
+    <dimen name="chat_userName_single_text_view_margin_start">20dp</dimen>
+    <dimen name="chat_userName_single_text_view_textSize">16sp</dimen>
+    <dimen name="time_single_text_view_margin_start">10dp</dimen>
+    <dimen name="time_single_text_view_textSize">12sp</dimen>
+    <dimen name="message_single_text_view_margin_start">20dp</dimen>
+    <dimen name="message_single_text_view_textSize">14sp</dimen>
+    <dimen name="message_image_margin_start">20dp</dimen>
+    <dimen name="chat_userName_single_margin_start">10dp</dimen>
+    <dimen name="message_image_single_margin_end">10dp</dimen>
+    <dimen name="message_image_single_margin_start">56dp</dimen>
+    <dimen name="message_single_txt_view_margin_start">10dp</dimen>
+    <dimen name="message_single_txt_view_textSize">14sp</dimen>
+
+    <dimen name="widget_user_single_image">64dp</dimen>
+
+    <dimen name="widget_chats_empty_view_width">200dp</dimen>
+    <dimen name="widget_chats_empty_view_height">200dp</dimen>
 
 
 </resources>

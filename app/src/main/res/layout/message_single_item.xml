@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="@dimen/message_single_layout_padding">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/message_single_profile_image"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="@dimen/message_single_profile_image"
+        android:layout_height="@dimen/message_single_profile_image"
         android:src="@drawable/default_avatar" />
 
     <LinearLayout
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/message_single_profile_image"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="@dimen/message_layout_padding">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -27,18 +27,18 @@
                 android:id="@+id/chat_userName_single_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/chat_userName_single_margin_start"
                 android:text="@string/hint_display_name"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/chat_userName_single_text_view_textSize"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/message_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="56dp"
+                android:layout_marginEnd="@dimen/message_image_single_margin_end"
+                android:layout_marginStart="@dimen/message_image_single_margin_start"
                 android:contentDescription="TODO"
                 android:scaleType="centerCrop" />
 
@@ -46,10 +46,10 @@
                 android:id="@+id/message_single_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/message_single_txt_view_margin_start"
                 android:text="@string/enter_message"
                 android:textColor="@android:color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/message_single_txt_view_textSize" />
 
         </LinearLayout>
 
@@ -57,10 +57,10 @@
             android:id="@+id/time_single_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/time_single_text_view_margin_start"
             android:text="@string/message_time"
             android:textColor="@android:color/white"
-            android:textSize="12sp" />
+            android:textSize="@dimen/time_single_text_view_textSize" />
 
     </LinearLayout>
 
