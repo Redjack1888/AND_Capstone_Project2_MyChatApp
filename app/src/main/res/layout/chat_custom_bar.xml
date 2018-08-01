@@ -7,10 +7,10 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/custom_bar_image"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="@dimen/custom_bar_image"
+        android:layout_height="@dimen/custom_bar_image"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="@dimen/custom_bar_image_margin_end"
         android:src="@drawable/default_avatar"
         android:transitionName="imageTransition"
         tools:targetApi="lollipop" />
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="@string/hint_display_name"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="@dimen/custom_bar_display_name_textSize"
         android:transitionName="nameTransition"
         tools:targetApi="lollipop" />
 
@@ -33,6 +33,6 @@
         android:layout_below="@+id/custom_bar_display_name"
         android:text="@string/last_seen"
         android:textColor="@android:color/white"
-        android:textSize="13sp" />
+        android:textSize="@dimen/custom_bar_last_seen_textSize" />
 
 </RelativeLayout>
