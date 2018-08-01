@@ -147,12 +147,27 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="chat_message_edit_text_padding_start">20dp</dimen>
     <dimen name="chat_message_send_btn_margin_end">10dp</dimen>
     <dimen name="chat_message_send_btn_margin_start">1dp</dimen>
+
     <dimen name="unable_send_circleImg_margin_start">10dp</dimen>
     <dimen name="unable_send_layout_height">50dp</dimen>
     <dimen name="unable_send_circleImg_margin_top">5dp</dimen>
     <dimen name="unable_send_txt_margin_end">10dp</dimen>
     <dimen name="unable_send_txt_margin_start">10dp</dimen>
     <dimen name="unable_send_txt_margin_top">5dp</dimen>
+
+    <dimen name="user_single_image">64dp</dimen>
+    <dimen name="user_single_image_margin_bottom">15dp</dimen>
+    <dimen name="user_single_image_margin_start">15dp</dimen>
+    <dimen name="user_single_image_margin_top">15dp</dimen>
+    <dimen name="user_single_name_margin_start">20dp</dimen>
+    <dimen name="user_single_name_textSize">18sp</dimen>
+    <dimen name="user_single_online_image">10dp</dimen>
+    <dimen name="user_single_online_image_margin_start">10dp</dimen>
+    <dimen name="user_single_online_image_margin_top">15dp</dimen>
+    <dimen name="user_single_status_margin_bottom">5dp</dimen>
+    <dimen name="user_single_status_margin_top">10dp</dimen>
+    <dimen name="user_single_message_time_margin_end">15dp</dimen>
+    <dimen name="user_single_message_time_margin_top">15dp</dimen>
 
 
 </resources>

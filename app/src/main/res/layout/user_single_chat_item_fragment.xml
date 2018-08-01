@@ -6,11 +6,11 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_single_image"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="@dimen/user_single_image"
+        android:layout_height="@dimen/user_single_image"
+        android:layout_marginBottom="@dimen/user_single_image_margin_bottom"
+        android:layout_marginStart="@dimen/user_single_image_margin_start"
+        android:layout_marginTop="@dimen/user_single_image_margin_top"
         android:src="@drawable/default_avatar"
         android:transitionName="imageTransition"
         tools:targetApi="lollipop" />
@@ -20,20 +20,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/user_single_image"
-        android:layout_marginStart="22dp"
+        android:layout_marginStart="@dimen/user_single_name_margin_start"
         android:layout_toEndOf="@+id/user_single_image"
         android:text="@string/hint_display_name"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="@dimen/user_single_name_textSize"
         android:transitionName="nameTransition"
         tools:targetApi="lollipop" />
 
     <ImageView
         android:id="@+id/user_single_online_image"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="@dimen/user_single_online_image"
+        android:layout_height="@dimen/user_single_online_image"
+        android:layout_marginStart="@dimen/user_single_online_image_margin_start"
+        android:layout_marginTop="@dimen/user_single_online_image_margin_top"
         android:layout_toEndOf="@id/user_single_name"
         android:contentDescription="@string/user_single_chat_item_online_status"
         android:src="@drawable/online_icon"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/user_single_image"
         android:layout_alignStart="@+id/user_single_name"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="@dimen/user_single_status_margin_bottom"
         android:text="@string/user_default_status"
         android:transitionName="statusTransition"
         tools:targetApi="lollipop" />
@@ -55,8 +55,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginEnd="@dimen/user_single_message_time_margin_end"
+        android:layout_marginTop="@dimen/user_single_message_time_margin_top"
         android:text="@string/message_time"
         android:textSize="12sp" />
 
