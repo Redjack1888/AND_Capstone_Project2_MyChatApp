@@ -20,6 +20,7 @@
     <string name="logging_in">Logging In</string>
     <string name="logging_in_message">Please wait while we check your credentials.</string>
     <string name="login_to_your_account">login to your account</string>
+    <string name="login_to_your_account_2">Login to your Account</string>
 
     <!--Settings Activity-->
     <string name="change_image_btn">CHANGE IMAGE</string>
@@ -167,11 +168,15 @@
     <string name="ellipsis">…</string>
     <string name="imageTransition">imageTransition</string>
     <string name="nameTransition">nameTransition</string>
+    <string name="last_seen">Last Seen</string>
+    <string name="enter_message_here">Enter message here</string>
+    <string name="unable_send_message_txt">You may not be able to send messages to this user because you are not friends with him/her.</string>
 
     <!--Widget-->
     <string name="appwidget_text">EXAMPLE</string>
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
+    <string name="AppWidgetConfig_choose_chat">Choose a Chat</string>
 
     <!--Firebase Messaging Service-->
     <string name="fromUserId">from_user_id</string>
@@ -187,11 +192,6 @@
     <string name="time_hours_ago">hours ago</string>
     <string name="time_yesterday_2">yesterday</string>
     <string name="time_days_ago">days ago</string>
-    <string name="AppWidgetConfig_choose_chat">Choose a Chat</string>
-    <string name="login_to_your_account_2">Login to your Account</string>
-    <string name="last_seen">Last Seen</string>
-    <string name="enter_message_here">Enter message here</string>
-    <string name="unable_send_message_txt">You may not be able to send messages to this user because you are not friends with him/her.</string>
 
     <!--Widget-->
     <!--<string name="appwidget_text">Display Name</string>-->
