@@ -53,7 +53,7 @@
     <string name="search_user">Search User</string>
     <string name="hint_search_here">Search here</string>
     <string name="content_search_button">Search Button</string>
-    <string name="search_appBar_Title">Search...</string>
+    <string name="search_appBar_Title">Search…</string>
 
     <!--Profile Activity-->
     <string name="total_friends">Total Friends</string>
