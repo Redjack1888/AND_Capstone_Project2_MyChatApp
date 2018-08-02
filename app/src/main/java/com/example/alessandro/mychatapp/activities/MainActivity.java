@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout = findViewById(R.id.main_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
 
-
+        // PermissionManager
         permissionManager = new PermissionManager() {};
         permissionManager.checkAndRequestPermissions(this);
 
@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
     @Override
     protected void onStop() {
