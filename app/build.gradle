@@ -48,7 +48,7 @@ dependencies {
     // Imported to solve problems of Libraries compatibility
     implementation 'com.android.support:exifinterface:28.0.0-alpha3'
 
-    // Dexter runtime permissions
-    implementation 'com.karumi:dexter:4.2.0'
+    // PermissionManager - runtime permissions
+    implementation 'com.github.karanchuri:PermissionManager:0.1.0'
 }
 apply plugin: 'com.google.gms.google-services'
