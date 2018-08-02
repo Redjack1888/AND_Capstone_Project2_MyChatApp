@@ -69,6 +69,7 @@
     <string name="account_settings">Account Settings</string>
     <string name="all_users">All Users</string>
     <string name="logout">Logout</string>
+    <string name="search">Search</string>
 
     <!--Content Description-->
     <string name="mychatapp_logo">MyChatApp Logo</string>
@@ -76,6 +77,14 @@
     <string name="user_image_profile">User Image Profile</string>
     <string name="add_an_image_button_option">Add an Image button option</string>
     <string name="send_the_message_button_option">Send the message button option</string>
+    <string name="empty_widget">Empty Widget</string>
+    <string name="requests_is_empty">Requests is empty</string>
+    <string name="message_image">Message image</string>
+    <string name="chat_image">Chat Image</string>
+    <string name="chats_is_empty">Chats is empty</string>
+    <string name="friends_is_empty">Friends is empty</string>
+    <string name="add">add</string>
+    <string name="send">send</string>
 
     <!--Firebase Tables Fields-->
     <!--Users-->
@@ -192,6 +201,8 @@
     <string name="time_hours_ago">hours ago</string>
     <string name="time_yesterday_2">yesterday</string>
     <string name="time_days_ago">days ago</string>
+
+
 
     <!--Widget-->
     <!--<string name="appwidget_text">Display Name</string>-->

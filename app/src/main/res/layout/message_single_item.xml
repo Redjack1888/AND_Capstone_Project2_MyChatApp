@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/message_image_single_margin_end"
                 android:layout_marginStart="@dimen/message_image_single_margin_start"
-                android:contentDescription="TODO"
+                android:contentDescription="@string/message_image"
                 android:scaleType="centerCrop" />
 
             <TextView

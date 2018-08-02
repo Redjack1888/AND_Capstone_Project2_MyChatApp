@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,8 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/status_appBar"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/status_input_margin_left"
-        android:layout_marginRight="@dimen/status_input_margin_right"
+        android:layout_marginStart="@dimen/status_input_margin_left"
+        android:layout_marginEnd="@dimen/status_input_margin_right"
         android:layout_marginTop="@dimen/status_input_margin_top">
 
         <EditText

@@ -1,6 +1,5 @@
 package com.example.alessandro.mychatapp.activities;
 
-import android.Manifest;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -19,8 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.karan.churi.PermissionManager.PermissionManager;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 

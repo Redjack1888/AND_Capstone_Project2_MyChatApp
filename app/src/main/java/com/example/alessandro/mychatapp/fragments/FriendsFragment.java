@@ -2,7 +2,6 @@ package com.example.alessandro.mychatapp.fragments;
 
 
 import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;

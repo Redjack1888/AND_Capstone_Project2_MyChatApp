@@ -17,7 +17,7 @@
         android:layout_width="@dimen/request_empty_view_width"
         android:layout_height="@dimen/request_empty_view_height"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/requests_is_empty"
         android:src="@drawable/nofriendsreq"
         android:visibility="gone" />
 

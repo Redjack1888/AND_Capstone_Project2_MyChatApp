@@ -17,12 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.alessandro.mychatapp.R;
 import com.example.alessandro.mychatapp.activities.ChatActivity;
-import com.example.alessandro.mychatapp.activities.MainActivity;
-import com.example.alessandro.mychatapp.activities.UsersActivity;
 import com.example.alessandro.mychatapp.models.Chat;
 import com.example.alessandro.mychatapp.utils.GetMessageTime;
 import com.example.alessandro.mychatapp.utils.SimpleDividerItemDecoration;

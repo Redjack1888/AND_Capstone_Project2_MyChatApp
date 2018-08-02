@@ -13,7 +13,7 @@
         android:src="@drawable/default_avatar"
         android:transitionName="imageTransition"
         tools:targetApi="lollipop"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/chat_image" />
 
     <!--<TextView-->
         <!--android:id="@+id/widget_user_single_name"-->

@@ -13,7 +13,7 @@
         android:layout_marginStart="@dimen/chat_message_add_btn_margin_start"
         android:layout_weight="1"
         android:background="@android:color/white"
-        android:contentDescription="add"
+        android:contentDescription="@string/add"
         android:src="@drawable/ic_action_add" />
 
     <EditText
@@ -34,7 +34,7 @@
         android:layout_marginStart="@dimen/chat_message_send_btn_margin_start"
         android:layout_weight="1"
         android:background="@android:color/white"
-        android:contentDescription="send"
+        android:contentDescription="@string/send"
         android:src="@drawable/ic_action_send" />
 
 

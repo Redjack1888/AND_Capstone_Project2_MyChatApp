@@ -16,7 +16,7 @@
         android:layout_width="@dimen/friends_empty_view_width"
         android:layout_height="@dimen/friends_empty_view_height"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/friends_is_empty"
         android:src="@drawable/nofriendslist"
         android:visibility="gone" />
 

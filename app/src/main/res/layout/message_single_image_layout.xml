@@ -55,7 +55,7 @@
             android:layout_below="@+id/message_single_text_view"
             android:layout_marginStart="@dimen/message_image_margin_start"
             android:adjustViewBounds="true"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/message_image"
             android:scaleType="fitCenter" />
 
     </RelativeLayout>
