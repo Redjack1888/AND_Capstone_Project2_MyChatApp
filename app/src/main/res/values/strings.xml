@@ -103,7 +103,7 @@
     <string name="FB_lastMessageKey_field">lastMessageKey</string>
     <!--Notifications-->
     <string name="FB_notifications_field">Notifications</string>
-    <string name="notifications">notifications</string>
+    <string name="Notifications">Notifications/</string>
     <string name="FB_notifications_from_field">from</string>
     <string name="FB_notifications_type_field">type</string>
     <string name="FB_notifications_type_request_value">request</string>

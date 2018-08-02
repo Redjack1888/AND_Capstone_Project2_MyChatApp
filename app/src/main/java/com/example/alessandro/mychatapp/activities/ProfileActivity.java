@@ -62,7 +62,7 @@ public class ProfileActivity extends AppCompatActivity {
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Users_field)).child(user_id);
         mFriendReqDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Friend_req_field));
         mFriendDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Friends_field));
-        mNotificationDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.notifications));
+        mNotificationDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_notifications_field));
         mCurrent_user = FirebaseAuth.getInstance().getCurrentUser();
 
         mProfileImage = findViewById(R.id.profile_image);
@@ -204,7 +204,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 if (mCurrent_state.equals(getString(R.string.Friendship_status_notFriends))) {
 
-                    DatabaseReference newNotificationRef = mRootRef.child(getString(R.string.notifications)).child(user_id).push();
+                    DatabaseReference newNotificationRef = mRootRef.child(getString(R.string.FB_notifications_field)).child(user_id).push();
                     String newNotificationId = newNotificationRef.getKey();
 
                     HashMap<String, String> notificationData = new HashMap<>();
@@ -214,7 +214,7 @@ public class ProfileActivity extends AppCompatActivity {
                     Map requestMap = new HashMap();
                     requestMap.put(getString(R.string.FB_Friend_req_field) + "/" + mCurrent_user.getUid() + "/" + user_id + "/" + getString(R.string.FB_friendship_request_type_field), getString(R.string.FB_notifications_type_sent_value));
                     requestMap.put(getString(R.string.FB_Friend_req_field) + "/" + user_id + "/" + mCurrent_user.getUid() + "/" + getString(R.string.FB_friendship_request_type_field), getString(R.string.FB_notifications_type_received_value));
-                    requestMap.put(getString(R.string.FB_notifications_field) + "/" + user_id + "/" + newNotificationId, notificationData);
+                    requestMap.put(getString(R.string.Notifications) + user_id + "/" + newNotificationId, notificationData);
 
                     mRootRef.updateChildren(requestMap, new DatabaseReference.CompletionListener() {
                         @Override
