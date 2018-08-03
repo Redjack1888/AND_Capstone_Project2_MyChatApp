@@ -23,7 +23,7 @@ public class StatusActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 
     private TextInputLayout mStatus;
-    private Button mSavebtn;
+    private Button mSaveBtn;
 
     //Firebase
     private DatabaseReference mStatusDatabase;
@@ -51,11 +51,11 @@ public class StatusActivity extends AppCompatActivity {
         String status_value = getIntent().getStringExtra(getString(R.string.status_value));
 
         mStatus = findViewById(R.id.status_input);
-        mSavebtn = findViewById(R.id.status_save_btn);
+        mSaveBtn = findViewById(R.id.status_save_btn);
 
         mStatus.getEditText().setText(status_value);
 
-        mSavebtn.setOnClickListener(new View.OnClickListener() {
+        mSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

@@ -81,6 +81,28 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString(getString(R.string.LoginEmailSavedKey), mLoginEmail.getEditText().getText().toString());
+        outState.putString(getString(R.string.LoginPasswordSavedKey),mLoginPassword.getEditText().getText().toString());
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState != null){
+
+           String email = savedInstanceState.getString(getString(R.string.LoginEmailSavedKey));
+           mLoginEmail.getEditText().setText(email);
+
+            String password = savedInstanceState.getString(getString(R.string.LoginPasswordSavedKey));
+            mLoginPassword.getEditText().setText(password);
+
+        }
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
     private void loginUser(String email, String password) {
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

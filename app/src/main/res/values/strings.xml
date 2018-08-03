@@ -201,7 +201,11 @@
     <string name="time_hours_ago">hours ago</string>
     <string name="time_yesterday_2">yesterday</string>
     <string name="time_days_ago">days ago</string>
-
+    <string name="LoginEmailSavedKey">LoginEmailSavedKey</string>
+    <string name="LoginPasswordSavedKey">LoginPasswordSavedKey</string>
+    <string name="RegisterNameSaved">RegisterNameSaved</string>
+    <string name="RegisterEmailSaved">RegisterEmailSaved</string>
+    <string name="RegisterPasswordSaved">RegisterPasswordSaved</string>
 
 
     <!--Widget-->

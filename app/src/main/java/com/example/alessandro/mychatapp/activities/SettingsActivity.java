@@ -199,9 +199,9 @@ public class SettingsActivity extends AppCompatActivity {
                 }
 
 
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                thumb_bitmap.compress(Bitmap.CompressFormat.JPEG, 75, baos);
-                final byte[] thumb_byte = baos.toByteArray();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                thumb_bitmap.compress(Bitmap.CompressFormat.JPEG, 75, stream);
+                final byte[] thumb_byte = stream.toByteArray();
 
 
                 final StorageReference filepath = mImageStorage.child(getString(R.string.FB_storage_profile_images_field)).child(current_user_id + ".jpg");

@@ -87,6 +87,34 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        outState.putString(getString(R.string.RegisterNameSaved), mDisplayName.getEditText().getText().toString());
+        outState.putString(getString(R.string.RegisterEmailSaved), mEmail.getEditText().getText().toString());
+        outState.putString(getString(R.string.RegisterPasswordSaved), mPassword.getEditText().getText().toString());
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState != null){
+
+            String display_name = savedInstanceState.getString(getString(R.string.RegisterNameSaved));
+            mDisplayName.getEditText().setText(display_name);
+
+            String email = savedInstanceState.getString(getString(R.string.RegisterEmailSaved));
+            mEmail.getEditText().setText(email);
+
+            String password = savedInstanceState.getString(getString(R.string.RegisterPasswordSaved));
+            mPassword.getEditText().setText(password);
+
+        }
+
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
     private void register_user(final String display_name, String email, String password) {
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
