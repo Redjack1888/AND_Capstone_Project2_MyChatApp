@@ -75,11 +75,15 @@ public class ChatActivity extends AppCompatActivity {
     private static final int GALLERY_PICK = 1;
     private StorageReference mImageStorage;
     private RelativeLayout relativeLayout;
+//    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        // Getting application context
+//        mContext = getApplicationContext();
 
         chat_user_id = getIntent().getStringExtra(getString(R.string.intent_stringExtra_user_id));
         chat_user_name = getIntent().getStringExtra(getString(R.string.intent_stringExtra_chatUserName));
@@ -112,7 +116,7 @@ public class ChatActivity extends AppCompatActivity {
             chatUserName.setText(chat_user_name);
         }
 
-        mAdapter = new MessageAdapter(messagesList);
+        mAdapter = new MessageAdapter(messagesList, this);
         mMessageList = findViewById(R.id.message_list_recycler_view);
         mMessageLinearLayout = findViewById(R.id.chat_message_linear_layout);
         mLinearLayout = new LinearLayoutManager(this);

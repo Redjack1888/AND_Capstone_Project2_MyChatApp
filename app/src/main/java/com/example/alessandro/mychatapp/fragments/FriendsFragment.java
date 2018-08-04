@@ -2,6 +2,7 @@ package com.example.alessandro.mychatapp.fragments;
 
 
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -55,7 +56,7 @@ public class FriendsFragment extends Fragment {
     private FirebaseAuth mAuth;
     private Query friendsQuery;
     private FirebaseRecyclerAdapter<Friends, FriendsViewHolder> firebaseRecyclerAdapter;
-
+    Context mContext;
 
     public FriendsFragment() {
         // Required empty public constructor
@@ -65,6 +66,9 @@ public class FriendsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // Getting application context
+        mContext = getActivity();
 
         // Inflate the layout for this fragment
         mMainView = inflater.inflate(R.layout.fragment_friends, container, false);
@@ -111,7 +115,7 @@ public class FriendsFragment extends Fragment {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.users_single_item, parent, false);
 
-                return new FriendsViewHolder(view);
+                return new FriendsViewHolder(view, mContext);
             }
 
             @Override
@@ -213,11 +217,13 @@ public class FriendsFragment extends Fragment {
     public static class FriendsViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
+        Context mContext;
 
-        public FriendsViewHolder(View itemView) {
+        public FriendsViewHolder(View itemView, Context context) {
             super(itemView);
 
             mView = itemView;
+            mContext = context;
         }
 
         public void setName(String name) {
@@ -240,7 +246,7 @@ public class FriendsFragment extends Fragment {
         public void setUserOnline(String userOnline) {
 
             ImageView imageView = mView.findViewById(R.id.user_single_online_icon);
-            if (userOnline.equals("true")) {
+            if (userOnline.equals(mContext.getString(R.string.boolean_true_string))) {
                 imageView.setVisibility(View.VISIBLE);
             } else {
                 imageView.setVisibility(View.INVISIBLE);

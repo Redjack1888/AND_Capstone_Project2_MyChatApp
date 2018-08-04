@@ -1,5 +1,6 @@
 package com.example.alessandro.mychatapp.utils.adapters;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -31,9 +32,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     private List<Messages> mMessagesList;
     private FirebaseAuth mAuth;
     private DatabaseReference userRef;
+    private Context mContext;
 
-    public MessageAdapter(List<Messages> mMessagesList) {
+    public MessageAdapter(List<Messages> mMessagesList, Context mContext) {
         this.mMessagesList = mMessagesList;
+        this.mContext = mContext;
     }
 
     @NonNull
@@ -71,7 +74,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         String messageType = c.getType();
         long timeOfMessage = c.getTime();
 
-        if (messageType.equals("text")) {
+        if (messageType.equals(mContext.getString(R.string.FB_message_type_text_field))) {
             holder.mMessageTextView.setVisibility(View.VISIBLE);
             holder.messageImage.setVisibility(View.INVISIBLE);
         } else {
@@ -80,13 +83,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                     .placeholder(R.drawable.default_avatar).into(holder.messageImage);
         }
 
-        userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(from);
+        userRef = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.FB_Users_field)).child(from);
         userRef.keepSynced(true);
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String image_url = dataSnapshot.child("thumb_image").getValue().toString();
-                String name = dataSnapshot.child("name").getValue().toString();
+                String image_url = dataSnapshot.child(mContext.getString(R.string.FB_thumb_image_field)).getValue().toString();
+                String name = dataSnapshot.child(mContext.getString(R.string.FB_name_field)).getValue().toString();
 
                 holder.mUserTextView.setText(name);
                 // holder.messageImage.setVisibility(View.INVISIBLE);

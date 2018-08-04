@@ -2,6 +2,7 @@ package com.example.alessandro.mychatapp.fragments;
 
 
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -45,6 +46,8 @@ public class RequestsFragment extends Fragment {
     private FirebaseAuth mAuth;
     private Query friendsQuery;
     private FirebaseRecyclerAdapter<Requests, RequestsFragment.FriendReqViewHolder> firebaseRecyclerAdapter;
+    Context mContext;
+
 
     public RequestsFragment() {
         // Required empty public constructor
@@ -53,6 +56,10 @@ public class RequestsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // Getting application context
+        mContext = getActivity();
+
         // Inflate the layout for this fragment
         mMainView = inflater.inflate(R.layout.fragment_requests, container, false);
 
@@ -92,7 +99,7 @@ public class RequestsFragment extends Fragment {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.users_single_item, parent, false);
 
-                return new FriendReqViewHolder(view);
+                return new FriendReqViewHolder(view, mContext);
             }
 
             @Override
@@ -166,10 +173,12 @@ public class RequestsFragment extends Fragment {
     public class FriendReqViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
+        Context mContext;
 
-        public FriendReqViewHolder(View itemView) {
+        public FriendReqViewHolder(View itemView, Context context) {
             super(itemView);
             mView = itemView;
+            mContext = context;
         }
 
         public void setName(String name) {
@@ -192,7 +201,7 @@ public class RequestsFragment extends Fragment {
         public void setUserOnline(String userOnline) {
 
             ImageView imageView = mView.findViewById(R.id.user_single_online_icon);
-            if (userOnline.equals("true")) {
+            if (userOnline.equals(mContext.getString(R.string.boolean_true_string))) {
                 imageView.setVisibility(View.VISIBLE);
             } else {
                 imageView.setVisibility(View.INVISIBLE);

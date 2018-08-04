@@ -201,11 +201,18 @@
     <string name="time_hours_ago">hours ago</string>
     <string name="time_yesterday_2">yesterday</string>
     <string name="time_days_ago">days ago</string>
+
+    <!--onSavedInstance / onRestoreInstance-->
     <string name="LoginEmailSavedKey">LoginEmailSavedKey</string>
     <string name="LoginPasswordSavedKey">LoginPasswordSavedKey</string>
     <string name="RegisterNameSaved">RegisterNameSaved</string>
     <string name="RegisterEmailSaved">RegisterEmailSaved</string>
     <string name="RegisterPasswordSaved">RegisterPasswordSaved</string>
+
+    <!--SectionsPagerAdapter Tabs-->
+    <string name="requests_tab_title">REQUESTS</string>
+    <string name="chats_tab_title">CHATS</string>
+    <string name="friends_tab_title">FRIENDS</string>
 
 
     <!--Widget-->

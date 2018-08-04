@@ -1,18 +1,22 @@
 package com.example.alessandro.mychatapp.utils.adapters;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.alessandro.mychatapp.R;
 import com.example.alessandro.mychatapp.fragments.ChatsFragment;
 import com.example.alessandro.mychatapp.fragments.FriendsFragment;
 import com.example.alessandro.mychatapp.fragments.RequestsFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+    private Context context;
 
-    public SectionsPagerAdapter(FragmentManager fm) {
+    public SectionsPagerAdapter(FragmentManager fm, Context ctx) {
         super(fm);
+        context = ctx;
     }
 
     @Override
@@ -43,13 +47,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                return "REQUESTS";
+                return context.getString(R.string.requests_tab_title);
 
             case 1:
-                return "CHATS";
+                return context.getString(R.string.chats_tab_title);
 
             case 2:
-                return "FRIENDS";
+                return context.getString(R.string.friends_tab_title);
 
             default:
                 return null;

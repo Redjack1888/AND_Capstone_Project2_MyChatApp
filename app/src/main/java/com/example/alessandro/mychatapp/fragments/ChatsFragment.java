@@ -52,6 +52,7 @@ public class ChatsFragment extends Fragment {
     private String lastMessageKeyValue;
     private static final String IMAGE_MESSAGE = "  Image";
     private FirebaseRecyclerAdapter<Chat, ChatsFragment.ChatsViewHolder> firebaseRecyclerAdapter;
+    Context mContext;
 
     public ChatsFragment() {
         // Required empty public constructor
@@ -61,6 +62,10 @@ public class ChatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // Getting application context
+        mContext = getActivity();
+
         // Inflate the layout for this fragment
         mMainView = inflater.inflate(R.layout.fragment_chats, container, false);
 
@@ -102,7 +107,7 @@ public class ChatsFragment extends Fragment {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.user_single_chat_item_fragment, parent, false);
 
-                return new ChatsFragment.ChatsViewHolder(view);
+                return new ChatsFragment.ChatsViewHolder(view, mContext);
             }
 
             @Override
@@ -203,11 +208,13 @@ public class ChatsFragment extends Fragment {
     public static class ChatsViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
+        Context mContext;
 
-        public ChatsViewHolder(View itemView) {
+        public ChatsViewHolder(View itemView, Context context) {
             super(itemView);
 
             mView = itemView;
+            mContext = context;
         }
 
         public void setName(String name) {
@@ -230,7 +237,7 @@ public class ChatsFragment extends Fragment {
         public void setUserOnline(String userOnline) {
 
             ImageView imageView = mView.findViewById(R.id.user_single_online_image);
-            if (userOnline.equals("true")) {
+            if (userOnline.equals(mContext.getString(R.string.boolean_true_string))) {
                 imageView.setVisibility(View.VISIBLE);
             } else {
                 imageView.setVisibility(View.INVISIBLE);
@@ -239,7 +246,7 @@ public class ChatsFragment extends Fragment {
 
         public void setLastMessageKey(String lastMessageKey, String messageType) {
             TextView userMessageView = mView.findViewById(R.id.user_single_status);
-            if (messageType.equals("image")) {
+            if (messageType.equals(mContext.getString(R.string.FB_message_type_image_field))) {
                 userMessageView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_image_message, 0, 0, 0);
             }
             userMessageView.setText(lastMessageKey);

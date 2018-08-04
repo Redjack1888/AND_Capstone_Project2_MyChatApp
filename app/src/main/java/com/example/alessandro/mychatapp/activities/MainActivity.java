@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Tabs
         mViewPager = findViewById(R.id.main_tabPager);
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(),this);
 
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setCurrentItem(fragmentId);
