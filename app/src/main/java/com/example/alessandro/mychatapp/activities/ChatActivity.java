@@ -2,8 +2,11 @@ package com.example.alessandro.mychatapp.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -76,6 +79,7 @@ public class ChatActivity extends AppCompatActivity {
     private StorageReference mImageStorage;
     private RelativeLayout relativeLayout;
 //    Context mContext;
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +100,10 @@ public class ChatActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         relativeLayout = findViewById(R.id.relativeChatLayout);
+
+        if(!isConnectedToInternet(this)){
+            showSnackBar(getString(R.string.chck_internet_connection),relativeLayout);
+        }
 
         mAuth = FirebaseAuth.getInstance();
         if (mAuth != null) {
@@ -402,6 +410,27 @@ public class ChatActivity extends AppCompatActivity {
         Intent startIntent = new Intent(ChatActivity.this, HomeActivity.class);
         startActivity(startIntent);
         finish();
+    }
+
+    private boolean isConnectedToInternet(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public void showSnackBar(String message, RelativeLayout relativeLayout)
+    {
+        snackbar = Snackbar
+                .make(relativeLayout, message, Snackbar.LENGTH_INDEFINITE).
+                        setAction((R.string.snackbar_ok), new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                snackbar.dismiss();
+                            }
+                        });
+        snackbar.show();
     }
 
 

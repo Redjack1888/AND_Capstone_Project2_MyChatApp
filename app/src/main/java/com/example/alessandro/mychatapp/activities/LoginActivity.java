@@ -1,8 +1,13 @@
 package com.example.alessandro.mychatapp.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,11 +42,20 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mUserDatabase;
 
+    private ConstraintLayout constraintLayout;
+    private Snackbar snackbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        constraintLayout = findViewById(R.id.constraintLoginLayout);
+
+        if(!isConnectedToInternet(this)){
+            showSnackBar(getString(R.string.chck_internet_connection),constraintLayout);
+        }
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -141,5 +155,26 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean isConnectedToInternet(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public void showSnackBar(String message, ConstraintLayout constraintLayout)
+    {
+        snackbar = Snackbar
+                .make(constraintLayout, message, Snackbar.LENGTH_INDEFINITE).
+                        setAction((R.string.snackbar_ok), new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                snackbar.dismiss();
+                            }
+                        });
+        snackbar.show();
     }
 }

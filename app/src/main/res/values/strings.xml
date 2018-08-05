@@ -213,6 +213,8 @@
     <string name="requests_tab_title">REQUESTS</string>
     <string name="chats_tab_title">CHATS</string>
     <string name="friends_tab_title">FRIENDS</string>
+    <string name="chck_internet_connection">Please check your internet connection</string>
+    <string name="snackbar_ok">Ok</string>
 
 
     <!--Widget-->

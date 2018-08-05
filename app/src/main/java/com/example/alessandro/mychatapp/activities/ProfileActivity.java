@@ -1,11 +1,16 @@
 package com.example.alessandro.mychatapp.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,10 +55,19 @@ public class ProfileActivity extends AppCompatActivity {
 
     private String mCurrent_state;
 
+    private RelativeLayout relativeLayout;
+    private Snackbar snackbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        relativeLayout = findViewById(R.id.relativeProfileLayout);
+
+        if(!isConnectedToInternet(this)){
+            showSnackBar(getString(R.string.chck_internet_connection),relativeLayout);
+        }
 
         final String user_id = getIntent().getStringExtra(getString(R.string.intent_stringExtra_user_id));
 
@@ -341,5 +355,26 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean isConnectedToInternet(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public void showSnackBar(String message, RelativeLayout relativeLayout)
+    {
+        snackbar = Snackbar
+                .make(relativeLayout, message, Snackbar.LENGTH_INDEFINITE).
+                        setAction((R.string.snackbar_ok), new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                snackbar.dismiss();
+                            }
+                        });
+        snackbar.show();
     }
 }
