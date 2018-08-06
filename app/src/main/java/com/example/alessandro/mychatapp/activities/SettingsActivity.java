@@ -309,7 +309,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
     }
-    
+
     private boolean isConnectedToInternet(Context context) {
         ConnectivityManager cm =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
