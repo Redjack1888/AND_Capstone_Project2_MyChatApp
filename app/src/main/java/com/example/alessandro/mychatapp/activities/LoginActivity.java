@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginProgress = new ProgressDialog(this);
 
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Users_field));
 
         mLoginEmail = findViewById(R.id.login_email);
         mLoginPassword = findViewById(R.id.login_password);

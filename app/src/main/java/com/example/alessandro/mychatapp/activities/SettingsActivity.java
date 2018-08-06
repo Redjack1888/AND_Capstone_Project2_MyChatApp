@@ -244,7 +244,7 @@ public class SettingsActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
 
                                         mProgressDialog.dismiss();
-                                        Toast.makeText(SettingsActivity.this, "Profile Image successfully uploaded.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SettingsActivity.this, R.string.Toast_profile_image_update_success, Toast.LENGTH_LONG).show();
 
                                     }
 
@@ -253,7 +253,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                         } else {
 
-                            Toast.makeText(SettingsActivity.this, "Error in uploading Profile Image.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SettingsActivity.this, R.string.Toast_profile_image_update_error, Toast.LENGTH_LONG).show();
                             mProgressDialog.dismiss();
 
                         }
@@ -284,7 +284,7 @@ public class SettingsActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
 
                                         mProgressDialog.dismiss();
-                                        Toast.makeText(SettingsActivity.this, "Thumbnail successfully uploaded.", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SettingsActivity.this, R.string.Toast_thumbnail_success_upload, Toast.LENGTH_LONG).show();
 
                                     }
 
@@ -293,7 +293,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                         } else {
 
-                            Toast.makeText(SettingsActivity.this, "Error in uploading thumbnail .", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SettingsActivity.this, R.string.Toast_error_thumbnail_upload, Toast.LENGTH_LONG).show();
                             mProgressDialog.dismiss();
 
                         }
@@ -309,7 +309,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
     }
-
+    
     private boolean isConnectedToInternet(Context context) {
         ConnectivityManager cm =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

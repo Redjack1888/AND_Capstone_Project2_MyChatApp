@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() != null) {
 
 
-            mUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+            mUserRef = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Users_field)).child(mAuth.getCurrentUser().getUid());
 
         }
 
