@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
@@ -77,7 +78,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         relativeLayout = findViewById(R.id.relativeSettingsLayout);
 
-        if(!isConnectedToInternet(this)){
+        if (!isConnectedToInternet(this)) {
             showSnackBar(getString(R.string.chck_internet_connection), relativeLayout);
         }
 
@@ -96,49 +97,7 @@ public class SettingsActivity extends AppCompatActivity {
         mStatusBtn = findViewById(R.id.settings_status_btn);
         mImageBtn = findViewById(R.id.settings_image_btn);
 
-        mUserDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                String name = dataSnapshot.child(getString(R.string.FB_name_field)).getValue().toString();
-                final String image = dataSnapshot.child(getString(R.string.FB_image_field)).getValue().toString();
-                String status = dataSnapshot.child(getString(R.string.FB_status_field)).getValue().toString();
-                String thumb_image = dataSnapshot.child(getString(R.string.FB_thumb_image_field)).getValue().toString();
-
-                mName.setText(name);
-                mStatus.setText(status);
-
-                if (!image.equals(getString(R.string.default_image))) {
-
-                    Picasso.get()
-                            .load(image)
-                            .networkPolicy(NetworkPolicy.OFFLINE)
-                            .placeholder(R.drawable.default_avatar)
-                            .into(mDisplayImage, new Callback() {
-                                @Override
-                                public void onSuccess() {
-
-                                }
-
-                                @Override
-                                public void onError(Exception e) {
-                                    Picasso.get()
-                                            .load(image)
-                                            .placeholder(R.drawable.default_avatar)
-                                            .into(mDisplayImage);
-
-                                }
-                            });
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        new retrieveTask().execute();
 
         mStatusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,11 +149,11 @@ public class SettingsActivity extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
 
-                mProgressDialog = new ProgressDialog(SettingsActivity.this);
-                mProgressDialog.setTitle(getString(R.string.progress_uploading_image));
-                mProgressDialog.setMessage(getString(R.string.progress_uploading_image_message));
-                mProgressDialog.setCanceledOnTouchOutside(false);
-                mProgressDialog.show();
+//                mProgressDialog = new ProgressDialog(SettingsActivity.this);
+//                mProgressDialog.setTitle(getString(R.string.progress_uploading_image));
+//                mProgressDialog.setMessage(getString(R.string.progress_uploading_image_message));
+//                mProgressDialog.setCanceledOnTouchOutside(false);
+//                mProgressDialog.show();
 
                 Uri resultUri = result.getUri();
 
@@ -310,6 +269,79 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
+    public class retrieveTask extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            mProgressDialog = new ProgressDialog(SettingsActivity.this);
+            mProgressDialog.setTitle(getString(R.string.progress_uploading_image));
+            mProgressDialog.setMessage(getString(R.string.progress_uploading_image_message));
+            mProgressDialog.setCanceledOnTouchOutside(false);
+            mProgressDialog.show();
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            mUserDatabase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    String name = dataSnapshot.child(getString(R.string.FB_name_field)).getValue().toString();
+                    final String image = dataSnapshot.child(getString(R.string.FB_image_field)).getValue().toString();
+                    String status = dataSnapshot.child(getString(R.string.FB_status_field)).getValue().toString();
+                    String thumb_image = dataSnapshot.child(getString(R.string.FB_thumb_image_field)).getValue().toString();
+
+                    mName.setText(name);
+                    mStatus.setText(status);
+
+                    if (!image.equals(getString(R.string.default_image))) {
+
+                        Picasso.get()
+                                .load(image)
+                                .networkPolicy(NetworkPolicy.OFFLINE)
+                                .placeholder(R.drawable.default_avatar)
+                                .into(mDisplayImage, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+
+                                    }
+
+                                    @Override
+                                    public void onError(Exception e) {
+                                        Picasso.get()
+                                                .load(image)
+                                                .placeholder(R.drawable.default_avatar)
+                                                .into(mDisplayImage);
+
+                                    }
+                                });
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+
+            if (aBoolean == true){
+                mProgressDialog.dismiss();
+            }
+        }
+    }
+
     private boolean isConnectedToInternet(Context context) {
         ConnectivityManager cm =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -317,8 +349,7 @@ public class SettingsActivity extends AppCompatActivity {
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    public void showSnackBar(String message, RelativeLayout relativeLayout)
-    {
+    public void showSnackBar(String message, RelativeLayout relativeLayout) {
         snackbar = Snackbar
                 .make(relativeLayout, message, Snackbar.LENGTH_INDEFINITE).
                         setAction(R.string.snackbar_ok, new View.OnClickListener() {
