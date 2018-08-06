@@ -219,7 +219,7 @@ public class SettingsActivity extends AppCompatActivity {
                 final byte[] thumb_byte = stream.toByteArray();
 
 
-                final StorageReference filepath = mImageStorage.child(getString(R.string.FB_storage_profile_images_field)).child(current_user_id + ".jpg");
+                final StorageReference filepath = mImageStorage.child(getString(R.string.FB_storage_profile_images_field)).child(current_user_id + getString(R.string.jpg_extension));
 
                 // Profile Image
                 filepath.putFile(resultUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
@@ -261,7 +261,7 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                 });
                 // Thumb image
-                final StorageReference thumb_filepath = mImageStorage.child(getString(R.string.FB_storage_profile_images_field)).child("thumbs").child(current_user_id + ".jpg");
+                final StorageReference thumb_filepath = mImageStorage.child(getString(R.string.FB_storage_profile_images_field)).child(getString(R.string.FB_storage_thumbs_field)).child(current_user_id + getString(R.string.jpg_extension));
                 thumb_filepath.putBytes(thumb_byte).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> thumb_task) throws Exception {
