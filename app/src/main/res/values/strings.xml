@@ -215,6 +215,7 @@
     <string name="friends_tab_title">FRIENDS</string>
     <string name="chck_internet_connection">Please check your internet connection</string>
     <string name="snackbar_ok">Ok</string>
+    <string name="Toast_register_form_fields_empty">Please fill all the form fields to register your account</string>
 
 
     <!--Widget-->

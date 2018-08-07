@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mLoginEmail.getEditText().getText().toString();
                 String password = mLoginPassword.getEditText().getText().toString();
 
-                if (!TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
+                if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
 
                     mLoginProgress.setTitle(R.string.logging_in);
                     mLoginProgress.setMessage(getString(R.string.logging_in_message));
@@ -88,6 +88,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     loginUser(email, password);
 
+                }else{
+                    Toast.makeText(LoginActivity.this, R.string.Toast_register_form_fields_empty, Toast.LENGTH_LONG).show();
                 }
 
             }

@@ -85,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = mEmail.getEditText().getText().toString();
                 String password = mPassword.getEditText().getText().toString();
 
-                if (!TextUtils.isEmpty(display_name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
+                if (!TextUtils.isEmpty(display_name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
 
                     mRegProgress.setTitle(getString(R.string.registering_user));
                     mRegProgress.setMessage(getString(R.string.registering_user_message));
@@ -94,6 +94,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                     register_user(display_name, email, password);
 
+                }else{
+                    Toast.makeText(RegisterActivity.this, R.string.Toast_register_form_fields_empty, Toast.LENGTH_LONG).show();
                 }
 
             }
