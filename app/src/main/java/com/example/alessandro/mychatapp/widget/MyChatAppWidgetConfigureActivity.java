@@ -62,11 +62,15 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
     private Query chatsQuery;
     private static final String IMAGE_MESSAGE = "  Image";
     private FirebaseRecyclerAdapter<Chat, MyChatAppWidgetConfigureActivity.ChatsViewHolder> firebaseRecyclerAdapter;
+    Context mContext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_chat_app_widget_configure);
+
+        mContext = getApplicationContext();
 
         mToolbar = findViewById(R.id.Widget_users_appBar2);
         setSupportActionBar(mToolbar);
@@ -80,12 +84,12 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mCurrent_user_id = mAuth.getCurrentUser().getUid();
         mRootRef = FirebaseDatabase.getInstance().getReference();
-        mMessagesDatabase = FirebaseDatabase.getInstance().getReference().child("messages").child(mCurrent_user_id);
-        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        mMessagesDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Messages_field)).child(mCurrent_user_id);
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Users_field));
         mRootRef.keepSynced(true);
         mMessagesDatabase.keepSynced(true);
         mUsersDatabase.keepSynced(true);
-        chatsQuery = mRootRef.child("lastMessage").child(mCurrent_user_id).orderByChild("lastMessageKey");
+        chatsQuery = mRootRef.child(getString(R.string.FB_lastMessage_field)).child(mCurrent_user_id).orderByChild(getString(R.string.FB_lastMessageKey_field));
 
         emptyView = findViewById(R.id.widget_chats_empty_view);
 
@@ -126,7 +130,7 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.user_single_chat_item_fragment, parent, false);
 
-                return new MyChatAppWidgetConfigureActivity.ChatsViewHolder(view);
+                return new MyChatAppWidgetConfigureActivity.ChatsViewHolder(view, mContext);
             }
 
             @Override
@@ -135,10 +139,10 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
                 mUsersDatabase.child(list_user_id).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        final String userName = dataSnapshot.child("name").getValue().toString();
-                        final String userThumb = dataSnapshot.child("thumb_image").getValue().toString();
-                        if (dataSnapshot.hasChild("online")) {
-                            String userOnline = dataSnapshot.child("online").getValue().toString();
+                        final String userName = dataSnapshot.child(getString(R.string.FB_name_field)).getValue().toString();
+                        final String userThumb = dataSnapshot.child(getString(R.string.FB_thumb_image_field)).getValue().toString();
+                        if (dataSnapshot.hasChild(getString(R.string.FB_users_online_field))) {
+                            String userOnline = dataSnapshot.child(getString(R.string.FB_users_online_field)).getValue().toString();
                             holder.setUserOnline(userOnline);
                         }
                         if (userName.length() < 20) {
@@ -181,22 +185,22 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
                 mMessagesDatabase.child(list_user_id).child(model.getLastMessageKey()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        String message = dataSnapshot.child("message").getValue().toString();
-                        String type = dataSnapshot.child("type").getValue().toString();
-                        Long time = (Long) dataSnapshot.child("time").getValue();
+                        String message = dataSnapshot.child(getString(R.string.FB_message_field)).getValue().toString();
+                        String type = dataSnapshot.child(getString(R.string.FB_message_type_field)).getValue().toString();
+                        Long time = (Long) dataSnapshot.child(getString(R.string.FB_message_time_field)).getValue();
                         GetMessageTime gmt = new GetMessageTime();
                         String date = gmt.getMessageTime(time, getApplicationContext());
                         holder.setDate(date);
 
                         String filteredMessage = filterMessage(message);
 
-                        if (type.equals("text")) {
+                        if (type.equals(getString(R.string.FB_message_type_text_field))) {
                             if (filteredMessage.length() < 35) {
                                 holder.setLastMessageKey(filteredMessage, type);
                             } else {
                                 holder.setLastMessageKey(filteredMessage.substring(0, 32).trim() + "...", type);
                             }
-                        } else if (type.equals("image")) {
+                        } else if (type.equals(getString(R.string.FB_message_type_image_field))) {
                             holder.setLastMessageKey(IMAGE_MESSAGE, type);
                         }
                     }
@@ -230,11 +234,13 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
     public static class ChatsViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
+        Context mContext;
 
-        public ChatsViewHolder (View itemView) {
+        public ChatsViewHolder(View itemView, Context context) {
             super(itemView);
 
             mView = itemView;
+            mContext = context;
         }
 
         public void setName(String name) {
@@ -257,7 +263,7 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
         public void setUserOnline(String userOnline) {
 
             ImageView imageView = mView.findViewById(R.id.user_single_online_image);
-            if (userOnline.equals("true")) {
+            if (userOnline.equals(mContext.getString(R.string.boolean_true_string))) {
                 imageView.setVisibility(View.VISIBLE);
             } else {
                 imageView.setVisibility(View.INVISIBLE);
@@ -266,7 +272,7 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
 
         public void setLastMessageKey(String lastMessageKey, String messageType) {
             TextView userMessageView = mView.findViewById(R.id.user_single_status);
-            if (messageType.equals("image")) {
+            if (messageType.equals(mContext.getString(R.string.FB_message_type_image_field))) {
                 userMessageView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_image_message, 0, 0, 0);
             }
             userMessageView.setText(lastMessageKey);
