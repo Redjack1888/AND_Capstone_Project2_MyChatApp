@@ -148,7 +148,7 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
                         if (userName.length() < 20) {
                             holder.setName(userName);
                         } else {
-                            holder.setName(userName.substring(0, 17) + "...");
+                            holder.setName(userName.substring(0, 17) + getString(R.string.ellipsis));
                         }
                         holder.setImage(userThumb);
 
