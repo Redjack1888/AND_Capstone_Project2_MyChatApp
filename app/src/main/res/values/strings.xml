@@ -183,6 +183,8 @@
 
     <!--Widget-->
     <string name="appwidget_text">EXAMPLE</string>
+    <string name="appwidget_name_text">DisplayName</string>
+    <string name="appwidget_userId_text">UserId</string>
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
     <string name="AppWidgetConfig_choose_chat">Choose a Chat</string>
