@@ -34,9 +34,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.paperdb.Paper;
 
 /**
  * The configuration screen for the {@link MyChatAppWidget MyChatAppWidget} AppWidget.
@@ -44,8 +46,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "com.example.alessandro.mychatapp.widget.MyChatAppWidget";
-    private static final String PREFS_USER_ID = "com.example.alessandro.mychatapp.widget.MyChatAppWidget";
-    private static final String PREFS_USER_NAME = "com.example.alessandro.mychatapp.widget.MyChatAppWidget";
+//    private static final String PREFS_USER_ID = "com.example.alessandro.mychatapp.widget.MyChatAppWidget";
+//    private static final String PREFS_USER_NAME = "com.example.alessandro.mychatapp.widget.MyChatAppWidget";
 
     private static final String PREF_PREFIX_KEY = "appwidget_";
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
@@ -71,6 +73,8 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
         setContentView(R.layout.my_chat_app_widget_configure);
 
         mContext = getApplicationContext();
+
+        Paper.init(mContext);
 
         mToolbar = findViewById(R.id.Widget_users_appBar2);
         setSupportActionBar(mToolbar);
@@ -161,13 +165,15 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
                                 final Context context = MyChatAppWidgetConfigureActivity.this;
 
                                 // When the button is clicked, store the string locally
-                                saveTitlePref(context, mAppWidgetId, userThumb);
-                                saveNamePref(context, mAppWidgetId, userName);
-                                saveUserIdPref(context, mAppWidgetId, list_user_id);
+
+                                saveTitlePref(context, mAppWidgetId, list_user_id);
+//
+                                Paper.book(String.valueOf(mAppWidgetId)).write("user_name", userName);
+                                Paper.book(String.valueOf(mAppWidgetId)).write("image_thumb", userThumb);
 
                                 // It is the responsibility of the configuration activity to update the app widget
                                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                                MyChatAppWidget.updateAppWidget(context, appWidgetManager, mAppWidgetId, userThumb, userName, list_user_id);
+                                MyChatAppWidget.updateAppWidget(context, appWidgetManager, mAppWidgetId, list_user_id, userName,userThumb);
 
                                 // Make sure we pass back the original appWidgetId
                                 Intent resultValue = new Intent();
@@ -313,61 +319,62 @@ public class MyChatAppWidgetConfigureActivity extends AppCompatActivity {
 
 
 
-    // Write the prefix to the SharedPreferences object for this widget
-    static void saveNamePref(Context context, int appWidgetId, String text) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_USER_NAME, 0).edit();
-        prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
-        prefs.apply();
-    }
-
-    // Read the prefix from the SharedPreferences object for this widget.
-    // If there is no preference saved, get the default from a resource
-    static String loadNamePref(Context context, int appWidgetId) {
-        SharedPreferences prefs = context.getSharedPreferences(PREFS_USER_NAME, 0);
-        String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
-        if (titleValue != null) {
-            return titleValue;
-        } else {
-            return context.getString(R.string.appwidget_name_text);
-        }
-    }
-
-    static void deleteNamePref(Context context, int appWidgetId) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_USER_NAME, 0).edit();
-        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
-        prefs.apply();
-    }
-
-
-    // Write the prefix to the SharedPreferences object for this widget
-    static void saveUserIdPref(Context context, int appWidgetId, String text) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_USER_ID, 0).edit();
-        prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
-        prefs.apply();
-    }
-
-    // Read the prefix from the SharedPreferences object for this widget.
-    // If there is no preference saved, get the default from a resource
-    static String loadUserIdPref(Context context, int appWidgetId) {
-        SharedPreferences prefs = context.getSharedPreferences(PREFS_USER_ID, 0);
-        String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
-        if (titleValue != null) {
-            return titleValue;
-        } else {
-            return context.getString(R.string.appwidget_userId_text);
-        }
-    }
-
-    static void deleteUserIdPref(Context context, int appWidgetId) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_USER_ID, 0).edit();
-        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
-        prefs.apply();
-    }
-
-
-
-
+//    // Write the prefix to the SharedPreferences object for this widget
+//    static void saveNamePref(Context context, int appWidgetId, String text) {
+//        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_USER_NAME, 0).edit();
+//        prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
+//        prefs.apply();
+//    }
+//
+//    // Read the prefix from the SharedPreferences object for this widget.
+//    // If there is no preference saved, get the default from a resource
+//    static String loadNamePref(Context context, int appWidgetId) {
+//        SharedPreferences prefs = context.getSharedPreferences(PREFS_USER_NAME, 0);
+//        String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
+//        if (titleValue != null) {
+//            return titleValue;
+//        } else {
+//            return context.getString(R.string.appwidget_name_text);
+//        }
+//    }
+//
+//    static void deleteNamePref(Context context, int appWidgetId) {
+//        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_USER_NAME, 0).edit();
+//        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
+//        prefs.apply();
+//    }
+//
+//
+//    // Write the prefix to the SharedPreferences object for this widget
+//    static void saveUserIdPref(Context context, int appWidgetId, String text) {
+//        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_USER_ID, 0).edit();
+//        prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
+//        prefs.apply();
+//    }
+//
+//    // Read the prefix from the SharedPreferences object for this widget.
+//    // If there is no preference saved, get the default from a resource
+//    static String loadUserIdPref(Context context, int appWidgetId) {
+//        SharedPreferences prefs = context.getSharedPreferences(PREFS_USER_ID, 0);
+//        String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
+//        if (titleValue != null) {
+//            return titleValue;
+//        } else {
+//            return context.getString(R.string.appwidget_userId_text);
+//        }
+//    }
+//
+//    static void deleteUserIdPref(Context context, int appWidgetId) {
+//        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_USER_ID, 0).edit();
+//        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
+//        prefs.apply();
+//    }
+//
+//
+//
+//    static void loadAllTitlePrefs(Context context, ArrayList<Integer> appWidgetIds,
+//                                  ArrayList<String> texts) {
+//    }
 
 
 }
-
