@@ -32,10 +32,12 @@ public class MyChatAppWidget extends AppWidgetProvider {
             Uri imageUri = Uri.parse(userThumb);
 
             Intent chatIntent = new Intent(context, ChatActivity.class);
+            chatIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+
             chatIntent.putExtra("user_id", list_user_id);
             chatIntent.putExtra("chatUserName", userName);
 
-            PendingIntent pendingIntent = PendingIntent.getActivity (context,0,chatIntent,0);
+            PendingIntent pendingIntent = PendingIntent.getActivity (context,appWidgetId,chatIntent,0);
 
             // Construct the RemoteViews object
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_chat_app_widget);
