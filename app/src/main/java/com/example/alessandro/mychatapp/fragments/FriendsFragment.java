@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.util.Pair;
@@ -96,10 +97,9 @@ public class FriendsFragment extends Fragment {
         return mMainView;
     }
 
-
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         FirebaseRecyclerOptions friendsOptions = new FirebaseRecyclerOptions.Builder<Friends>().setQuery(friendsQuery, Friends.class).build();
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Friends, FriendsViewHolder>(friendsOptions) {
@@ -197,6 +197,108 @@ public class FriendsFragment extends Fragment {
         mFriendsList.addItemDecoration(new SimpleDividerItemDecoration(Objects.requireNonNull(getContext())));
         firebaseRecyclerAdapter.startListening();
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+//        FirebaseRecyclerOptions friendsOptions = new FirebaseRecyclerOptions.Builder<Friends>().setQuery(friendsQuery, Friends.class).build();
+//        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Friends, FriendsViewHolder>(friendsOptions) {
+//
+//            @Override
+//            public void onDataChanged() {
+//                emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
+//            }
+//
+//            @NonNull
+//            @Override
+//            public FriendsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                View view = LayoutInflater.from(parent.getContext())
+//                        .inflate(R.layout.users_single_item, parent, false);
+//
+//                return new FriendsViewHolder(view, mContext);
+//            }
+//
+//            @Override
+//            protected void onBindViewHolder(final FriendsViewHolder holder, final int position, Friends model) {
+//                holder.setDate(model.getDate());
+//                final String list_user_id = getRef(position).getKey();
+//                mUsersDatabase.child(list_user_id).addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        final String userName = dataSnapshot.child(getString(R.string.FB_name_field)).getValue().toString();
+//                        String userThumb = dataSnapshot.child(getString(R.string.FB_thumb_image_field)).getValue().toString();
+//                        if (dataSnapshot.hasChild(getString(R.string.FB_users_online_field))) {
+//                            String userOnline = dataSnapshot.child(getString(R.string.FB_users_online_field)).getValue().toString();
+//                            holder.setUserOnline(userOnline);
+//                        }
+//                        if (userName.length() < 27) {
+//                            holder.setName(userName);
+//                        } else {
+//                            holder.setName(userName.substring(0, 24) + getString(R.string.ellipsis));
+//                        }
+//                        holder.setImage(userThumb);
+//
+//                        holder.mView.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//
+//                                CharSequence options[] = new CharSequence[]{getString(R.string.open_profile_option), getString(R.string.send_message_option)};
+//                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//                                builder.setTitle(R.string.select_option_title);
+//                                builder.setItems(options, new DialogInterface.OnClickListener() {
+//                                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int i) {
+//                                        if (i == 0) {
+//                                            //For shared transition animation to Profile Activity
+//                                            Intent profileSharedIntent = new Intent(getContext(), ProfileActivity.class);
+//
+//                                            Pair[] pairs = new Pair[2];
+//                                            pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), getString(R.string.imageTransition));
+//                                            pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), getString(R.string.nameTransition));
+//
+//                                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
+//
+//                                            profileSharedIntent.putExtra(getString(R.string.intent_stringExtra_user_id), list_user_id);
+//                                            startActivity(profileSharedIntent, options.toBundle());
+//                                        }
+//                                        if (i == 1) {
+//                                            //For shared transition animation to Chat Activity
+//                                            Intent chatSharedIntent = new Intent(getContext(), ChatActivity.class);
+//
+//                                            Pair[] pairs = new Pair[2];
+//                                            pairs[0] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_image), getString(R.string.imageTransition));
+//                                            pairs[1] = new Pair<View, String>(holder.mView.findViewById(R.id.user_single_name), getString(R.string.nameTransition));
+//
+//                                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pairs);
+//
+//                                            chatSharedIntent.putExtra(getString(R.string.intent_stringExtra_user_id), list_user_id);
+//                                            chatSharedIntent.putExtra(getString(R.string.intent_stringExtra_chatUserName), userName);
+//                                            startActivity(chatSharedIntent, options.toBundle());
+//                                        }
+//                                    }
+//                                });
+//                                builder.show();
+//                            }
+//                        });
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//
+//                    }
+//                });
+//            }
+//        };
+//
+//        mFriendsList.setAdapter(firebaseRecyclerAdapter);
+//        //To prevent getting null context Objects.requireNonNull is added
+//        mFriendsList.addItemDecoration(new SimpleDividerItemDecoration(Objects.requireNonNull(getContext())));
+//        firebaseRecyclerAdapter.startListening();
+
 //        if (firebaseRecyclerAdapter.getItemCount() <= 0 ) {
 //            mFriendsList.setVisibility(View.GONE);
 //            emptyView.setVisibility(View.VISIBLE);
@@ -206,6 +308,17 @@ public class FriendsFragment extends Fragment {
 //            mFriendsList.setVisibility(View.VISIBLE);
 //            emptyView.setVisibility(View.GONE);
 //        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        mFriendsList.setAdapter(firebaseRecyclerAdapter);
+        //To prevent getting null context Objects.requireNonNull is added
+        mFriendsList.addItemDecoration(new SimpleDividerItemDecoration(Objects.requireNonNull(getContext())));
+        firebaseRecyclerAdapter.startListening();
+
     }
 
     @Override
