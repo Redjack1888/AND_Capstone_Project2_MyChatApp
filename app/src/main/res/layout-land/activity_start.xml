@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/mychatapp_logo"
+        android:scaleType="fitCenter"
+        android:src="@drawable/mychatapp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/start_welcome_txt_margin_bottom"
+            android:layout_marginTop="@dimen/start_logo_margin_top"
+            android:text="@string/welcome_to_mychatapp"
+            android:textAlignment="gravity"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/start_welcome_txt_textSize"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/start_login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:layout_marginBottom="@dimen/start_login_btn_margin_bottom"
+            android:backgroundTint="@color/colorAccent"
+            android:paddingEnd="@dimen/start_login_btn_padding_right"
+            android:paddingStart="@dimen/start_login_btn_padding_left"
+            android:text="@string/already_have_account"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/start_reg_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:layout_marginBottom="@dimen/start_reg_btn_margin_bottom"
+            android:backgroundTint="@android:color/white"
+            android:paddingEnd="@dimen/start_reg_btn_padding_right"
+            android:paddingStart="@dimen/start_reg_btn_padding_left"
+            android:text="@string/need_a_new_account"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

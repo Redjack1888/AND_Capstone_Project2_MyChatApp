@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_wrapper_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".activities.RegisterActivity">
+
+    <include
+        android:id="@+id/register_toolbar"
+        layout="@layout/app_bar_layout"
+        android:layout_width="@dimen/register_toolbar_width"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/register_toolbar_margin_end"
+        android:layout_marginStart="@dimen/register_toolbar_margin_start"
+        android:layout_marginTop="@dimen/register_toolbar_margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="@dimen/scrollview_width"
+        android:layout_height="@dimen/scrollview_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="@dimen/scrollview_marginBottom"
+        app:layout_constraintBottom_toTopOf="@+id/register_create_btn">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/constraintRegisterLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        tools:context=".activities.RegisterActivity">
+
+        <include
+            android:id="@+id/register_toolbar"
+            layout="@layout/app_bar_layout"
+            android:layout_width="@dimen/register_toolbar_width"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/register_toolbar_margin_end"
+            android:layout_marginStart="@dimen/register_toolbar_margin_start"
+            android:layout_marginTop="@dimen/register_toolbar_margin_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/login_label"
+            android:layout_width="@dimen/login_label_width"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_label_margin_start"
+            android:layout_marginTop="@dimen/login_label_land_marginTop"
+            android:text="@string/create_a_new_account"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/login_label_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_toolbar" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_display_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/register_display_name_margin_end"
+            android:layout_marginStart="@dimen/register_display_name_margin_start"
+            android:layout_marginTop="@dimen/register_display_name_land_marginTop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_label">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/register_display_name_edt_margin"
+                android:hint="@string/hint_display_name"
+                android:inputType="textPersonName" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/register_email_margin_end"
+            android:layout_marginStart="@dimen/register_email_margin_start"
+            android:layout_marginTop="@dimen/register_email_margin_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_display_name">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/register_email_edt_margin"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/register_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/register_password_margin_end"
+            android:layout_marginStart="@dimen/register_password_margin_start"
+            android:layout_marginTop="@dimen/register_password_margin_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_email">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/register_password_edt_margin"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/register_create_btn"
+        android:layout_width="@dimen/register_create_btn_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/register_create_btn_marginBottom"
+        android:layout_marginEnd="@dimen/register_create_btn_margin_end"
+        android:layout_marginStart="@dimen/register_create_btn_margin_start"
+        android:backgroundTint="@color/colorAccent"
+        android:paddingEnd="@dimen/register_create_btn_padding_right"
+        android:paddingStart="@dimen/register_create_btn_padding_left"
+        android:text="@string/create_account"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

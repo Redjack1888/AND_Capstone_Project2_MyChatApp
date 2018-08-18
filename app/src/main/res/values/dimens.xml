@@ -169,4 +169,44 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="user_single_message_time_margin_end">15dp</dimen>
     <dimen name="user_single_message_time_margin_top">15dp</dimen>
 
+    <dimen name="login_land_margin_top">20dp</dimen>
+
+    <dimen name="total_friends_land_marginTop">70dp</dimen>
+
+    <dimen name="scrollview_width">0dp</dimen>
+    <dimen name="scrollview_height">0dp</dimen>
+    <dimen name="scrollview_marginBottom">0dp</dimen>
+
+    <dimen name="login_label_land_marginTop">20dp</dimen>
+
+    <dimen name="register_display_name_land_marginTop">20dp</dimen>
+    <dimen name="register_create_btn_marginBottom">16dp</dimen>
+
+    <dimen name="Linear_layout_marginEnd">0dp</dimen>
+    <dimen name="settings_image_land_marginStart">30dp</dimen>
+
+    <dimen name="linear_layout_register_land_marginStart">200dp</dimen>
+    <dimen name="settings_name_land_marginEnd">8dp</dimen>
+    <dimen name="settings_name_land_marginStart">8dp</dimen>
+    <dimen name="settings_name_land_marginTop">40dp</dimen>
+
+    <dimen name="settings_status_land_marginEnd">8dp</dimen>
+    <dimen name="settings_status_land_marginStart">8dp</dimen>
+    <dimen name="settings_status_land_marginTop">15dp</dimen>
+
+    <dimen name="settings_image_btn_marginBottom">10dp</dimen>
+    <dimen name="settings_image_btn_marginEnd">8dp</dimen>
+    <dimen name="settings_image_btn_marginStart">8dp</dimen>
+    <dimen name="settings_image_btn_marginTop">70dp</dimen>
+    <dimen name="settings_image_btn_paddingLeft">25dp</dimen>
+    <dimen name="settings_image_btn_paddingRight">25dp</dimen>
+
+    <dimen name="settings_status_btn_marginBottom">30dp</dimen>
+    <dimen name="settings_status_btn_marginEnd">8dp</dimen>
+    <dimen name="settings_status_btn_marginStart">8dp</dimen>
+    <dimen name="settings_status_btn_PaddingLeft">25dp</dimen>
+    <dimen name="settings_status_btn_paddingRight">25dp</dimen>
+
+    <dimen name="settings_name_textSize">24sp</dimen>
+
 </resources>

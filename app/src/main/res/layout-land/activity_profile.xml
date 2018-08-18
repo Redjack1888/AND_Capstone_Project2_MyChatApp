@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativeProfileLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDark"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="@dimen/profile_image_height"
+        android:layout_height="match_parent"
+
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/user_image_profile"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/default_avatar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="@dimen/Linear_layout_marginEnd"
+        android:layout_toEndOf="@id/profile_image"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/profile_displayName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:layout_marginTop="@dimen/profile_displayName_margin_top"
+            android:text="@string/hint_display_name"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/profile_displayName_text_size" />
+
+        <TextView
+            android:id="@+id/profile_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:layout_marginTop="@dimen/profile_status_margin_top"
+            android:text="@string/account_status"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/profile_status_textSize" />
+
+        <TextView
+            android:id="@+id/profile_totalFriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/profile_totalFriends_margin_bottom"
+            android:layout_marginTop="@dimen/total_friends_land_marginTop"
+            android:text="@string/total_friends"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/profile_totalFriends_textSize" />
+
+        <Button
+            android:id="@+id/profile_send_req_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:layout_marginBottom="@dimen/profile_send_req_btn_margin_bottom"
+            android:backgroundTint="@color/colorAccent"
+            android:text="@string/send_friend_request"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/profile_decline_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:layout_marginBottom="@dimen/profile_decline_btn_margin_bottom"
+            android:backgroundTint="@color/colorAccent"
+            android:text="@string/decline_friend_request"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</RelativeLayout>

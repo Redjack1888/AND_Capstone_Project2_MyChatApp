@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeSettingsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/settings_image"
+        android:layout_width="@dimen/settings_image_size"
+        android:layout_height="@dimen/settings_image_size"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/settings_image_land_marginStart"
+        android:src="@drawable/default_avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/linear_layout_register_land_marginStart"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/settings_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="@dimen/settings_name_land_marginEnd"
+            android:layout_marginStart="@dimen/settings_name_land_marginStart"
+            android:layout_marginTop="@dimen/settings_name_land_marginTop"
+            android:text="@string/settings_display_name_txt"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/settings_name_textSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/settings_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/settings_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="@dimen/settings_status_land_marginEnd"
+            android:layout_marginStart="@dimen/settings_status_land_marginStart"
+            android:layout_marginTop="@dimen/settings_status_land_marginTop"
+            android:text="@string/default_status"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/settings_image"
+            app:layout_constraintTop_toBottomOf="@+id/settings_name" />
+
+        <Button
+            android:id="@+id/settings_image_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/settings_image_btn_marginBottom"
+            android:layout_marginEnd="@dimen/settings_image_btn_marginEnd"
+            android:layout_marginStart="@dimen/settings_image_btn_marginStart"
+            android:layout_marginTop="@dimen/settings_image_btn_marginTop"
+            android:backgroundTint="@android:color/white"
+            android:paddingStart="@dimen/settings_image_btn_paddingLeft"
+            android:paddingEnd="@dimen/settings_image_btn_paddingRight"
+            android:text="@string/change_image_btn"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@+id/settings_status_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/settings_image" />
+
+        <Button
+            android:id="@+id/settings_status_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="@dimen/settings_status_btn_marginBottom"
+            android:layout_marginEnd="@dimen/settings_status_btn_marginEnd"
+            android:layout_marginStart="@dimen/settings_status_btn_marginStart"
+            android:backgroundTint="@color/colorAccent"
+            android:paddingStart="@dimen/settings_status_btn_PaddingLeft"
+            android:paddingEnd="@dimen/settings_status_btn_paddingRight"
+            android:text="@string/change_status_btn"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/settings_image" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
