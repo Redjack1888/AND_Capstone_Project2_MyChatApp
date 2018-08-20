@@ -34,8 +34,8 @@ public class MyChatAppWidget extends AppWidgetProvider {
             Intent chatIntent = new Intent(context, ChatActivity.class);
             chatIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 
-            chatIntent.putExtra("user_id", list_user_id);
-            chatIntent.putExtra("chatUserName", userName);
+            chatIntent.putExtra(context.getString(R.string.user_id), list_user_id);
+            chatIntent.putExtra(context.getString(R.string.chatUserName), userName);
 
             PendingIntent pendingIntent = PendingIntent.getActivity (context,appWidgetId,chatIntent,0);
 
@@ -58,21 +58,6 @@ public class MyChatAppWidget extends AppWidgetProvider {
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }
     }
-
-//    @Override
-//    public void onReceive(Context context, Intent intent) {
-//        super.onReceive(context, intent);
-//
-//        if (Objects.equals(intent.getAction(), CLICK_ACTION)){
-//
-//            Intent chatIntent = new Intent(context, ChatActivity.class);
-//            chatIntent.putExtra("user_id", list_user_id);
-//            chatIntent.putExtra("chatUserName", userName);
-//
-//            PendingIntent pendingIntent = PendingIntent.getActivity (context,0,intent,0);
-//        }
-//
-//    }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {

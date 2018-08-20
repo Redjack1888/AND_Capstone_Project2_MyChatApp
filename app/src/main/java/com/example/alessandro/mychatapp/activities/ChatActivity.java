@@ -86,9 +86,6 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        // Getting application context
-//        mContext = getApplicationContext();
-
         chat_user_id = getIntent().getStringExtra(getString(R.string.intent_stringExtra_user_id));
         chat_user_name = getIntent().getStringExtra(getString(R.string.intent_stringExtra_chatUserName));
         mChatToolbar = findViewById(R.id.chat_bar_layout);
@@ -177,7 +174,6 @@ public class ChatActivity extends AppCompatActivity {
                         }
                     });
                 }
-                //  }
             }
 
             @Override
@@ -290,11 +286,12 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void loadMessages() {
-        //
+
         DatabaseReference messagesRef = mRootRef.child(getString(R.string.FB_Messages_field)).child(current_user_id).child(chat_user_id);
         messagesRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
                 Messages messages = dataSnapshot.getValue(Messages.class);
                 messagesList.add(messages);
                 mAdapter.notifyDataSetChanged();
@@ -323,7 +320,6 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
-        //  }
 
     }
 
@@ -419,8 +415,8 @@ public class ChatActivity extends AppCompatActivity {
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    public void showSnackBar(String message, RelativeLayout relativeLayout)
-    {
+    public void showSnackBar(String message, RelativeLayout relativeLayout){
+        
         snackbar = Snackbar
                 .make(relativeLayout, message, Snackbar.LENGTH_INDEFINITE).
                         setAction((R.string.snackbar_ok), new View.OnClickListener() {
@@ -432,6 +428,4 @@ public class ChatActivity extends AppCompatActivity {
                         });
         snackbar.show();
     }
-
-
 }

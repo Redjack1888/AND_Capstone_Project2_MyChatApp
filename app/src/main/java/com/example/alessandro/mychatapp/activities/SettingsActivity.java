@@ -149,12 +149,6 @@ public class SettingsActivity extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
 
-//                mProgressDialog = new ProgressDialog(SettingsActivity.this);
-//                mProgressDialog.setTitle(getString(R.string.progress_uploading_image));
-//                mProgressDialog.setMessage(getString(R.string.progress_uploading_image_message));
-//                mProgressDialog.setCanceledOnTouchOutside(false);
-//                mProgressDialog.show();
-
                 Uri resultUri = result.getUri();
 
                 File thumb_filePathUri = new File(resultUri.getPath());

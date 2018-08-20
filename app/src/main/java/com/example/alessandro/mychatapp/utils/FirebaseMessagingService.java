@@ -16,6 +16,11 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     private static final String CHANNEL_ID = "93";
 
     @Override
+    public void onNewToken(String s) {
+        super.onNewToken(s);
+    }
+
+    @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
