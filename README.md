@@ -8,5 +8,5 @@ The Capstone project will give me the experience I need to own the full developm
 
 ## _Required Tasks_
 - Successfully complete [**Stage 1**](https://github.com/Redjack1888/Capstone-Stage-1---Design).
-- Build your app using your [**Stage 1 document**](https://github.com/Redjack1888/Capstone-Stage-1---Design/blob/master/Capstone_Stage1-MyChatApp-final-definitive%20.pdf) as a guide.
-- Submit your app source code through the Nanodegree project portal.
+- Build the app using your [**Stage 1 document**](https://github.com/Redjack1888/Capstone-Stage-1---Design/blob/master/Capstone_Stage1-MyChatApp-final-definitive%20.pdf) as a guide.
+- Submit the app source code through the Nanodegree project portal.
