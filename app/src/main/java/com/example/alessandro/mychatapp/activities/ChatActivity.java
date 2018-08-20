@@ -416,7 +416,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     public void showSnackBar(String message, RelativeLayout relativeLayout){
-        
+
         snackbar = Snackbar
                 .make(relativeLayout, message, Snackbar.LENGTH_INDEFINITE).
                         setAction((R.string.snackbar_ok), new View.OnClickListener() {

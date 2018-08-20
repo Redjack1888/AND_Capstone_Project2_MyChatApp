@@ -149,6 +149,36 @@ public class ProfileActivity extends AppCompatActivity {
                                 mDeclineBtn.setVisibility(View.VISIBLE);
                                 mDeclineBtn.setEnabled(true);
 
+                                // DECLINE FRIEND METHOD / BUTTON
+
+                                mDeclineBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        mFriendReqDatabase.child(mCurrent_user.getUid()).child(user_id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+
+                                                mFriendReqDatabase.child(user_id).child(mCurrent_user.getUid()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+
+                                                        mProfileSendReqBtn.setEnabled(true);
+                                                        mCurrent_state = getString(R.string.Friendship_status_notFriends);
+                                                        mProfileSendReqBtn.setText(getString(R.string.send_friend_request_text));
+
+                                                        mDeclineBtn.setVisibility(View.INVISIBLE);
+                                                        mDeclineBtn.setEnabled(false);
+
+                                                    }
+                                                });
+
+                                            }
+                                        });
+
+
+                                    }
+                                });
+
 
                             } else if (req_type.equals(getString(R.string.FB_notifications_type_sent_value))) {
 
@@ -173,13 +203,14 @@ public class ProfileActivity extends AppCompatActivity {
                                         mCurrent_state = getString(R.string.Friendship_status_friends);
                                         mProfileSendReqBtn.setText(getString(R.string.Unfriend_this_person_text));
 
+                                        int FriendsCount = (int) dataSnapshot.getChildrenCount();
+                                        mProfileFriendsCount.setText(String.valueOf(FriendsCount));
                                         mDeclineBtn.setVisibility(View.INVISIBLE);
                                         mDeclineBtn.setEnabled(false);
 
                                     }
 
                                     mProgressDialog.dismiss();
-
                                 }
 
                                 @Override
