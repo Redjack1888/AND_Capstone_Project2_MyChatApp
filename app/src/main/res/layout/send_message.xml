@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/send_message_layout_height"
     android:layout_alignParentBottom="true"
+    android:background="@android:color/white"
     android:orientation="horizontal">
 
     <ImageButton
@@ -23,7 +24,7 @@
         android:layout_weight="8"
         android:background="@android:color/white"
         android:hint="@string/enter_message_here"
-        android:inputType="text"
+        android:inputType="textMultiLine"
         android:paddingStart="@dimen/chat_message_edit_text_padding_start" />
 
     <ImageButton

@@ -188,6 +188,7 @@
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
     <string name="AppWidgetConfig_choose_chat">Choose a Chat</string>
+    <string name="widget_default_image_check">default</string>
 
     <!--Firebase Messaging Service-->
     <string name="fromUserId">from_user_id</string>
@@ -215,10 +216,13 @@
     <string name="requests_tab_title">REQUESTS</string>
     <string name="chats_tab_title">CHATS</string>
     <string name="friends_tab_title">FRIENDS</string>
+
+
     <string name="chck_internet_connection">Please check your internet connection</string>
     <string name="snackbar_ok">Ok</string>
     <string name="Toast_register_form_fields_empty">Please fill all the form fields to register your account</string>
     <string name="user_id">user_id</string>
     <string name="chatUserName">chatUserName</string>
+
 
 </resources>

@@ -13,8 +13,6 @@ import com.example.alessandro.mychatapp.R;
 import com.example.alessandro.mychatapp.activities.ChatActivity;
 import com.squareup.picasso.Picasso;
 
-import java.util.Objects;
-
 import io.paperdb.Paper;
 
 import static android.support.constraint.Constraints.TAG;
@@ -29,6 +27,7 @@ public class MyChatAppWidget extends AppWidgetProvider {
                                 int appWidgetId, String list_user_id, String userName, String userThumb) {
 
         if (userThumb != null) {
+            if (!userThumb.equals(context.getString(R.string.widget_default_image_check))){
             Uri imageUri = Uri.parse(userThumb);
 
             Intent chatIntent = new Intent(context, ChatActivity.class);
@@ -42,20 +41,48 @@ public class MyChatAppWidget extends AppWidgetProvider {
             // Construct the RemoteViews object
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_chat_app_widget);
             views.setImageViewUri(R.id.widget_user_single_image, imageUri);
-//            views.setTextViewText(R.id.widget_user_single_name, userName);
+            views.setTextViewText(R.id.widget_user_single_name, userName);
             views.setOnClickPendingIntent(R.id.layout_wrapper, pendingIntent);
 
             Picasso.get()
                     .load(userThumb)
                     .into(views, R.id.widget_user_single_image, new int[]{appWidgetId});
 
-            Log.d(TAG, "updateAppWidget: appWidgetId: "+ appWidgetId + ", user_id: " + list_user_id + ", userName: " + userName + ", image: " + userThumb);
-
-
             // Instruct the widget manager to update the widget
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId,R.id.layout_wrapper);
 
             appWidgetManager.updateAppWidget(appWidgetId, views);
+
+            }else{
+
+                Intent chatIntent = new Intent(context, ChatActivity.class);
+                chatIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+
+                chatIntent.putExtra(context.getString(R.string.user_id), list_user_id);
+                chatIntent.putExtra(context.getString(R.string.chatUserName), userName);
+
+                PendingIntent pendingIntent = PendingIntent.getActivity (context,appWidgetId,chatIntent,0);
+
+                // Construct the RemoteViews object
+                RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_chat_app_widget);
+                views.setImageViewResource(R.id.widget_user_single_image, R.drawable.default_avatar);
+                views.setTextViewText(R.id.widget_user_single_name, userName);
+                views.setOnClickPendingIntent(R.id.layout_wrapper, pendingIntent);
+
+                Picasso.get()
+                        .load(R.drawable.default_avatar)
+                        .into(views, R.id.widget_user_single_image, new int[]{appWidgetId});
+
+                Log.d(TAG, "updateAppWidget: appWidgetId: "+ appWidgetId + ", user_id: " + list_user_id + ", userName: " + userName + ", image: " + userThumb);
+
+
+                // Instruct the widget manager to update the widget
+                appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId,R.id.layout_wrapper);
+
+                appWidgetManager.updateAppWidget(appWidgetId, views);
+
+            }
+
         }
     }
 

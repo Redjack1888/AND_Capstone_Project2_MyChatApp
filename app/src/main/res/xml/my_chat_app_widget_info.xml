@@ -3,9 +3,9 @@
     android:configure="com.example.alessandro.mychatapp.widget.MyChatAppWidgetConfigureActivity"
     android:initialKeyguardLayout="@layout/my_chat_app_widget"
     android:initialLayout="@layout/my_chat_app_widget"
-    android:minHeight="40dp"
-    android:minWidth="40dp"
+    android:minHeight="80dp"
+    android:minWidth="80dp"
     android:previewImage="@drawable/example_appwidget_preview"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="86400000"
-    android:widgetCategory="home_screen"></appwidget-provider>
+    android:widgetCategory="home_screen"/>

@@ -20,7 +20,7 @@
 
     <LinearLayout
         android:id="@+id/chat_message_linear_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/chat_message_linear_layout_height"
         android:orientation="vertical">
 

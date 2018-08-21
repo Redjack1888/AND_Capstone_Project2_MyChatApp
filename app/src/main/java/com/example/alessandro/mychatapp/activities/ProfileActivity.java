@@ -202,9 +202,6 @@ public class ProfileActivity extends AppCompatActivity {
 
                                         mCurrent_state = getString(R.string.Friendship_status_friends);
                                         mProfileSendReqBtn.setText(getString(R.string.Unfriend_this_person_text));
-
-                                        int FriendsCount = (int) dataSnapshot.getChildrenCount();
-                                        mProfileFriendsCount.setText(String.valueOf(FriendsCount));
                                         mDeclineBtn.setVisibility(View.INVISIBLE);
                                         mDeclineBtn.setEnabled(false);
 

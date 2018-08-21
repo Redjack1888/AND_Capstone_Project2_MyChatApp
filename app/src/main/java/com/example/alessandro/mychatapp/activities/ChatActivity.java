@@ -15,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,9 +91,22 @@ public class ChatActivity extends AppCompatActivity {
     private RelativeLayout relativeLayout;
 //    Context mContext;
     private Snackbar snackbar;
+    private String TAG;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onSaveInstanceState(Bundle outState) {
+
+        String saved_message = chatMessageEditText.getText().toString();
+        outState.putString("messageSavedKey", saved_message);
+
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "onSaveInstanceState: messageSavedKey: " + saved_message );
+
+    }
+
+    @Override
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
@@ -163,6 +177,12 @@ public class ChatActivity extends AppCompatActivity {
 
                 if (optionId == R.layout.send_message) {
                     chatMessageEditText = C.findViewById(R.id.chat_message_edit_text);
+
+                    if ( savedInstanceState != null ) {
+                        String saved_message = savedInstanceState.getString("messageSavedKey");
+                        chatMessageEditText.setText( saved_message );
+                    }
+
                     chatMessageAddBtn = C.findViewById(R.id.chat_message_add_btn);
                     chatMessageSendBtn = C.findViewById(R.id.chat_message_send_btn);
 
@@ -196,7 +216,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String thumbImage = dataSnapshot.child(getString(R.string.FB_thumb_image_field)).getValue().toString();
-                Picasso.get().load(thumbImage).placeholder(R.drawable.square_image_placeholder).into(chatUserImage);
+                Picasso.get().load(thumbImage).placeholder(R.drawable.default_avatar).into(chatUserImage);
                 String online = dataSnapshot.child(getString(R.string.FB_users_online_field)).getValue().toString();
 
                 if (online.equals(getString(R.string.boolean_true_string))) {
@@ -299,6 +319,8 @@ public class ChatActivity extends AppCompatActivity {
         DatabaseReference messagesRef = mRootRef.child(getString(R.string.FB_Messages_field)).child(current_user_id).child(chat_user_id);
         Query messageQuery = messagesRef.limitToLast(mCurrentPage * TOTAL_ITEMS_TO_LOAD);
 
+        messagesList.clear();
+
         messageQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -345,6 +367,8 @@ public class ChatActivity extends AppCompatActivity {
         });
 
     }
+
+
 
     private void sendMessage() {
         String message = chatMessageEditText.getText().toString();

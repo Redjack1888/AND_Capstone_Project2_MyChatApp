@@ -80,7 +80,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         } else {
             holder.mMessageTextView.setVisibility(View.INVISIBLE);
             Picasso.get().load(c.getMessage())
-                    .placeholder(R.drawable.default_avatar).into(holder.messageImage);
+                    .placeholder(R.drawable.square_image_placeholder).into(holder.messageImage);
         }
 
         userRef = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.FB_Users_field)).child(from);
@@ -93,7 +93,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
                 holder.mUserTextView.setText(name);
                 // holder.messageImage.setVisibility(View.INVISIBLE);
-                Picasso.get().load(image_url).placeholder(R.drawable.square_image_placeholder).into(holder.mMessageCircleImageView);
+                Picasso.get().load(image_url).placeholder(R.drawable.default_avatar).into(holder.mMessageCircleImageView);
             }
 
             @Override
