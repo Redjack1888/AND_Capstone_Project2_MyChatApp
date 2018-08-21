@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -69,6 +71,7 @@ public class ChatActivity extends AppCompatActivity {
     private ImageButton chatMessageAddBtn;
     private ImageButton chatMessageSendBtn;
     private RecyclerView mMessageList;
+    private SwipeRefreshLayout mRefreshLayout;
     private final List<Messages> messagesList = new ArrayList<>();
     private LinearLayoutManager mLinearLayout;
     private MessageAdapter mAdapter;
@@ -76,6 +79,13 @@ public class ChatActivity extends AppCompatActivity {
     //    private boolean exist ;
     private static final int TOTAL_ITEMS_TO_LOAD = 10;
     private static final int GALLERY_PICK = 1;
+    private int mCurrentPage = 1;
+
+    private int itemPos = 0;
+
+    private String mLastKey = "";
+    private String mPrevKey = "";
+
     private StorageReference mImageStorage;
     private RelativeLayout relativeLayout;
 //    Context mContext;
@@ -204,7 +214,6 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     @Override
@@ -288,15 +297,29 @@ public class ChatActivity extends AppCompatActivity {
     private void loadMessages() {
 
         DatabaseReference messagesRef = mRootRef.child(getString(R.string.FB_Messages_field)).child(current_user_id).child(chat_user_id);
-        messagesRef.addChildEventListener(new ChildEventListener() {
+        Query messageQuery = messagesRef.limitToLast(mCurrentPage * TOTAL_ITEMS_TO_LOAD);
+
+        messageQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 Messages messages = dataSnapshot.getValue(Messages.class);
+
+                itemPos++;
+
+                if(itemPos == 1){
+
+                    String messageKey = dataSnapshot.getKey();
+
+                    mLastKey = messageKey;
+                    mPrevKey = messageKey;
+
+                }
+
                 messagesList.add(messages);
                 mAdapter.notifyDataSetChanged();
 
-                mMessageList.scrollToPosition(messagesList.size());
+                mMessageList.scrollToPosition(messagesList.size() - 1);
 
             }
 
