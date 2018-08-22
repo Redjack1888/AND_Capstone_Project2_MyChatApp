@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "662771652777-kv33bop70fjfmj3fphpi1sfbu322e7gi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alessandro.mychatapp",
+            "certificate_hash": "19403c9cad0d61963b40fbcd20fe41dd8f3e31d3"
+          }
+        },
+        {
           "client_id": "662771652777-rdl37obuukltbcho98a9p9fj783vvlo6.apps.googleusercontent.com",
           "client_type": 3
         }
