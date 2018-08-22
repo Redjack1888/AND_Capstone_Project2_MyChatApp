@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.alessandro.mychatapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.HashMap;
 
@@ -48,6 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private ConstraintLayout constraintLayout;
     private Snackbar snackbar;
+    private String device_token;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,8 +168,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                     mDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Users_field)).child(uid);
 
-                    String device_token = FirebaseInstanceId.getInstance().getToken();
+                    FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( new OnSuccessListener<InstanceIdResult>() {
+                        @Override
+                        public void onSuccess(InstanceIdResult instanceIdResult) {
+                            device_token = instanceIdResult.getToken();
 
+                        }
+                    });
                     HashMap<String, String> userMap = new HashMap<>();
                     userMap.put(getString(R.string.FB_name_field), display_name);
                     userMap.put(getString(R.string.FB_status_field), getString(R.string.default_status));

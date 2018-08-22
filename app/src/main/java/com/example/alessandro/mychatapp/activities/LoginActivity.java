@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private ConstraintLayout constraintLayout;
     private Snackbar snackbar;
-
+    private String deviceToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +131,17 @@ public class LoginActivity extends AppCompatActivity {
                     mLoginProgress.dismiss();
 
                     String current_user_id = mAuth.getCurrentUser().getUid();
-                    String deviceToken = FirebaseInstanceId.getInstance().getToken();
+                    FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( new OnSuccessListener<InstanceIdResult>() {
+                        @Override
+                        public void onSuccess(InstanceIdResult instanceIdResult) {
+
+                            deviceToken = instanceIdResult.getToken();
+                            
+                        }
+                    });
+
+
+//                    String deviceToken = FirebaseInstanceId.getInstance().getToken();
 
                     mUserDatabase.child(current_user_id).child(getString(R.string.FB_device_token_field)).setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
