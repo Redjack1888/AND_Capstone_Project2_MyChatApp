@@ -136,12 +136,10 @@ public class LoginActivity extends AppCompatActivity {
                         public void onSuccess(InstanceIdResult instanceIdResult) {
 
                             deviceToken = instanceIdResult.getToken();
-                            
+
                         }
                     });
 
-
-//                    String deviceToken = FirebaseInstanceId.getInstance().getToken();
 
                     mUserDatabase.child(current_user_id).child(getString(R.string.FB_device_token_field)).setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

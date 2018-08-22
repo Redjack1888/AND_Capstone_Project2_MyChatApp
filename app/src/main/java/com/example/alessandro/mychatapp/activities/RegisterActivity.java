@@ -172,9 +172,10 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(InstanceIdResult instanceIdResult) {
                             device_token = instanceIdResult.getToken();
-
+                            
                         }
                     });
+
                     HashMap<String, String> userMap = new HashMap<>();
                     userMap.put(getString(R.string.FB_name_field), display_name);
                     userMap.put(getString(R.string.FB_status_field), getString(R.string.default_status));
