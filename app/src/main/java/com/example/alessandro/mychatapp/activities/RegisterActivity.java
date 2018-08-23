@@ -50,8 +50,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private ConstraintLayout constraintLayout;
     private Snackbar snackbar;
-    private String device_token;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,14 +165,9 @@ public class RegisterActivity extends AppCompatActivity {
                     String uid = current_user.getUid();
 
                     mDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.FB_Users_field)).child(uid);
-
-                    FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( new OnSuccessListener<InstanceIdResult>() {
-                        @Override
-                        public void onSuccess(InstanceIdResult instanceIdResult) {
-                            device_token = instanceIdResult.getToken();
-                            
-                        }
-                    });
+                    String device_token = FirebaseInstanceId.getInstance().getToken();
+                    // I've tried to use the new method to retrieve device token - http://bit.ly/2BLahfQ
+                    // but it was not updating the Firebase Database as I need. So I returned at this solution.
 
                     HashMap<String, String> userMap = new HashMap<>();
                     userMap.put(getString(R.string.FB_name_field), display_name);

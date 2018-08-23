@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private ConstraintLayout constraintLayout;
     private Snackbar snackbar;
-    private String deviceToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,15 +130,9 @@ public class LoginActivity extends AppCompatActivity {
                     mLoginProgress.dismiss();
 
                     String current_user_id = mAuth.getCurrentUser().getUid();
-                    FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( new OnSuccessListener<InstanceIdResult>() {
-                        @Override
-                        public void onSuccess(InstanceIdResult instanceIdResult) {
-
-                            deviceToken = instanceIdResult.getToken();
-
-                        }
-                    });
-
+                    String deviceToken = FirebaseInstanceId.getInstance().getToken();
+                    // I've tried to use the new method to retrieve device token - http://bit.ly/2BLahfQ
+                    // but it was not updating the Firebase Database as I need. So I returned at this solution.
 
                     mUserDatabase.child(current_user_id).child(getString(R.string.FB_device_token_field)).setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
